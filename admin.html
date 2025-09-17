@@ -6,14 +6,18 @@
     <title>Gestione Vini - Admin</title>
     <style>
         body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
-        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         h1 { text-align: center; color: #333; }
-        form div { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type="text"], input[type="number"], select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        input[type="checkbox"] { width: auto; }
-        button { width: 100%; padding: 12px; background-color: #5d0f10; color: white; border: none; border-radius: 4px; font-size: 1.1em; cursor: pointer; }
-        button:hover { background-color: #2a619e; }
+        .wine-list { list-style: none; padding: 0; }
+        .wine-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; }
+        .wine-item:last-child { border-bottom: none; }
+        .wine-name { flex-grow: 1; font-weight: bold; }
+        .availability-switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .availability-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #5d0f10; }
+        input:checked + .slider:before { transform: translateX(20px); }
         .message { margin-top: 20px; padding: 10px; border-radius: 4px; text-align: center; display: none; }
         .success { background-color: #d4edda; color: #155724; }
         .error { background-color: #f8d7da; color: #721c24; }
@@ -22,86 +26,75 @@
 <body>
 
 <div class="container">
-    <h1>Aggiungi un nuovo vino</h1>
-    <form id="add-wine-form">
-        <div>
-            <label for="categoria">Categoria:</label>
-            <select id="categoria" name="categoria" required>
-                <option value="Le Bolle">Le Bolle</option>
-                <option value="I Bianchi">I Bianchi</option>
-                <option value="I Rosati">I Rosati</option>
-                <option value="I Rossi">I Rossi</option>
-                <option value="I Vini Speciali">I Vini Speciali</option>
-            </select>
-        </div>
-        <div>
-            <label for="nazione">Nazione:</label>
-            <input type="text" id="nazione" name="nazione" required>
-        </div>
-        <div>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-        </div>
-        <div>
-            <label for="disponibile">Disponibile:</label>
-            <input type="checkbox" id="disponibile" name="disponibile">
-        </div>
-        <div>
-            <label for="anno">Anno:</label>
-            <input type="text" id="anno" name="anno">
-        </div>
-        <div>
-            <label for="aoc">AOC:</label>
-            <input type="text" id="aoc" name="aoc">
-        </div>
-        <div>
-            <label for="vitigni">Vitigni:</label>
-            <input type="text" id="vitigni" name="vitigni">
-        </div>
-        <div>
-            <label for="prezzo">Prezzo:</label>
-            <input type="number" id="prezzo" name="prezzo" required>
-        </div>
-        <button type="submit">Aggiungi Vino</button>
-    </form>
-    <div id="message" class="message"></div>
+    <h1>Gestione Disponibilità Vini</h1>
+    <ul class="wine-list" id="wine-list"></ul>
 </div>
 
 <script>
-    document.getElementById('add-wine-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const form = event.target;
-        const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => (data[key] = value));
+    document.addEventListener('DOMContentLoaded', () => {
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec'; // INCOLLA QUI L'URL DELLO SCRIPT
+        const wineList = document.getElementById('wine-list');
 
-        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec'; // INCOLLA QUI L'URL COPIATO
+        function fetchWines() {
+            fetch(appsScriptUrl)
+                .then(response => response.json())
+                .then(wines => {
+                    wineList.innerHTML = ''; // Pulisce la lista prima di aggiornare
+                    wines.forEach(wine => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'wine-item';
 
-        fetch(appsScriptUrl, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'no-cors' // Necessario per evitare problemi di CORS
-        })
-        .then(() => {
-            showMessage('Vino aggiunto con successo! Il foglio si aggiornerà a breve.', 'success');
-            form.reset();
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-            showMessage('Si è verificato un errore. Controlla la console.', 'error');
-        });
+                        const nameSpan = document.createElement('span');
+                        nameSpan.className = 'wine-name';
+                        nameSpan.textContent = wine.Nome;
+                        listItem.appendChild(nameSpan);
+
+                        const switchLabel = document.createElement('label');
+                        switchLabel.className = 'availability-switch';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.checked = wine.Disponibile === 'TRUE';
+                        
+                        checkbox.addEventListener('change', () => {
+                            updateAvailability(wine.Nome, checkbox.checked);
+                        });
+
+                        const slider = document.createElement('span');
+                        slider.className = 'slider';
+
+                        switchLabel.appendChild(checkbox);
+                        switchLabel.appendChild(slider);
+                        listItem.appendChild(switchLabel);
+                        wineList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento dei vini:', error);
+                });
+        }
+
+        function updateAvailability(nome, disponibilita) {
+            const data = { nome, disponibilita };
+            fetch(appsScriptUrl, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                mode: 'no-cors'
+            })
+            .then(response => {
+                // Non possiamo leggere la risposta in modalità 'no-cors', ma l'azione è comunque eseguita.
+                console.log('Stato di disponibilità aggiornato per', nome);
+            })
+            .catch(error => {
+                console.error('Errore nell\'aggiornamento della disponibilità:', error);
+            });
+        }
+
+        fetchWines(); // Carica la lista dei vini all'apertura della pagina
     });
-
-    function showMessage(msg, type) {
-        const messageDiv = document.getElementById('message');
-        messageDiv.textContent = msg;
-        messageDiv.className = `message ${type}`;
-        messageDiv.style.display = 'block';
-    }
 </script>
 
 </body>
