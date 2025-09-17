@@ -139,6 +139,16 @@
     "price": "40",
     "available": true
   },
+   {
+    "category": "Le Bolle",
+    "country": "Portogallo",
+    "name": "Mal Acabado pet nat",
+    "info": "(Loureiro)",
+    "aoc": null,
+    "year": null,
+    "price": "40",
+    "available": true
+  },
   {
     "category": "Le Bolle",
     "country": "Spagna",
@@ -244,7 +254,7 @@
     "country": "Bulgaria",
     "name": "Orelek - Orbelus",
     "info": "(Assyrtiko, Sandanski Misket)",
-    "aoc": "Struma",
+    "aoc": "Struma Valley",
     "year": "2019",
     "price": "36",
     "available": true
@@ -494,7 +504,7 @@
     "country": "Portogallo",
     "name": "Phulia - Desvirttuado",
     "info": "(Loureiro)",
-    "aoc": "Lima",
+    "aoc": "Lima Valley",
     "year": null,
     "price": "44",
     "available": true
@@ -1070,6 +1080,7 @@
     "available": true
   }
 ]
+
 
 
 
