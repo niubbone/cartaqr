@@ -52,7 +52,13 @@
 
 <script>
     fetch('wines.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                // Se la risposta non è OK (es. errore 404), lancia un errore
+                throw new Error('Errore HTTP ' + response.status);
+            }
+            return response.json();
+        })
         .then(wines => {
             const wineMenu = document.getElementById('wine-menu');
             const categories = {};
@@ -99,7 +105,10 @@
                 wineMenu.appendChild(categorySection);
             }
         })
-        .catch(error => console.error('Error fetching wines:', error));
+        .catch(error => {
+            console.error('Error fetching wines:', error);
+            document.getElementById('wine-menu').innerHTML = '<p>Errore nel caricamento della lista dei vini. Controlla il file wines.json.</p>';
+        });
 </script>
 
 </body>
