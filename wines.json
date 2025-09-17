@@ -414,7 +414,7 @@
     "country": "Germania",
     "name": "Marcus Molitor - Wehlener Sonnenhur Spatlese",
     "info": "(Riesling)",
-    "aoc": "Mosel",
+    "aoc": "Mosella",
     "year": "2019",
     "price": "65",
     "available": true
@@ -702,7 +702,7 @@
   {
     "category": "I Rossi",
     "country": "Argentina",
-    "name": "Bodega Argento - Argento",
+    "name": "Bodega Argento - Organic Malbec",
     "info": "(Malbec)",
     "aoc": "Mendoza",
     "year": "2022",
@@ -723,7 +723,7 @@
     "category": "I Rossi",
     "country": "Australia",
     "name": "De Bortoli - First Block",
-    "info": "(Shiraz Cabernet)",
+    "info": "(Shiraz, Cabernet Sauvignon)",
     "aoc": "New South Wales",
     "year": "2022",
     "price": "26",
@@ -802,8 +802,8 @@
   {
     "category": "I Rossi",
     "country": "Croazia",
-    "name": "Pz Svirce - Mediteraneo",
-    "info": "(Plavac)",
+    "name": "Pz Svirce - Mediterano",
+    "info": "(Plavac Mali)",
     "aoc": "Hvar",
     "year": "2017",
     "price": "37",
@@ -824,7 +824,7 @@
     "country": "Francia",
     "name": "Domaine de la Charbonnière - Cotes Du Rhone",
     "info": "(Grenache, Syrah)",
-    "aoc": "Chateauneuf du Pape",
+    "aoc": "Valle del Rodano",
     "year": "2023",
     "price": "32",
     "available": true
@@ -864,7 +864,7 @@
     "country": "Francia",
     "name": "Patrick Miolane - Saint Aubin Rouge 1er Cru",
     "info": "(Pinot Noir)",
-    "aoc": "Cote de Beaune",
+    "aoc": "Borgogna",
     "year": "2018",
     "price": "82",
     "available": true
@@ -874,7 +874,7 @@
     "country": "Germania",
     "name": "Markus Molitor - Haus Klosterberg",
     "info": "(Pinot Noir)",
-    "aoc": "Mosel",
+    "aoc": "Mosella",
     "year": "2019",
     "price": "52",
     "available": true
@@ -892,7 +892,7 @@
   {
     "category": "I Rossi",
     "country": "Grecia",
-    "name": "Markos Markovitis - Markovitis",
+    "name": "Markos Markovitis",
     "info": "(Xinomavro)",
     "aoc": "Naoussa",
     "year": "2016",
@@ -972,7 +972,7 @@
   {
     "category": "I Rossi",
     "country": "Spagna",
-    "name": "Uvas Felices - La Locomotora Gran Reserva",
+    "name": "La Locomotora Gran Reserva",
     "info": "(Tempranillo)",
     "aoc": "Rioja",
     "year": "2010",
@@ -1120,6 +1120,7 @@
     "available": true
   }
 ]
+
 
 
 
