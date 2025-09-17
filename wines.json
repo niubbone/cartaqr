@@ -144,7 +144,7 @@
     "country": "Portogallo",
     "name": "Mal Acabado pet nat",
     "info": "(Loureiro)",
-    "aoc": null,
+    "aoc": "Minho",
     "year": null,
     "price": "40",
     "available": true
@@ -1080,6 +1080,7 @@
     "available": true
   }
 ]
+
 
 
 
