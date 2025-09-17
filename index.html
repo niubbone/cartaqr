@@ -52,12 +52,7 @@
 
 <script>
     fetch('wines.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Errore nel caricamento del file wines.json');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(wines => {
             const wineMenu = document.getElementById('wine-menu');
             const categories = {};
@@ -90,7 +85,7 @@
                     let aocText = wine.aoc ? ` ${wine.aoc}` : '';
                     let infoText = wine.info ? ` ${wine.info}` : '';
                     
-                    if (wine.available === 0) {
+                    if (wine.available === false) {
                         wineDetails.innerHTML = `<span class="unavailable">NON DISPONIBILE</span> - <span class="wine-name">${wine.name}</span>, ${wine.country}${yearText}${aocText}${infoText}, ${wine.price}€`;
                     } else {
                         wineDetails.innerHTML = `<span class="wine-name">${wine.name}</span>, ${wine.country}${yearText}${aocText}${infoText}, ${wine.price}€`;
@@ -104,10 +99,7 @@
                 wineMenu.appendChild(categorySection);
             }
         })
-        .catch(error => {
-            console.error('Error fetching wines:', error);
-            document.getElementById('wine-menu').innerHTML = '<p>Errore nel caricamento della lista dei vini. Controlla il file wines.json.</p>';
-        });
+        .catch(error => console.error('Error fetching wines:', error));
 </script>
 
 </body>
