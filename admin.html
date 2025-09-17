@@ -152,7 +152,7 @@
     <h1>Gestione Disponibilità Vini</h1>
     
     <div id="search-container">
-        <input type="text" id="search-input" placeholder="Cerca vino per nome o categoria...">
+        <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
     </div>
 
     <div id="wine-list-container"></div>
@@ -258,7 +258,9 @@
             const filteredWines = allWines.filter(wine => {
                 const nameMatch = wine.Nome && wine.Nome.toLowerCase().includes(lowerCaseQuery);
                 const categoryMatch = wine.Categoria && wine.Categoria.toLowerCase().includes(lowerCaseQuery);
-                return nameMatch || categoryMatch;
+                const aocMatch = wine.AOC && wine.AOC.toLowerCase().includes(lowerCaseQuery);
+                const vitigniMatch = wine.Vitigni && wine.Vitigni.toLowerCase().includes(lowerCaseQuery);
+                return nameMatch || categoryMatch || aocMatch || vitigniMatch;
             });
             groupAndRenderWines(filteredWines);
         }
