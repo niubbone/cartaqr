@@ -429,17 +429,7 @@
     "price": "38",
     "available": true
   },
-  {
-    "category": "I Rossi",
-    "country": "Grecia",
-    "name": "Markovitis - Xinomavro",
-    "info": "(Xinomavro)",
-    "aoc": "Macedonia",
-    "year": "2016",
-    "price": "40",
-    "available": true
-  },
-  {
+   {
     "category": "I Bianchi",
     "country": "Grecia",
     "name": "Artemis Karamolegos - 34",
@@ -1080,5 +1070,6 @@
     "available": true
   }
 ]
+
 
 
