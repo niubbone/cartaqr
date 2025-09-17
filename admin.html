@@ -5,264 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione Vini - Admin</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #5d0f10;
-        }
-        #login-form, #admin-panel {
-            text-align: center;
-        }
-        #login-form {
-            padding: 40px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        #login-form input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-        #login-form button {
-            padding: 10px 20px;
-            background-color: #2a619e;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #login-form button:hover {
-            background-color: #1e4b7a;
-        }
-        #admin-panel {
-            display: none;
-        }
-        .wine-list {
-            margin-top: 20px;
-        }
-        .wine-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .wine-name {
-            font-weight: bold;
-            flex-grow: 1;
-        }
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #2a619e;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .status-label {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
-            font-weight: bold;
-            color: white;
-        }
-        .status-label.off {
-            left: 8px;
-        }
-        .status-label.on {
-            right: 8px;
-            display: none;
-        }
-        input:checked + .slider .status-label.on {
-            display: block;
-        }
-        input:checked + .slider .status-label.off {
-            display: none;
-        }
-
-        #generate-btn {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #5d0f10;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #generate-btn:hover {
-            background-color: #430a0b;
-        }
-        #json-output {
-            width: 100%;
-            height: 300px;
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            resize: vertical;
-            font-family: monospace;
-            display: none;
-        }
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        form div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        input[type="checkbox"] { width: auto; }
+        button { width: 100%; padding: 12px; background-color: #5d0f10; color: white; border: none; border-radius: 4px; font-size: 1.1em; cursor: pointer; }
+        button:hover { background-color: #2a619e; }
+        .message { margin-top: 20px; padding: 10px; border-radius: 4px; text-align: center; display: none; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Gestione Carta dei Vini</h1>
-        <div id="login-form">
-            <h2>Accesso Riservato</h2>
-            <p>Inserisci la password per continuare.</p>
-            <input type="password" id="password-input" placeholder="Password">
-            <button id="login-btn">Accedi</button>
+<div class="container">
+    <h1>Aggiungi un nuovo vino</h1>
+    <form id="add-wine-form">
+        <div>
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="Le Bolle">Le Bolle</option>
+                <option value="I Bianchi">I Bianchi</option>
+                <option value="I Rosati">I Rosati</option>
+                <option value="I Rossi">I Rossi</option>
+                <option value="I Vini Speciali">I Vini Speciali</option>
+            </select>
         </div>
-
-        <div id="admin-panel">
-            <h2>Aggiorna Disponibilità Vini</h2>
-            <div class="wine-list" id="wine-list"></div>
-            <button id="update-btn">Salva Modifiche</button>
-            <p id="status-message"></p>
+        <div>
+            <label for="nazione">Nazione:</label>
+            <input type="text" id="nazione" name="nazione" required>
         </div>
-    </div>
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div>
+            <label for="disponibile">Disponibile:</label>
+            <input type="checkbox" id="disponibile" name="disponibile">
+        </div>
+        <div>
+            <label for="anno">Anno:</label>
+            <input type="text" id="anno" name="anno">
+        </div>
+        <div>
+            <label for="aoc">AOC:</label>
+            <input type="text" id="aoc" name="aoc">
+        </div>
+        <div>
+            <label for="vitigni">Vitigni:</label>
+            <input type="text" id="vitigni" name="vitigni">
+        </div>
+        <div>
+            <label for="prezzo">Prezzo:</label>
+            <input type="number" id="prezzo" name="prezzo" required>
+        </div>
+        <button type="submit">Aggiungi Vino</button>
+    </form>
+    <div id="message" class="message"></div>
+</div>
 
-    <script>
-        const UPDATE_PASSWORD = 'tavolo'; // Imposta qui la password per il login
+<script>
+    document.getElementById('add-wine-form').addEventListener('submit', function(event) {
+        event.preventDefault();
         
-        const loginForm = document.getElementById('login-form');
-        const passwordInput = document.getElementById('password-input');
-        const loginBtn = document.getElementById('login-btn');
-        const adminPanel = document.getElementById('admin-panel');
-        const wineList = document.getElementById('wine-list');
-        const updateBtn = document.getElementById('update-btn');
-        const statusMessage = document.getElementById('status-message');
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
 
-        let winesData = [];
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec'; // INCOLLA QUI L'URL COPIATO
 
-        loginBtn.addEventListener('click', () => {
-            if (passwordInput.value === UPDATE_PASSWORD) {
-                loginForm.style.display = 'none';
-                adminPanel.style.display = 'block';
-                loadWines();
-            } else {
-                alert('Password errata!');
-            }
+        fetch(appsScriptUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors' // Necessario per evitare problemi di CORS
+        })
+        .then(() => {
+            showMessage('Vino aggiunto con successo! Il foglio si aggiornerà a breve.', 'success');
+            form.reset();
+        })
+        .catch(error => {
+            console.error('Errore:', error);
+            showMessage('Si è verificato un errore. Controlla la console.', 'error');
         });
+    });
 
-        function loadWines() {
-            fetch('wines.json')
-                .then(response => response.json())
-                .then(data => {
-                    winesData = data;
-                    renderWineList();
-                })
-                .catch(error => {
-                    console.error('Errore nel caricamento dei vini:', error);
-                    wineList.innerHTML = '<p>Errore nel caricamento della lista vini.</p>';
-                });
-        }
-
-        function renderWineList() {
-            wineList.innerHTML = '';
-            winesData.forEach((wine, index) => {
-                const item = document.createElement('div');
-                item.className = 'wine-item';
-                item.innerHTML = `
-                    <div class="wine-name">${wine.name}</div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" data-index="${index}" ${wine.available ? 'checked' : ''}>
-                        <span class="slider">
-                            <span class="status-label off">Non Disp.</span>
-                            <span class="status-label on">Disponibile</span>
-                        </span>
-                    </label>
-                `;
-                item.querySelector('input').addEventListener('change', (e) => {
-                    const idx = e.target.dataset.index;
-                    winesData[idx].available = e.target.checked;
-                });
-                wineList.appendChild(item);
-            });
-        }
-
-        updateBtn.addEventListener('click', async () => {
-            statusMessage.textContent = 'Salvataggio in corso...';
-            statusMessage.style.color = '#333';
-
-            try {
-                const response = await fetch('/api/update-wines', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        data: winesData,
-                        password: passwordInput.value
-                    })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    statusMessage.textContent = 'Aggiornamento completato con successo!';
-                    statusMessage.style.color = 'green';
-                } else {
-                    statusMessage.textContent = `Errore: ${result.message}`;
-                    statusMessage.style.color = 'red';
-                }
-            } catch (error) {
-                statusMessage.textContent = 'Errore di connessione. Riprova.';
-                statusMessage.style.color = 'red';
-                console.error('Errore durante l\'aggiornamento:', error);
-            }
-        });
-    </script>
+    function showMessage(msg, type) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.textContent = msg;
+        messageDiv.className = `message ${type}`;
+        messageDiv.style.display = 'block';
+    }
+</script>
 
 </body>
 </html>
