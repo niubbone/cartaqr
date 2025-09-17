@@ -549,6 +549,16 @@
     "price": "30",
     "available": false
   },
+    {
+    "category": "I Bianchi",
+    "country": "Spagna",
+    "name": "Txacoli Txomin Etxaniz",
+    "info": "(Hondarrabi Zuri)",
+    "aoc": "Getariako Txakolina",
+    "year": null,
+    "price": "35",
+    "available": false
+  },
   {
     "category": "I Bianchi",
     "country": "Sud Africa",
@@ -1090,6 +1100,7 @@
     "available": true
   }
 ]
+
 
 
 
