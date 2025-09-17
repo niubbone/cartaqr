@@ -208,7 +208,25 @@
 
                                 const info = document.createElement('div');
                                 info.className = 'wine-info';
-                                info.textContent = wine.info;
+
+                                let wineInfoText = '';
+                                if (wine.aoc) {
+                                    wineInfoText += wine.aoc;
+                                }
+                                if (wine.year) {
+                                    if (wineInfoText) {
+                                        wineInfoText += ' - ';
+                                    }
+                                    wineInfoText += wine.year;
+                                }
+                                if (wine.info) {
+                                    if (wineInfoText) {
+                                        wineInfoText += ' ';
+                                    }
+                                    wineInfoText += wine.info;
+                                }
+
+                                info.textContent = wineInfoText;
                                 details.appendChild(info);
 
                                 item.appendChild(details);
