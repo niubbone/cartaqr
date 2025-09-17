@@ -206,18 +206,27 @@
                                 name.textContent = wine.name;
                                 details.appendChild(name);
 
-                                const info = document.createElement('div');
-                                info.className = 'wine-info';
-                                
-                                // Gestione delle informazioni in modo più strutturato
+                                // Costruzione della stringa delle informazioni
                                 const infoParts = [];
-                                if (wine.info) infoParts.push(wine.info);
-                                if (wine.year) infoParts.push(wine.year);
-                                if (wine.aoc) infoParts.push(wine.aoc);
+                                if (wine.aoc) {
+                                    infoParts.push(wine.aoc);
+                                }
+                                if (wine.year) {
+                                    infoParts.push(wine.year);
+                                }
+                                if (wine.info) {
+                                    infoParts.push(wine.info);
+                                }
                                 
-                                info.textContent = infoParts.join(' ');
-                                details.appendChild(info);
-
+                                const infoString = infoParts.join(' - ');
+                                
+                                if (infoString) {
+                                    const info = document.createElement('div');
+                                    info.className = 'wine-info';
+                                    info.textContent = infoString;
+                                    details.appendChild(info);
+                                }
+                                
                                 item.appendChild(details);
 
                                 if (wine.available) {
