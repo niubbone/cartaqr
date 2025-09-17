@@ -207,7 +207,7 @@
     "aoc": "New South Wales",
     "year": "2022",
     "price": "27",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -227,7 +227,7 @@
     "aoc": "Mendoza",
     "year": "2022",
     "price": "31",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -257,7 +257,7 @@
     "aoc": "Struma Valley",
     "year": "2019",
     "price": "36",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -277,7 +277,7 @@
     "aoc": "Loira",
     "year": null,
     "price": "26",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -287,7 +287,7 @@
     "aoc": "Bordeaux",
     "year": "2023",
     "price": "30",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -427,7 +427,7 @@
     "aoc": "Laconia",
     "year": "2023",
     "price": "25",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -457,7 +457,7 @@
     "aoc": "Marlborough",
     "year": "2023",
     "price": "32",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -497,7 +497,7 @@
     "aoc": "Minho",
     "year": null,
     "price": "34",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -517,7 +517,7 @@
     "aoc": "Goriska Brda",
     "year": "2023",
     "price": "32",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -537,17 +537,17 @@
     "aoc": "Rueda",
     "year": "2023",
     "price": "30",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
     "country": "Sud Africa",
     "name": "Cape Dreams",
     "info": "(Chenin Blanc)",
-    "aoc": "Robertson Region",
+    "aoc": "Robertson",
     "year": "2023",
     "price": "25",
-    "available": true
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -607,7 +607,7 @@
     "aoc": "Kamptal",
     "year": "2020",
     "price": "45",
-    "available": false
+    "available": true
   },
   {
     "category": "I Rosati",
@@ -687,7 +687,7 @@
     "aoc": "New South Wales",
     "year": "2022",
     "price": "26",
-    "available": true
+    "available": false
   },
   {
     "category": "I Rossi",
@@ -697,7 +697,7 @@
     "aoc": "Coonawarra",
     "year": "2018",
     "price": "42",
-    "available": true
+    "available": false
   },
   {
     "category": "I Rossi",
@@ -722,7 +722,7 @@
   {
     "category": "I Rossi",
     "country": "Cile",
-    "name": "Cinzano - Erasmo",
+    "name": "Erasmo",
     "info": "(Barbera Garnacha)",
     "aoc": "Maule Valley",
     "year": "2019",
@@ -732,9 +732,9 @@
   {
     "category": "I Rossi",
     "country": "Cile",
-    "name": "Mancura Wines - Guardian",
+    "name": "Mancura - Guardian Reserva",
     "info": "(Carmenere)",
-    "aoc": "Maule Valley",
+    "aoc": "Maipo Valley",
     "year": "2021",
     "price": "40",
     "available": true
@@ -1080,6 +1080,7 @@
     "available": true
   }
 ]
+
 
 
 
