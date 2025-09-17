@@ -14,6 +14,8 @@
             --bg-color: #f9f7f4;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Roboto', sans-serif;
+            --unavailable-color: #c94040;
+            --unavailable-bg: #fff;
         }
 
         body {
@@ -120,27 +122,30 @@
         }
         
         /* Stili per i vini non disponibili */
-        .unavailable .wine-details {
+        .unavailable .unavailability-tag {
+            background-color: var(--unavailable-color);
+            color: var(--unavailable-bg);
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: 15px;
+            letter-spacing: 0.5px;
+            position: relative;
+            top: -2px;
+        }
+
+        .unavailable .wine-details,
+        .unavailable .wine-price {
             opacity: 0.5;
         }
 
         .unavailable .wine-price {
-            color: #999;
-            text-decoration: line-through;
-            font-weight: normal;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
+            text-decoration: none;
+            color: var(--secondary-color);
         }
 
-        .unavailable .unavailability-note {
-            font-size: 0.9em;
-            color: var(--primary-color);
-            margin-left: 10px;
-            font-family: var(--font-sans);
-            font-weight: bold;
-            white-space: nowrap;
-        }
     </style>
 </head>
 <body>
@@ -155,7 +160,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('wines.json')
+            fetch('INSERISCI_QUI_L_URL_DEL_TUO_FILE_JSON')
                 .then(response => response.json())
                 .then(wines => {
                     const wineList = document.getElementById('wine-list');
@@ -208,20 +213,18 @@
 
                                 item.appendChild(details);
 
-                                const priceContainer = document.createElement('div');
-                                priceContainer.className = 'wine-price';
-
                                 if (wine.available) {
-                                    priceContainer.textContent = `€ ${wine.price}`;
+                                    const price = document.createElement('div');
+                                    price.className = 'wine-price';
+                                    price.textContent = `€ ${wine.price}`;
+                                    item.appendChild(price);
                                 } else {
-                                    const unavailableNote = document.createElement('span');
-                                    unavailableNote.className = 'unavailability-note';
-                                    unavailableNote.textContent = 'Non disponibile';
-                                    priceContainer.appendChild(unavailableNote);
+                                    const unavailableTag = document.createElement('span');
+                                    unavailableTag.className = 'unavailability-tag';
+                                    unavailableTag.textContent = 'Non disponibile';
+                                    item.appendChild(unavailableTag);
                                 }
                                 
-                                item.appendChild(priceContainer);
-
                                 section.appendChild(item);
                             });
                         }
