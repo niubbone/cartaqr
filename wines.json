@@ -514,7 +514,7 @@
     "country": "Portogallo",
     "name": "Herdade do Portocarro - Autocarro 38",
     "info": "(Arinto, Galego Dourado)",
-    "aoc": "Setubal",
+    "aoc": "Peninsula de Setùbal",
     "year": null,
     "price": "30",
     "available": true
@@ -1043,7 +1043,7 @@
     "category": "I Vini Speciali",
     "country": "Portogallo",
     "name": "J.Faria & Filhos - Madeira Wine 10 Years Old Reserva Velha",
-    "info": null,
+    "info": "(Tinta Negra)",
     "aoc": "Madeira",
     "year": null,
     "price": "55",
@@ -1074,7 +1074,7 @@
     "country": "Spagna",
     "name": "Rey Fernando de Castilla - Classic Sweet Pedro Ximènez",
     "info": "(Pedro Ximenez)",
-    "aoc": "Jerez",
+    "aoc": "Jerez de la Frontera",
     "year": null,
     "price": "50",
     "available": true
@@ -1084,12 +1084,13 @@
     "country": "Ungheria",
     "name": "Disznòko - 1413 EdesSzam Tokaji",
     "info": "(Furmint, Harsevelu)",
-    "aoc": "Tokaji",
+    "aoc": "Tokaj",
     "year": "2018",
     "price": "52",
     "available": true
   }
 ]
+
 
 
 
