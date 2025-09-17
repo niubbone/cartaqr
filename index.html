@@ -160,7 +160,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fetch(https://github.com/niubbone/cartaqr/blob/main/wines.json)
+            fetch(https://raw.githubusercontent.com/niubbone/cartaqr/refs/heads/main/wines.json)
                 .then(response => response.json())
                 .then(wines => {
                     const wineList = document.getElementById('wine-list');
@@ -237,4 +237,5 @@
 
 </body>
 </html>
+
 
