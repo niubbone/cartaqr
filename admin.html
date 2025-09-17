@@ -144,6 +144,13 @@
             background-color: #f8d7da;
             color: #721c24;
         }
+        
+        .loading {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -155,6 +162,7 @@
         <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
     </div>
 
+    <div id="loading-message" class="loading">Caricamento vini...</div>
     <div id="wine-list-container"></div>
     <div id="message" class="message"></div>
 
@@ -162,10 +170,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec'; // URL del tuo script
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
         const wineListContainer = document.getElementById('wine-list-container');
         const messageDiv = document.getElementById('message');
         const searchInput = document.getElementById('search-input');
+        const loadingMessage = document.getElementById('loading-message');
         let allWines = [];
 
         function showMessage(msg, type) {
@@ -242,14 +251,20 @@
         }
 
         function fetchWines() {
+            loadingMessage.style.display = 'block';
+            wineListContainer.style.display = 'none';
+
             fetch(appsScriptUrl)
                 .then(response => response.json())
                 .then(wines => {
                     allWines = wines;
                     groupAndRenderWines(allWines);
+                    loadingMessage.style.display = 'none';
+                    wineListContainer.style.display = 'block';
                 })
                 .catch(error => {
                     console.error('Errore nel caricamento dei vini:', error);
+                    loadingMessage.textContent = 'Errore nel caricamento dei dati.';
                 });
         }
         
