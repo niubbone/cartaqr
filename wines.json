@@ -132,6 +132,16 @@
   {
     "category": "Le Bolle",
     "country": "Germania",
+    "name": "Karlsmühle - Lorenzhof Sekt",
+    "info": "(Riesling)",
+    "aoc": "Mosella",
+    "year": null,
+    "price": "50",
+    "available": true
+  },
+  {
+    "category": "Le Bolle",
+    "country": "Germania",
     "name": "Bibo Runge - Deserteur Sekt Alcohol Free",
     "info": "(Riesling)",
     "aoc": "Reinghau",
@@ -1110,6 +1120,7 @@
     "available": true
   }
 ]
+
 
 
 
