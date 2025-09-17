@@ -18,7 +18,7 @@
         .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: #5d0f10; }
         input:checked + .slider:before { transform: translateX(20px); }
-        .message { margin-top: 20px; padding: 10px; border-radius: 4px; text-align: center; display: none; }
+        .message { margin-top: 20px; padding: 10px; border-radius: 4px; text-align: center; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .success { background-color: #d4edda; color: #155724; }
         .error { background-color: #f8d7da; color: #721c24; }
     </style>
@@ -28,22 +28,33 @@
 <div class="container">
     <h1>Gestione Disponibilità Vini</h1>
     <ul class="wine-list" id="wine-list"></ul>
+    <div id="message" class="message"></div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec'; // INCOLLA QUI L'URL DELLO SCRIPT
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
         const wineList = document.getElementById('wine-list');
+        const messageDiv = document.getElementById('message');
+
+        function showMessage(msg, type) {
+            messageDiv.textContent = msg;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.opacity = '1';
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+            }, 3000);
+        }
 
         function fetchWines() {
             fetch(appsScriptUrl)
                 .then(response => response.json())
                 .then(wines => {
-                    wineList.innerHTML = ''; // Pulisce la lista prima di aggiornare
+                    wineList.innerHTML = '';
                     wines.forEach(wine => {
                         const listItem = document.createElement('li');
                         listItem.className = 'wine-item';
-
+                        
                         const nameSpan = document.createElement('span');
                         nameSpan.className = 'wine-name';
                         nameSpan.textContent = wine.Nome;
@@ -54,10 +65,18 @@
 
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
-                        checkbox.checked = wine.Disponibile === 'TRUE';
+                        checkbox.checked = wine.Disponibile === true;
                         
                         checkbox.addEventListener('change', () => {
-                            updateAvailability(wine.Nome, checkbox.checked);
+                            const isAvailable = checkbox.checked;
+                            updateAvailability(wine.Nome, isAvailable)
+                                .then(success => {
+                                    if (success) {
+                                        showMessage('Vino aggiornato con successo!', 'success');
+                                    } else {
+                                        showMessage('Errore durante l\'aggiornamento.', 'error');
+                                    }
+                                });
                         });
 
                         const slider = document.createElement('span');
@@ -76,7 +95,7 @@
 
         function updateAvailability(nome, disponibilita) {
             const data = { nome, disponibilita };
-            fetch(appsScriptUrl, {
+            return fetch(appsScriptUrl, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -84,16 +103,14 @@
                 },
                 mode: 'no-cors'
             })
-            .then(response => {
-                // Non possiamo leggere la risposta in modalità 'no-cors', ma l'azione è comunque eseguita.
-                console.log('Stato di disponibilità aggiornato per', nome);
-            })
+            .then(() => true)
             .catch(error => {
                 console.error('Errore nell\'aggiornamento della disponibilità:', error);
+                return false;
             });
         }
 
-        fetchWines(); // Carica la lista dei vini all'apertura della pagina
+        fetchWines();
     });
 </script>
 
