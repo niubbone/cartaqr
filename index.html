@@ -206,19 +206,26 @@
                                 name.textContent = wine.name;
                                 details.appendChild(name);
 
-                                // Costruzione della stringa delle informazioni
+                                // Costruzione della stringa delle informazioni con logica condizionale
                                 const infoParts = [];
-                                if (wine.aoc) {
-                                    infoParts.push(wine.aoc);
+                                let infoString = '';
+
+                                if (wine.aoc && wine.year) {
+                                    infoString = `${wine.aoc} - ${wine.year}`;
+                                } else if (wine.aoc) {
+                                    infoString = wine.aoc;
+                                } else if (wine.year) {
+                                    infoString = wine.year;
                                 }
-                                if (wine.year) {
-                                    infoParts.push(wine.year);
-                                }
+
                                 if (wine.info) {
-                                    infoParts.push(wine.info);
+                                    // Aggiunge la parentesi con i vitigni alla fine
+                                    if (infoString) {
+                                        infoString += ` ${wine.info}`;
+                                    } else {
+                                        infoString = wine.info;
+                                    }
                                 }
-                                
-                                const infoString = infoParts.join(' - ');
                                 
                                 if (infoString) {
                                     const info = document.createElement('div');
