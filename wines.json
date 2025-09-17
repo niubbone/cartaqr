@@ -7,7 +7,7 @@
     "year": null,
     "info": "(Sauvignon Blanc,Chardonnay,Viognier)",
     "price": "41",
-    "available": 0
+    "available": false
   },
   {
     "category": "Le Bolle",
@@ -17,7 +17,7 @@
     "year": "2022",
     "info": "(Gelber Muskateller)",
     "price": "36",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -27,7 +27,7 @@
     "year": "2020",
     "info": "(Chardonnay,Pinot Blanc)",
     "price": "52",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -37,7 +37,7 @@
     "year": null,
     "info": "(Chardonnay)",
     "price": "35",
-    "available": 0
+    "available": false
   },
   {
     "category": "Le Bolle",
@@ -47,7 +47,7 @@
     "year": null,
     "info": "(Chenin Blanc)",
     "price": "39",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -57,7 +57,7 @@
     "year": "2022",
     "info": "(Pinot Blanc,Auxerrois)",
     "price": "44",
-    "available": 0
+    "available": false
   },
   {
     "category": "Le Bolle",
@@ -67,7 +67,7 @@
     "year": null,
     "info": "(Pinot Noir,Chardonnay,Pinot Meunier)",
     "price": "64",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -77,7 +77,7 @@
     "year": null,
     "info": "(Pinot Blanc)",
     "price": "68",
-    "available": 0
+    "available": false
   },
   {
     "category": "Le Bolle",
@@ -87,7 +87,7 @@
     "year": null,
     "info": "(Pinot Meunier,Pinot Noir)",
     "price": "68",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -97,7 +97,7 @@
     "year": null,
     "info": "(Chardonnay)",
     "price": "72",
-    "available": 0
+    "available": false
   },
   {
     "category": "Le Bolle",
@@ -107,7 +107,7 @@
     "year": null,
     "info": "(Pinot Noir,Chardonnay)",
     "price": "77",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -117,7 +117,7 @@
     "year": null,
     "info": "(Pinot Noir)",
     "price": "85",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -127,7 +127,7 @@
     "year": null,
     "info": "(Chardonnay)",
     "price": "87",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -137,7 +137,7 @@
     "year": null,
     "info": "(Riesling)",
     "price": "40",
-    "available": 1
+    "available": true
   },
   {
     "category": "Le Bolle",
@@ -147,7 +147,7 @@
     "year": null,
     "info": "(Macabeo,Xarel-Lo,Parellada,Chardonnay)",
     "price": "33",
-    "available": 0
+    "available": false
   },
   {
     "category": "Le Bolle",
@@ -157,7 +157,7 @@
     "year": null,
     "info": "( Macabeo,Xarel-Lo,Parellada)",
     "price": "33",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -167,7 +167,7 @@
     "year": "2022",
     "info": "(Riesling)",
     "price": "28",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -177,7 +177,7 @@
     "year": "2023",
     "info": "(Gruner Veltliner)",
     "price": "30",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -187,7 +187,7 @@
     "year": null,
     "info": "(Gruner Veltliner)",
     "price": "44",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -197,7 +197,7 @@
     "year": "2022",
     "info": "(Chardonnay)",
     "price": "27",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -207,7 +207,7 @@
     "year": "2019",
     "info": "(Kangun)",
     "price": "45",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -217,7 +217,7 @@
     "year": "2022",
     "info": "(Torrontes)",
     "price": "31",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -227,7 +227,7 @@
     "year": "2021",
     "info": "(Torrontes)",
     "price": "44",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -237,7 +237,7 @@
     "year": "2019",
     "info": "(Chardonnay)",
     "price": "130",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -247,7 +247,7 @@
     "year": "2019",
     "info": "(Assyrtiko,Sandanski Misket)",
     "price": "36",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -257,7 +257,7 @@
     "year": "2023",
     "info": "(Vermentinu)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -267,7 +267,7 @@
     "year": null,
     "info": "(Sauvignon Blanc)",
     "price": "26",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -277,7 +277,7 @@
     "year": "2023",
     "info": "(Sauvignon blanc,Semillon)",
     "price": "30",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -287,7 +287,7 @@
     "year": "2021",
     "info": "(Chardonnay)",
     "price": "39",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -297,7 +297,7 @@
     "year": null,
     "info": "(Marsanne,Roussanne)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -307,7 +307,7 @@
     "year": "2022",
     "info": "(Aligoté)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -317,7 +317,7 @@
     "year": "2023",
     "info": "(Riesling)",
     "price": "45",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -327,7 +327,7 @@
     "year": "2021",
     "info": "(Aligoté)",
     "price": "48",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -337,7 +337,7 @@
     "year": "2023",
     "info": "(Roussanne,Grenache Blanc,Clairette)",
     "price": "62",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -347,7 +347,7 @@
     "year": "2021",
     "info": "(Savagnin)",
     "price": "70",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -357,7 +357,7 @@
     "year": "2023",
     "info": "(Riesling Dry)",
     "price": "30",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -367,7 +367,7 @@
     "year": "2022",
     "info": "(Riesling Trocken)",
     "price": "41",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -377,7 +377,7 @@
     "year": "2018",
     "info": "(Riesling Trocken)",
     "price": "54",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -387,7 +387,7 @@
     "year": "2019",
     "info": "(Riesling Kabinett)",
     "price": "55",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -397,7 +397,7 @@
     "year": "2019",
     "info": "(Riesling Spatlese)",
     "price": "65",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -407,7 +407,7 @@
     "year": "2022",
     "info": "(Koshu)",
     "price": "46",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -417,7 +417,7 @@
     "year": "2023",
     "info": "(Monemvasià)",
     "price": "25",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -427,7 +427,7 @@
     "year": "2023",
     "info": "(Thrapsathiri)",
     "price": "38",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -437,7 +437,7 @@
     "year": "2016",
     "info": "(Xinomavro)",
     "price": "40",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -447,7 +447,7 @@
     "year": "2019",
     "info": "(Assyrtiko)",
     "price": "65",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -457,7 +457,7 @@
     "year": "2023",
     "info": "(Sauvignon Blanc)",
     "price": "32",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -467,7 +467,7 @@
     "year": "2020",
     "info": "(Pinot Gris)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -477,7 +477,7 @@
     "year": "2021",
     "info": "(Sauvignon Blanc)",
     "price": "47",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -487,7 +487,7 @@
     "year": "2022",
     "info": "(Sauvignon Blanc)",
     "price": "70",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -497,7 +497,7 @@
     "year": null,
     "info": "(Alvarinho)",
     "price": "34",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -507,7 +507,7 @@
     "year": null,
     "info": "(Loureiro)",
     "price": "44",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -517,7 +517,7 @@
     "year": "2023",
     "info": "(Friulano)",
     "price": "32",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -527,7 +527,7 @@
     "year": "2020",
     "info": "(Rebula,Chardonnay,Sauvignon)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -537,7 +537,7 @@
     "year": "2023",
     "info": "(Verdejo)",
     "price": "30",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -547,7 +547,7 @@
     "year": "2023",
     "info": "(Chenin Blanc)",
     "price": "25",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -557,7 +557,7 @@
     "year": "2022",
     "info": "(Chenin Blanc)",
     "price": "39",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -567,7 +567,7 @@
     "year": "2021",
     "info": "(Chardonnay)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -577,7 +577,7 @@
     "year": "2022",
     "info": "(Chardonnay)",
     "price": "43",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Bianchi",
@@ -587,7 +587,7 @@
     "year": "2021",
     "info": "(Furmint,Harsevelu,Moscato)",
     "price": "34",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Bianchi",
@@ -597,7 +597,7 @@
     "year": "2023",
     "info": "(Furmint)",
     "price": "42",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Rosati",
@@ -607,7 +607,7 @@
     "year": "2020",
     "info": "(Zweigelt)",
     "price": "45",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rosati",
@@ -617,7 +617,7 @@
     "year": "2024",
     "info": "(Cinsault,Grenache,Syrah,Carignan)",
     "price": "28",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rosati",
@@ -627,7 +627,7 @@
     "year": "2022",
     "info": "(Mourvedre,Cinsault)",
     "price": "85",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rosati",
@@ -637,7 +637,7 @@
     "year": "2022",
     "info": "(Mourvedre,Cinsault,Grenache)",
     "price": "100",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rosati",
@@ -647,7 +647,7 @@
     "year": "2023",
     "info": "(Moùxtapo)",
     "price": "38",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -657,7 +657,7 @@
     "year": "2022",
     "info": "(Malbec)",
     "price": "30",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -667,7 +667,7 @@
     "year": "2022",
     "info": "(Malbec)",
     "price": "34",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -677,7 +677,7 @@
     "year": "2021",
     "info": "(Pinot Noir)",
     "price": "37",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -687,7 +687,7 @@
     "year": "2022",
     "info": "(Shiraz Cabernet)",
     "price": "26",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Rossi",
@@ -697,7 +697,7 @@
     "year": "2018",
     "info": "(Cabernet Sauvignon)",
     "price": "42",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Rossi",
@@ -707,7 +707,7 @@
     "year": null,
     "info": "(Shiraz)",
     "price": "48",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -717,7 +717,7 @@
     "year": null,
     "info": "(Grenache,Mourvedre, Shiraz)",
     "price": "78",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -727,7 +727,7 @@
     "year": "2019",
     "info": "(Barbera Garnacha)",
     "price": "35",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -737,7 +737,7 @@
     "year": "2021",
     "info": "(Carmenere)",
     "price": "40",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -747,7 +747,7 @@
     "year": "2020",
     "info": "(Pais)",
     "price": "60",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -757,7 +757,7 @@
     "year": "2022",
     "info": "(Sciaccarellu,Niellucciu)",
     "price": "43",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -767,7 +767,7 @@
     "year": "2017",
     "info": "(Plavac)",
     "price": "37",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -777,7 +777,7 @@
     "year": "2023",
     "info": "(Gamay)",
     "price": "32",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -787,7 +787,7 @@
     "year": "2023",
     "info": "(Grenache,Syrah)",
     "price": "32",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -797,7 +797,7 @@
     "year": "2021",
     "info": "(Cabernet Sauvignon,Cabernet Franc,Merlot)",
     "price": "46",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Rossi",
@@ -807,7 +807,7 @@
     "year": "2021",
     "info": "(Pinot Noir)",
     "price": "58",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -817,7 +817,7 @@
     "year": "2020",
     "info": "(Pinot Noir)",
     "price": "60",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -827,7 +827,7 @@
     "year": "2018",
     "info": "(Pinot Noir)",
     "price": "82",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -837,7 +837,7 @@
     "year": "2019",
     "info": "(Pinot Noir)",
     "price": "52",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Rossi",
@@ -847,7 +847,7 @@
     "year": "2020",
     "info": "(Mavroudi,Agiorgitiko)",
     "price": "28",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -857,7 +857,7 @@
     "year": "2016",
     "info": "(Xinomavro)",
     "price": "40",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -867,7 +867,7 @@
     "year": "2018",
     "info": "(Xinomavro)",
     "price": "44",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -877,7 +877,7 @@
     "year": "2021",
     "info": "(Cinsault du Liban)",
     "price": "38",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -887,7 +887,7 @@
     "year": "2021",
     "info": "(Touriga Nacional,Touriga Franca,Tinta Baroca, Tinta Roriz)",
     "price": "30",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -897,7 +897,7 @@
     "year": null,
     "info": "(Tinta Roriz,Touriga Franca,Touriga Nacional)",
     "price": "42",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -907,7 +907,7 @@
     "year": "2023",
     "info": "(Tempranillo)",
     "price": "28",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -917,7 +917,7 @@
     "year": "2020",
     "info": "(Tinto Crianza)",
     "price": "35",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -927,7 +927,7 @@
     "year": "2021",
     "info": "(Tempranillo)",
     "price": "66",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -937,7 +937,7 @@
     "year": "2010",
     "info": "(Tempranillo)",
     "price": "68",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -947,7 +947,7 @@
     "year": "2019",
     "info": "(Tempranillo)",
     "price": "85",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -957,7 +957,7 @@
     "year": "2020",
     "info": "(Pinotage)",
     "price": "34",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -967,7 +967,7 @@
     "year": "2019",
     "info": "(Cinsault,Grenache,Shiraz)",
     "price": "40",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -977,7 +977,7 @@
     "year": "2023",
     "info": "(Pinot Noir)",
     "price": "46",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Rossi",
@@ -987,7 +987,7 @@
     "year": "2021",
     "info": "(Zinfandel)",
     "price": "45",
-    "available": 0
+    "available": false
   },
   {
     "category": "I Vini Speciali",
@@ -997,7 +997,7 @@
     "year": "2020",
     "info": "(Sauvignon Blanc,Semillon)",
     "price": "50",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Vini Speciali",
@@ -1007,76 +1007,9 @@
     "year": null,
     "info": "(Moschato Aspro)",
     "price": "33",
-    "available": 1
+    "available": true
   },
   {
     "category": "I Vini Speciali",
     "country": "Grecia",
-    "name": "Samos - Anthemis",
-    "aoc": null,
-    "year": "2000",
-    "info": "(Muscat Blanc à Petits Grains)",
-    "price": "33",
-    "available": 1
-  },
-  {
-    "category": "I Vini Speciali",
-    "country": "Portogallo",
-    "name": "Bacalhoa - Moscatel de Setùbal",
-    "aoc": "Peninsula de Setùbal",
-    "year": "2019",
-    "info": "(Moscatel de Setùbal)",
-    "price": "39",
-    "available": 1
-  },
-  {
-    "category": "I Vini Speciali",
-    "country": "Portogallo",
-    "name": "J.Faria & Filhos - Madeira Wine 10 Years Old Reserva Velha",
-    "aoc": null,
-    "year": null,
-    "info": null,
-    "price": "55",
-    "available": 1
-  },
-  {
-    "category": "I Vini Speciali",
-    "country": "Portogallo",
-    "name": "Dow’s - Porto LBV",
-    "aoc": null,
-    "year": "2018",
-    "info": "(Touriga Nacional,Touriga Franca,Tinta Barroca, Tinta Roriz)",
-    "price": "52",
-    "available": 1
-  },
-  {
-    "category": "I Vini Speciali",
-    "country": "Portogallo",
-    "name": "Dow’s - Vintage Port",
-    "aoc": null,
-    "year": "2017",
-    "info": "(Touriga Nacional,Touriga Franca,Sousao,Alicante, Bouschet)",
-    "price": "150",
-    "available": 1
-  },
-  {
-    "category": "I Vini Speciali",
-    "country": "Spagna",
-    "name": "Rey Fernando de Castilla - Classic Sweet Pedro Ximènez",
-    "aoc": "Jerez",
-    "year": null,
-    "info": "(Pedro Ximenez)",
-    "price": "50",
-    "available": 1
-  },
-  {
-    "category": "I Vini Speciali",
-    "country": "Ungheria",
-    "name": "Disznòko - 1413 EdesSzam Tokaji",
-    "aoc": "Tokaji",
-    "year": "2018",
-    "info": "(Furmint,Harsevelu)",
-    "price": "52",
-    "available": 1
-  }
-]
+    "name": "S
