@@ -15,8 +15,8 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'No data provided.' });
     }
 
-    const owner = 'IL_TUO_USERNAME_GITHUB'; // <--- INSERISCI IL TUO USERNAME GITHUB
-    const repo = 'IL_TUO_NOME_REPOSITORY'; // <--- INSERISCI IL NOME DEL REPOSITORY
+    const owner = 'niubbone'; // <--- INSERISCI IL TUO USERNAME GITHUB
+    const repo = 'cartaqr'; // <--- INSERISCI IL NOME DEL REPOSITORY
     const filePath = 'wines.json';
 
     const octokit = new Octokit({
