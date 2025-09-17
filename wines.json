@@ -751,10 +751,10 @@
   },
   {
     "category": "I Rossi",
-    "country": "Corsica",
+    "country": "Francia",
     "name": "Domaine Vico - Le Bois du Cerf Rouge",
     "info": "(Sciaccarellu, Niellucciu)",
-    "aoc": "Ponte Leccia",
+    "aoc": "Corsica",
     "year": "2022",
     "price": "43",
     "available": true
@@ -1080,6 +1080,7 @@
     "available": true
   }
 ]
+
 
 
 
