@@ -160,7 +160,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('INSERISCI_QUI_L_URL_DEL_TUO_FILE_JSON')
+            fetch('wines.json')
                 .then(response => response.json())
                 .then(wines => {
                     const wineList = document.getElementById('wine-list');
@@ -236,4 +236,5 @@
     </script>
 
 </body>
+
 </html>
