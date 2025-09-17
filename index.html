@@ -160,7 +160,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('wines.json')
+            fetch('INSERISCI_QUI_L_URL_DEL_TUO_FILE_JSON')
                 .then(response => response.json())
                 .then(wines => {
                     const wineList = document.getElementById('wine-list');
@@ -208,25 +208,7 @@
 
                                 const info = document.createElement('div');
                                 info.className = 'wine-info';
-
-                                let wineInfoText = '';
-                                if (wine.aoc) {
-                                    wineInfoText += wine.aoc;
-                                }
-                                if (wine.year) {
-                                    if (wineInfoText) {
-                                        wineInfoText += ' - ';
-                                    }
-                                    wineInfoText += wine.year;
-                                }
-                                if (wine.info) {
-                                    if (wineInfoText) {
-                                        wineInfoText += ' ';
-                                    }
-                                    wineInfoText += wine.info;
-                                }
-
-                                info.textContent = wineInfoText;
+                                info.textContent = wine.info;
                                 details.appendChild(info);
 
                                 item.appendChild(details);

@@ -3,9 +3,7 @@
     "category": "Le Bolle",
     "country": "Argentina",
     "name": "Chakana Wines - NUNA Brut",
-    "aoc": "Mendoza",
-    "year": null,
-    "info": "(Sauvignon Blanc, Chardonnay, Viognier)",
+    "info": "(Sauvignon Blanc, Chardonnay, Viognier) Mendoza",
     "price": "41",
     "available": false
   },
@@ -13,9 +11,7 @@
     "category": "Le Bolle",
     "country": "Austria",
     "name": "Nibiru - Ancestrale",
-    "aoc": "Kamptal",
-    "year": "2022",
-    "info": "(Gelber Muskateller)",
+    "info": "2022 (Gelber Muskateller) Kamptal",
     "price": "36",
     "available": true
   },
@@ -23,9 +19,7 @@
     "category": "Le Bolle",
     "country": "Austria",
     "name": "Nibiru - Amphibolit Brut Nature",
-    "aoc": "Kamptal",
-    "year": "2020",
-    "info": "(Chardonnay, Pinot Blanc)",
+    "info": "2020 (Chardonnay, Pinot Blanc) Kamptal",
     "price": "52",
     "available": true
   },
@@ -33,18 +27,14 @@
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Domaine de Rotisson - Cremant de Bourgogne Cuvée Prestige Blanc de Blancs",
-    "aoc": null,
-    "year": null,
     "info": "(Chardonnay)",
     "price": "35",
-    "available": false
+    "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Les Grandes Esperances - Etoile Filante Pet Nat",
-    "aoc": null,
-    "year": null,
     "info": "(Chenin Blanc)",
     "price": "39",
     "available": true
@@ -53,18 +43,14 @@
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Andrè Stentz - Crémant D’Alsace Brut",
-    "aoc": null,
-    "year": "2022",
-    "info": "(Pinot Blanc, Auxerrois)",
+    "info": "2022 (Pinot Blanc, Auxerrois)",
     "price": "44",
-    "available": false
+    "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Baudin Fils - Champagne Brut Tradition",
-    "aoc": null,
-    "year": null,
     "info": "(Pinot Noir, Chardonnay, Pinot Meunier)",
     "price": "64",
     "available": true
@@ -73,18 +59,14 @@
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Noe Les Mallets - Petit Camusat - Champagne Blanc de Blancs Brut",
-    "aoc": null,
-    "year": null,
     "info": "(Pinot Blanc)",
     "price": "68",
-    "available": false
+    "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
     "name": "J.Charpentier - Champagne Rosè Brut",
-    "aoc": null,
-    "year": null,
     "info": "(Pinot Meunier, Pinot Noir)",
     "price": "68",
     "available": true
@@ -93,18 +75,14 @@
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Sadi Malot - Terre d’Origine - Champagne Blanc de Blancs Brut Premier Cru",
-    "aoc": null,
-    "year": null,
     "info": "(Chardonnay)",
     "price": "72",
-    "available": false
+    "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Gatinois - Champagne Brut Tradition Grand Cru",
-    "aoc": null,
-    "year": null,
     "info": "(Pinot Noir, Chardonnay)",
     "price": "77",
     "available": true
@@ -113,8 +91,6 @@
     "category": "Le Bolle",
     "country": "Francia",
     "name": "Jean Vesselle - Champagne Brut Oeil de Pedrix",
-    "aoc": null,
-    "year": null,
     "info": "(Pinot Noir)",
     "price": "85",
     "available": true
@@ -123,8 +99,6 @@
     "category": "Le Bolle",
     "country": "Francia",
     "name": "J.L.Vergnon - Conversation - Champagne Blanc de Blancs Brut Grand Cru",
-    "aoc": null,
-    "year": null,
     "info": "(Chardonnay)",
     "price": "87",
     "available": true
@@ -133,9 +107,7 @@
     "category": "Le Bolle",
     "country": "Germania",
     "name": "Bibo Runge - Deserteur Sekt Alcohol Free",
-    "aoc": "Reinghau",
-    "year": null,
-    "info": "(Riesling)",
+    "info": "(Riesling) Reinghau",
     "price": "40",
     "available": true
   },
@@ -143,29 +115,23 @@
     "category": "Le Bolle",
     "country": "Spagna",
     "name": "Revento Rossell - Portium - Cava Brut Nature",
-    "aoc": "Catalogna",
-    "year": null,
-    "info": "(Macabeo, Xarel-Lo, Parellada, Chardonnay)",
+    "info": "(Macabeo, Xarel-Lo, Parellada, Chardonnay) Catalogna",
     "price": "33",
-    "available": false
+    "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Spagna",
     "name": "Bocchoris - Cava Brut Nature",
-    "aoc": "Catalogna",
-    "year": null,
-    "info": "( Macabeo, Xarel-Lo, Parellada)",
+    "info": "(Macabeo, Xarel-Lo, Parellada) Catalogna",
     "price": "33",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Austria",
     "name": "Nibiru - Grundstein",
-    "aoc": "Kamptal",
-    "year": "2022",
-    "info": "(Riesling)",
+    "info": "(Riesling) 2022 Kamptal",
     "price": "28",
     "available": true
   },
@@ -173,9 +139,7 @@
     "category": "I Bianchi",
     "country": "Austria",
     "name": "Matthias Warnung - Potatoland",
-    "aoc": "Kamptal",
-    "year": "2023",
-    "info": "(Gruner Veltliner)",
+    "info": "(Gruner Veltliner) 2023 Kamptal",
     "price": "30",
     "available": true
   },
@@ -183,9 +147,7 @@
     "category": "I Bianchi",
     "country": "Austria",
     "name": "Martin & Anna Arndorfer",
-    "aoc": "Kamptal",
-    "year": null,
-    "info": "(Gruner Veltliner)",
+    "info": "(Gruner Veltliner) Kamptal",
     "price": "44",
     "available": true
   },
@@ -193,19 +155,15 @@
     "category": "I Bianchi",
     "country": "Australia",
     "name": "De Bortoli - DB Family Selection",
-    "aoc": "New South Wales",
-    "year": "2022",
-    "info": "(Chardonnay)",
+    "info": "(Chardonnay) 2022 New South Wales",
     "price": "27",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Armenia",
     "name": "Armenia Wine Factory - Takar",
-    "aoc": "Aragatsotn",
-    "year": "2019",
-    "info": "(Kangun)",
+    "info": "(Kangun) 2019 Aragatsotn",
     "price": "45",
     "available": true
   },
@@ -213,19 +171,15 @@
     "category": "I Bianchi",
     "country": "Argentina",
     "name": "Bodega Vinecol - Chinchero",
-    "aoc": "Mendoza",
-    "year": "2022",
-    "info": "(Torrontes)",
+    "info": "(Torrontes) 2022 Mendoza",
     "price": "31",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Argentina",
     "name": "Bodega Rolland - San Pedro de Yacochuya",
-    "aoc": "Valley of Cafayate",
-    "year": "2021",
-    "info": "(Torrontes)",
+    "info": "(Torrontes) 2021 Valley of Cafayate",
     "price": "44",
     "available": true
   },
@@ -233,9 +187,7 @@
     "category": "I Bianchi",
     "country": "Argentina",
     "name": "Otronia - III & VI",
-    "aoc": "Patagonia",
-    "year": "2019",
-    "info": "(Chardonnay)",
+    "info": "(Chardonnay) 2019 Patagonia",
     "price": "130",
     "available": true
   },
@@ -243,19 +195,15 @@
     "category": "I Bianchi",
     "country": "Bulgaria",
     "name": "Orelek - Orbelus",
-    "aoc": "Struma",
-    "year": "2019",
-    "info": "(Assyrtiko, Sandanski Misket)",
+    "info": "(Assyrtiko, Sandanski Misket) 2019 Struma",
     "price": "36",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Corsica",
     "name": "Domaine Vico - Le Bois du Cerf Blanc",
-    "aoc": "Ponte Leccia",
-    "year": "2023",
-    "info": "(Vermentinu)",
+    "info": "(Vermentinu) 2023 Ponte Leccia",
     "price": "42",
     "available": true
   },
@@ -263,29 +211,23 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "La Perriere - La Petite Perriere",
-    "aoc": "Loira",
-    "year": null,
-    "info": "(Sauvignon Blanc)",
+    "info": "(Sauvignon Blanc) Loira",
     "price": "26",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Chateau La Maroutine - Bordeaux Blanc",
-    "aoc": null,
-    "year": "2023",
-    "info": "(Sauvignon blanc, Semillon)",
+    "info": "(Sauvignon blanc, Semillon) 2023",
     "price": "30",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Francia",
     "name": "La Gamme - Poully Vinzelles",
-    "aoc": "Borgogna",
-    "year": "2021",
-    "info": "(Chardonnay)",
+    "info": "(Chardonnay) 2021 Borgogna",
     "price": "39",
     "available": true
   },
@@ -293,9 +235,7 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Pierre Finon - Saint Joseph Quatuor",
-    "aoc": "Valle del Rodano",
-    "year": null,
-    "info": "(Marsanne, Roussanne)",
+    "info": "(Marsanne, Roussanne) Valle del Rodano",
     "price": "42",
     "available": true
   },
@@ -303,9 +243,7 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Domaine Henri Naudin-Ferrand - Aligoté",
-    "aoc": "Borgogna",
-    "year": "2022",
-    "info": "(Aligoté)",
+    "info": "(Aligoté) 2022 Borgogna",
     "price": "42",
     "available": true
   },
@@ -313,9 +251,7 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Josmeyer - Le Kottabe",
-    "aoc": "Alsazia",
-    "year": "2023",
-    "info": "(Riesling)",
+    "info": "(Riesling) 2023 Alsazia",
     "price": "45",
     "available": true
   },
@@ -323,9 +259,7 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Domaine Michel Lafarge - Raisins Dorés",
-    "aoc": "Borgogna",
-    "year": "2021",
-    "info": "(Aligoté)",
+    "info": "(Aligoté) 2021 Borgogna",
     "price": "48",
     "available": true
   },
@@ -333,9 +267,7 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Domaine de la Charbonnière - Chateauneuf du Pape",
-    "aoc": "Rhone",
-    "year": "2023",
-    "info": "(Roussanne, Grenache Blanc, Clairette)",
+    "info": "(Roussanne, Grenache Blanc, Clairette) 2023 Rhone",
     "price": "62",
     "available": true
   },
@@ -343,9 +275,7 @@
     "category": "I Bianchi",
     "country": "Francia",
     "name": "Jerome Arnouxe - Prèambule",
-    "aoc": "Jura",
-    "year": "2021",
-    "info": "(Savagnin)",
+    "info": "(Savagnin) 2021 Jura",
     "price": "70",
     "available": true
   },
@@ -353,9 +283,7 @@
     "category": "I Bianchi",
     "country": "Germania",
     "name": "Loosen Bros - Dr. Loosen",
-    "aoc": "Mosel",
-    "year": "2023",
-    "info": "(Riesling Dry)",
+    "info": "(Riesling Dry) 2023 Mosel",
     "price": "30",
     "available": true
   },
@@ -363,9 +291,7 @@
     "category": "I Bianchi",
     "country": "Germania",
     "name": "Erben Thanisch - Thanisch",
-    "aoc": "Mosel",
-    "year": "2022",
-    "info": "(Riesling Trocken)",
+    "info": "(Riesling Trocken) 2022 Mosel",
     "price": "41",
     "available": true
   },
@@ -373,9 +299,7 @@
     "category": "I Bianchi",
     "country": "Germania",
     "name": "Donnhoff - Tonschiefer",
-    "aoc": "Mosel",
-    "year": "2018",
-    "info": "(Riesling Trocken)",
+    "info": "(Riesling Trocken) 2018 Mosel",
     "price": "54",
     "available": true
   },
@@ -383,9 +307,7 @@
     "category": "I Bianchi",
     "country": "Germania",
     "name": "Marcus Molitor - Graacher Domprobst",
-    "aoc": "Mosel",
-    "year": "2019",
-    "info": "(Riesling Kabinett)",
+    "info": "(Riesling Kabinett) 2019 Mosel",
     "price": "55",
     "available": true
   },
@@ -393,19 +315,15 @@
     "category": "I Bianchi",
     "country": "Germania",
     "name": "Marcus Molitor - Wehlener Sonnenhur",
-    "aoc": "Mosel",
-    "year": "2019",
-    "info": "(Riesling Spatlese)",
+    "info": "(Riesling Spatlese) 2019 Mosel",
     "price": "65",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Giappone",
     "name": "Grace Wine - Grace",
-    "aoc": "Yamanashi",
-    "year": "2022",
-    "info": "(Koshu)",
+    "info": "(Koshu) 2022 Yamanashi",
     "price": "46",
     "available": true
   },
@@ -413,19 +331,15 @@
     "category": "I Bianchi",
     "country": "Grecia",
     "name": "Tenuta Thedorakakos - Perivleptos",
-    "aoc": "Laconia",
-    "year": "2023",
-    "info": "(Monemvasià)",
+    "info": "(Monemvasià) 2023 Laconia",
     "price": "25",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Grecia",
     "name": "Idaia Winery - Ocean",
-    "aoc": "Creta",
-    "year": "2023",
-    "info": "(Thrapsathiri)",
+    "info": "(Thrapsathiri) 2023 Creta",
     "price": "38",
     "available": true
   },
@@ -433,9 +347,7 @@
     "category": "I Bianchi",
     "country": "Grecia",
     "name": "Markos Markovitis - Xinomavro",
-    "aoc": "Macedonia",
-    "year": "2016",
-    "info": "(Xinomavro)",
+    "info": "(Xinomavro) 2016 Macedonia",
     "price": "40",
     "available": true
   },
@@ -443,29 +355,23 @@
     "category": "I Bianchi",
     "country": "Grecia",
     "name": "Artemis Karamolegos - 34",
-    "aoc": "Santorini",
-    "year": "2019",
-    "info": "(Assyrtiko)",
+    "info": "(Assyrtiko) 2019 Santorini",
     "price": "65",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Nuova Zelanda",
     "name": "Saint Clair Winery - Bishop’s Leap",
-    "aoc": "Marlborough",
-    "year": "2023",
-    "info": "(Sauvignon Blanc)",
+    "info": "(Sauvignon Blanc) 2023 Marlborough",
     "price": "32",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Nuova Zelanda",
     "name": "Clark Estate - Black Birch",
-    "aoc": "Marlborough",
-    "year": "2020",
-    "info": "(Pinot Gris)",
+    "info": "(Pinot Gris) 2020 Marlborough",
     "price": "42",
     "available": true
   },
@@ -473,9 +379,7 @@
     "category": "I Bianchi",
     "country": "Nuova Zelanda",
     "name": "Clark Estate - Upper Awatere",
-    "aoc": "Marlborough",
-    "year": "2021",
-    "info": "(Sauvignon Blanc)",
+    "info": "(Sauvignon Blanc) 2021 Marlborough",
     "price": "47",
     "available": true
   },
@@ -483,9 +387,7 @@
     "category": "I Bianchi",
     "country": "Nuova Zelanda",
     "name": "Saint Clair - Wairau Reserve",
-    "aoc": "Marlborough",
-    "year": "2022",
-    "info": "(Sauvignon Blanc)",
+    "info": "(Sauvignon Blanc) 2022 Marlborough",
     "price": "70",
     "available": true
   },
@@ -493,19 +395,15 @@
     "category": "I Bianchi",
     "country": "Portogallo",
     "name": "Phulia - Mordoma",
-    "aoc": "Minho",
-    "year": null,
-    "info": "(Alvarinho)",
+    "info": "(Alvarinho) Minho",
     "price": "34",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Portogallo",
     "name": "Phulia - Desvirttuado",
-    "aoc": "Lima",
-    "year": null,
-    "info": "(Loureiro)",
+    "info": "(Loureiro) Lima",
     "price": "44",
     "available": true
   },
@@ -513,19 +411,15 @@
     "category": "I Bianchi",
     "country": "Slovenia",
     "name": "Princic - Jakot",
-    "aoc": "Goriska Brda",
-    "year": "2023",
-    "info": "(Friulano)",
+    "info": "(Friulano) 2023 Goriska Brda",
     "price": "32",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Slovenia",
     "name": "Princic - Mihael Belo",
-    "aoc": "Goriska Brda",
-    "year": "2020",
-    "info": "(Rebula, Chardonnay, Sauvignon)",
+    "info": "(Rebula, Chardonnay, Sauvignon) 2020 Goriska Brda",
     "price": "42",
     "available": true
   },
@@ -533,19 +427,15 @@
     "category": "I Bianchi",
     "country": "Spagna",
     "name": "Fenomenal",
-    "aoc": "Rueda",
-    "year": "2023",
-    "info": "(Verdejo)",
+    "info": "(Verdejo) 2023 Rueda",
     "price": "30",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Sud Africa",
     "name": "Cape Dreams",
-    "aoc": "Robertson Region",
-    "year": "2023",
-    "info": "(Chenin Blanc)",
+    "info": "(Chenin Blanc) 2023 Robertson Region",
     "price": "25",
     "available": true
   },
@@ -553,9 +443,7 @@
     "category": "I Bianchi",
     "country": "Sud Africa",
     "name": "Badenhorst - Secateurs",
-    "aoc": null,
-    "year": "2022",
-    "info": "(Chenin Blanc)",
+    "info": "(Chenin Blanc) 2022",
     "price": "39",
     "available": true
   },
@@ -563,9 +451,7 @@
     "category": "I Bianchi",
     "country": "Stati Uniti",
     "name": "Sebastiani",
-    "aoc": "Sonoma County",
-    "year": "2021",
-    "info": "(Chardonnay)",
+    "info": "(Chardonnay) 2021 Sonoma County",
     "price": "42",
     "available": true
   },
@@ -573,19 +459,15 @@
     "category": "I Bianchi",
     "country": "Stati Uniti",
     "name": "Wente - Morning Fog",
-    "aoc": "Central Coast",
-    "year": "2022",
-    "info": "(Chardonnay)",
+    "info": "(Chardonnay) 2022 Central Coast",
     "price": "43",
-    "available": false
+    "available": true
   },
   {
     "category": "I Bianchi",
     "country": "Ungheria",
     "name": "Fulop - The Phenomenon Dry Tokaji",
-    "aoc": null,
-    "year": "2021",
-    "info": "(Furmint, Harsevelu, Moscato)",
+    "info": "(Furmint, Harsevelu, Moscato) 2021",
     "price": "34",
     "available": true
   },
@@ -593,29 +475,23 @@
     "category": "I Bianchi",
     "country": "Ungheria",
     "name": "Disznoko - Tokaji Dry",
-    "aoc": "Tocaji",
-    "year": "2023",
-    "info": "(Furmint)",
+    "info": "(Furmint) 2023 Tocaji",
     "price": "42",
-    "available": false
+    "available": true
   },
   {
     "category": "I Rosati",
     "country": "Austria",
     "name": "Matthias Warnung - Espere",
-    "aoc": "Kamptal",
-    "year": "2020",
-    "info": "(Zweigelt)",
+    "info": "(Zweigelt) 2020 Kamptal",
     "price": "45",
-    "available": true
+    "available": false
   },
   {
     "category": "I Rosati",
     "country": "Francia",
     "name": "Peyrassol - Rosè Meditarranee",
-    "aoc": "Brignoles",
-    "year": "2024",
-    "info": "(Cinsault, Grenache, Syrah, Carignan)",
+    "info": "(Cinsault, Grenache, Syrah, Carignan) 2024 Brignoles",
     "price": "28",
     "available": true
   },
@@ -623,9 +499,7 @@
     "category": "I Rosati",
     "country": "Francia",
     "name": "Chateau de Pibarnon",
-    "aoc": "Bandol",
-    "year": "2022",
-    "info": "(Mourvedre, Cinsault)",
+    "info": "(Mourvedre, Cinsault) 2022 Bandol",
     "price": "85",
     "available": true
   },
@@ -633,9 +507,7 @@
     "category": "I Rosati",
     "country": "Francia",
     "name": "Chateau de Pibarnon - Nuances",
-    "aoc": "Bandol",
-    "year": "2022",
-    "info": "(Mourvedre, Cinsault, Grenache)",
+    "info": "(Mourvedre, Cinsault, Grenache) 2022 Bandol",
     "price": "100",
     "available": true
   },
@@ -643,9 +515,7 @@
     "category": "I Rosati",
     "country": "Grecia",
     "name": "Estate Samartzis - One",
-    "aoc": "Muses Valley",
-    "year": "2023",
-    "info": "(Moùxtapo)",
+    "info": "(Moùxtapo) 2023 Muses Valley",
     "price": "38",
     "available": true
   },
@@ -653,9 +523,7 @@
     "category": "I Rossi",
     "country": "Argentina",
     "name": "Tinto Negro - Tinto Negro Malbec",
-    "aoc": "Mendoza",
-    "year": "2022",
-    "info": "(Malbec)",
+    "info": "(Malbec) 2022 Mendoza",
     "price": "30",
     "available": true
   },
@@ -663,9 +531,7 @@
     "category": "I Rossi",
     "country": "Argentina",
     "name": "Bodega Argento - Argento",
-    "aoc": "Mendoza",
-    "year": "2022",
-    "info": "(Malbec)",
+    "info": "(Malbec) 2022 Mendoza",
     "price": "34",
     "available": true
   },
@@ -673,9 +539,7 @@
     "category": "I Rossi",
     "country": "Argentina",
     "name": "Bodega Manos Negras - Manos Negras",
-    "aoc": "Mendoza",
-    "year": "2021",
-    "info": "(Pinot Noir)",
+    "info": "(Pinot Noir) 2021 Mendoza",
     "price": "37",
     "available": true
   },
@@ -683,29 +547,23 @@
     "category": "I Rossi",
     "country": "Australia",
     "name": "De Bortoli - First Block",
-    "aoc": "New South Wales",
-    "year": "2022",
-    "info": "(Shiraz Cabernet)",
+    "info": "(Shiraz Cabernet) 2022 New South Wales",
     "price": "26",
-    "available": false
+    "available": true
   },
   {
     "category": "I Rossi",
     "country": "Australia",
     "name": "Penley Estate - Tolmer",
-    "aoc": "Coonawarra",
-    "year": "2018",
-    "info": "(Cabernet Sauvignon)",
+    "info": "(Cabernet Sauvignon) 2018 Coonawarra",
     "price": "42",
-    "available": false
+    "available": true
   },
   {
     "category": "I Rossi",
     "country": "Australia",
     "name": "Peter Lehman - The Barossan",
-    "aoc": "Barossa Valley",
-    "year": null,
-    "info": "(Shiraz)",
+    "info": "(Shiraz) Barossa Valley",
     "price": "48",
     "available": true
   },
@@ -713,9 +571,7 @@
     "category": "I Rossi",
     "country": "Australia",
     "name": "Torbreck Vintners - Torbreck",
-    "aoc": "Barossa Valley",
-    "year": null,
-    "info": "(Grenache, Mourvedre, Shiraz)",
+    "info": "(Grenache, Mourvedre, Shiraz) Barossa Valley",
     "price": "78",
     "available": true
   },
@@ -723,9 +579,7 @@
     "category": "I Rossi",
     "country": "Cile",
     "name": "Cinzano - Erasmo",
-    "aoc": "Maule Valley",
-    "year": "2019",
-    "info": "(Barbera Garnacha)",
+    "info": "(Barbera Garnacha) 2019 Maule Valley",
     "price": "35",
     "available": true
   },
@@ -733,9 +587,7 @@
     "category": "I Rossi",
     "country": "Cile",
     "name": "Mancura Wines - Guardian",
-    "aoc": "Maule Valley",
-    "year": "2021",
-    "info": "(Carmenere)",
+    "info": "(Carmenere) 2021 Maule Valley",
     "price": "40",
     "available": true
   },
@@ -743,9 +595,7 @@
     "category": "I Rossi",
     "country": "Cile",
     "name": "Agricola la Misiòn - Pisador",
-    "aoc": "Maule Valley",
-    "year": "2020",
-    "info": "(Pais)",
+    "info": "(Pais) 2020 Maule Valley",
     "price": "60",
     "available": true
   },
@@ -753,9 +603,7 @@
     "category": "I Rossi",
     "country": "Corsica",
     "name": "Domaine Vico - Le Bois du Cerf Rouge",
-    "aoc": "Ponte Leccia",
-    "year": "2022",
-    "info": "(Sciaccarellu, Niellucciu)",
+    "info": "(Sciaccarellu, Niellucciu) 2022 Ponte Leccia",
     "price": "43",
     "available": true
   },
@@ -763,9 +611,7 @@
     "category": "I Rossi",
     "country": "Croazia",
     "name": "Pz Svirce - Mediteraneo",
-    "aoc": "Hvar",
-    "year": "2017",
-    "info": "(Plavac)",
+    "info": "(Plavac) 2017 Hvar",
     "price": "37",
     "available": true
   },
@@ -773,9 +619,7 @@
     "category": "I Rossi",
     "country": "Francia",
     "name": "Gilles Capiret - Fleurie La Madone",
-    "aoc": "Beaujolais",
-    "year": "2023",
-    "info": "(Gamay)",
+    "info": "(Gamay) 2023 Beaujolais",
     "price": "32",
     "available": true
   },
@@ -783,9 +627,7 @@
     "category": "I Rossi",
     "country": "Francia",
     "name": "Domaine de la Charbonnière - Cotes Du Rhone",
-    "aoc": "Chateauneuf du Pape",
-    "year": "2023",
-    "info": "(Grenache, Syrah)",
+    "info": "(Grenache, Syrah) 2023 Chateauneuf du Pape",
     "price": "32",
     "available": true
   },
@@ -793,19 +635,15 @@
     "category": "I Rossi",
     "country": "Francia",
     "name": "Chateau Tour saint Pierre",
-    "aoc": "Saint Emilion",
-    "year": "2021",
-    "info": "(Cabernet Sauvignon, Cabernet Franc, Merlot)",
+    "info": "(Cabernet Sauvignon, Cabernet Franc, Merlot) 2021 Saint Emilion",
     "price": "46",
-    "available": false
+    "available": true
   },
   {
     "category": "I Rossi",
     "country": "Francia",
     "name": "David Duband - Bourgogne",
-    "aoc": "Borgogna",
-    "year": "2021",
-    "info": "(Pinot Noir)",
+    "info": "(Pinot Noir) 2021 Borgogna",
     "price": "58",
     "available": true
   },
@@ -813,9 +651,7 @@
     "category": "I Rossi",
     "country": "Francia",
     "name": "Michel Lafarge - Bourgogne",
-    "aoc": "Borgogna",
-    "year": "2020",
-    "info": "(Pinot Noir)",
+    "info": "(Pinot Noir) 2020 Borgogna",
     "price": "60",
     "available": true
   },
@@ -823,9 +659,7 @@
     "category": "I Rossi",
     "country": "Francia",
     "name": "Patrick Miolane - Saint Aubin Rouge 1er Cru",
-    "aoc": "Cote de Beaune",
-    "year": "2018",
-    "info": "(Pinot Noir)",
+    "info": "(Pinot Noir) 2018 Cote de Beaune",
     "price": "82",
     "available": true
   },
@@ -833,19 +667,15 @@
     "category": "I Rossi",
     "country": "Germania",
     "name": "Markus Molitor - Haus Klosterberg",
-    "aoc": "Mosel",
-    "year": "2019",
-    "info": "(Pinot Noir)",
+    "info": "(Pinot Noir) 2019 Mosel",
     "price": "52",
-    "available": false
+    "available": true
   },
   {
     "category": "I Rossi",
     "country": "Grecia",
     "name": "Estate Theodorakakos - Perivleptos",
-    "aoc": "Peloponneso",
-    "year": "2020",
-    "info": "(Mavroudi, Agiorgitiko)",
+    "info": "(Mavroudi, Agiorgitiko) 2020 Peloponneso",
     "price": "28",
     "available": true
   },
@@ -853,9 +683,7 @@
     "category": "I Rossi",
     "country": "Grecia",
     "name": "Markos Markovitis - Markovitis",
-    "aoc": "Naoussa",
-    "year": "2016",
-    "info": "(Xinomavro)",
+    "info": "(Xinomavro) 2016 Naoussa",
     "price": "40",
     "available": true
   },
@@ -863,9 +691,7 @@
     "category": "I Rossi",
     "country": "Grecia",
     "name": "Diamantis - Magoutes",
-    "aoc": "Macedonia",
-    "year": "2018",
-    "info": "(Xinomavro)",
+    "info": "(Xinomavro) 2018 Macedonia",
     "price": "44",
     "available": true
   },
@@ -873,9 +699,7 @@
     "category": "I Rossi",
     "country": "Libano",
     "name": "Chateau Kefraya - Bretèches",
-    "aoc": "Bekaa Valley",
-    "year": "2021",
-    "info": "(Cinsault du Liban)",
+    "info": "(Cinsault du Liban) 2021 Bekaa Valley",
     "price": "38",
     "available": true
   },
@@ -883,9 +707,7 @@
     "category": "I Rossi",
     "country": "Portogallo",
     "name": "Christie’s Port Wine - Castelinho",
-    "aoc": "Douro",
-    "year": "2021",
-    "info": "(Touriga Nacional, Touriga Franca, Tinta Baroca, Tinta Roriz)",
+    "info": "(Touriga Nacional, Touriga Franca, Tinta Baroca, Tinta Roriz) 2021 Douro",
     "price": "30",
     "available": true
   },
@@ -893,8 +715,6 @@
     "category": "I Rossi",
     "country": "Portogallo",
     "name": "Christie’s Port Wine - Dona Mafalda",
-    "aoc": null,
-    "year": null,
     "info": "(Tinta Roriz, Touriga Franca, Touriga Nacional)",
     "price": "42",
     "available": true
@@ -903,9 +723,7 @@
     "category": "I Rossi",
     "country": "Spagna",
     "name": "La Locomotora - Tempranillo",
-    "aoc": "Rioja",
-    "year": "2023",
-    "info": "(Tempranillo)",
+    "info": "(Tempranillo) 2023 Rioja",
     "price": "28",
     "available": true
   },
@@ -913,9 +731,7 @@
     "category": "I Rossi",
     "country": "Spagna",
     "name": "La Locomotora - Tinto Crianza",
-    "aoc": "Rioja",
-    "year": "2020",
-    "info": "(Tinto Crianza)",
+    "info": "(Tinto Crianza) 2020 Rioja",
     "price": "35",
     "available": true
   },
@@ -923,9 +739,7 @@
     "category": "I Rossi",
     "country": "Spagna",
     "name": "Paisajes - La Pasada",
-    "aoc": "Rioja",
-    "year": "2021",
-    "info": "(Tempranillo)",
+    "info": "(Tempranillo) 2021 Rioja",
     "price": "66",
     "available": true
   },
@@ -933,9 +747,7 @@
     "category": "I Rossi",
     "country": "Spagna",
     "name": "Uvas Felices - La Locomotora Gran Reserva",
-    "aoc": "Rioja",
-    "year": "2010",
-    "info": "(Tempranillo)",
+    "info": "(Tempranillo) 2010 Rioja",
     "price": "68",
     "available": true
   },
@@ -943,9 +755,7 @@
     "category": "I Rossi",
     "country": "Spagna",
     "name": "Bodegas Vizcarra - Venta Las Vacas La Cuartilleja",
-    "aoc": "Ribera del Duero",
-    "year": "2019",
-    "info": "(Tempranillo)",
+    "info": "(Tempranillo) 2019 Ribera del Duero",
     "price": "85",
     "available": true
   },
@@ -953,9 +763,7 @@
     "category": "I Rossi",
     "country": "Sud Africa",
     "name": "Spier - Seaward",
-    "aoc": "Coastal Region",
-    "year": "2020",
-    "info": "(Pinotage)",
+    "info": "(Pinotage) 2020 Coastal Region",
     "price": "34",
     "available": true
   },
@@ -963,9 +771,7 @@
     "category": "I Rossi",
     "country": "Sud Africa",
     "name": "Badenhorst - Secateurs",
-    "aoc": "Swartland",
-    "year": "2019",
-    "info": "(Cinsault, Grenache, Shiraz)",
+    "info": "(Cinsault, Grenache, Shiraz) 2019 Swartland",
     "price": "40",
     "available": true
   },
@@ -973,9 +779,7 @@
     "category": "I Rossi",
     "country": "Sud Africa",
     "name": "Kershaw Wines - The Smuggler’s Boot",
-    "aoc": null,
-    "year": "2023",
-    "info": "(Pinot Noir)",
+    "info": "(Pinot Noir) 2023",
     "price": "46",
     "available": true
   },
@@ -983,19 +787,15 @@
     "category": "I Rossi",
     "country": "Stati Uniti",
     "name": "Sebastiani",
-    "aoc": "Sonoma County",
-    "year": "2021",
-    "info": "(Zinfandel)",
+    "info": "(Zinfandel) 2021 Sonoma County",
     "price": "45",
-    "available": false
+    "available": true
   },
   {
     "category": "I Vini Speciali",
     "country": "Francia",
     "name": "Chateau Filhot - Sauternes",
-    "aoc": "Bordeaux",
-    "year": "2020",
-    "info": "(Sauvignon Blanc, Semillon)",
+    "info": "(Sauvignon Blanc, Semillon) 2020 Bordeaux",
     "price": "50",
     "available": true
   },
@@ -1003,8 +803,6 @@
     "category": "I Vini Speciali",
     "country": "Grecia",
     "name": "Samos - Moscato di Samos",
-    "aoc": null,
-    "year": null,
     "info": "(Moschato Aspro)",
     "price": "33",
     "available": true
@@ -1013,9 +811,7 @@
     "category": "I Vini Speciali",
     "country": "Grecia",
     "name": "Samos - Anthemis",
-    "aoc": null,
-    "year": "2000",
-    "info": "(Muscat Blanc à Petits Grains)",
+    "info": "(Muscat Blanc à Petits Grains) 2000",
     "price": "33",
     "available": true
   },
@@ -1023,9 +819,7 @@
     "category": "I Vini Speciali",
     "country": "Portogallo",
     "name": "Bacalhoa - Moscatel de Setùbal",
-    "aoc": "Peninsula de Setùbal",
-    "year": "2019",
-    "info": "(Moscatel de Setùbal)",
+    "info": "(Moscatel de Setùbal) 2019 Peninsula de Setùbal",
     "price": "39",
     "available": true
   },
@@ -1033,9 +827,7 @@
     "category": "I Vini Speciali",
     "country": "Portogallo",
     "name": "J.Faria & Filhos - Madeira Wine 10 Years Old Reserva Velha",
-    "aoc": null,
-    "year": null,
-    "info": null,
+    "info": "",
     "price": "55",
     "available": true
   },
@@ -1043,9 +835,7 @@
     "category": "I Vini Speciali",
     "country": "Portogallo",
     "name": "Dow’s - Porto LBV",
-    "aoc": null,
-    "year": "2018",
-    "info": "(Touriga Nacional, Touriga Franca, Tinta Barroca, Tinta Roriz)",
+    "info": "(Touriga Nacional, Touriga Franca, Tinta Barroca, Tinta Roriz) 2018",
     "price": "52",
     "available": true
   },
@@ -1053,9 +843,7 @@
     "category": "I Vini Speciali",
     "country": "Portogallo",
     "name": "Dow’s - Vintage Port",
-    "aoc": null,
-    "year": "2017",
-    "info": "(Touriga Nacional, Touriga Franca, Sousao, Alicante, Bouschet)",
+    "info": "(Touriga Nacional, Touriga Franca, Sousao, Alicante, Bouschet) 2017",
     "price": "150",
     "available": true
   },
@@ -1063,9 +851,7 @@
     "category": "I Vini Speciali",
     "country": "Spagna",
     "name": "Rey Fernando de Castilla - Classic Sweet Pedro Ximènez",
-    "aoc": "Jerez",
-    "year": null,
-    "info": "(Pedro Ximenez)",
+    "info": "(Pedro Ximenez) Jerez",
     "price": "50",
     "available": true
   },
@@ -1073,9 +859,7 @@
     "category": "I Vini Speciali",
     "country": "Ungheria",
     "name": "Disznòko - 1413 EdesSzam Tokaji",
-    "aoc": "Tokaji",
-    "year": "2018",
-    "info": "(Furmint, Harsevelu)",
+    "info": "(Furmint, Harsevelu) 2018 Tokaji",
     "price": "52",
     "available": true
   }
