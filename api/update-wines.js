@@ -1,29 +1,50 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { Octokit } from '@octokit/rest';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Solo richieste POST sono permesse' });
+        return res.status(405).json({ message: 'Only POST requests are allowed.' });
     }
 
     const { data, password } = req.body;
 
-    // ATTENZIONE: Usa una password semplice come misura di sicurezza.
-    // Per un'app professionale, si userebbe un sistema di autenticazione più robusto.
     if (password !== process.env.UPDATE_PASSWORD) {
-        return res.status(401).json({ message: 'Password non valida' });
+        return res.status(401).json({ message: 'Invalid password.' });
     }
 
     if (!data) {
-        return res.status(400).json({ message: 'Nessun dato fornito' });
+        return res.status(400).json({ message: 'No data provided.' });
     }
 
+    const owner = 'IL_TUO_USERNAME_GITHUB'; // <--- INSERISCI IL TUO USERNAME GITHUB
+    const repo = 'IL_TUO_NOME_REPOSITORY'; // <--- INSERISCI IL NOME DEL REPOSITORY
+    const filePath = 'wines.json';
+
+    const octokit = new Octokit({
+        auth: process.env.GITHUB_TOKEN
+    });
+
     try {
-        const filePath = path.join(process.cwd(), 'wines.json');
-        await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
-        res.status(200).json({ message: 'File wines.json aggiornato con successo!' });
+        const { data: { sha } } = await octokit.repos.getContent({
+            owner,
+            repo,
+            path: filePath
+        });
+
+        const newContent = Buffer.from(JSON.stringify(data, null, 2)).toString('base64');
+
+        await octokit.repos.createOrUpdateFileContents({
+            owner,
+            repo,
+            path: filePath,
+            message: 'Aggiornamento disponibilità vini',
+            content: newContent,
+            sha
+        });
+
+        res.status(200).json({ message: 'File wines.json updated successfully!' });
+
     } catch (error) {
-        console.error('Errore durante la scrittura del file:', error);
-        res.status(500).json({ message: 'Errore interno del server' });
+        console.error('Error updating file:', error);
+        res.status(500).json({ message: 'Error updating file on GitHub.' });
     }
 }
