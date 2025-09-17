@@ -2,10 +2,10 @@
   {
     "category": "Le Bolle",
     "country": "Argentina",
-    "name": "ChakanaWines - NUNA Brut",
+    "name": "Chakana Wines - NUNA Brut",
     "aoc": "Mendoza",
     "year": null,
-    "info": "(Sauvignon Blanc,Chardonnay,Viognier)",
+    "info": "(Sauvignon Blanc, Chardonnay, Viognier)",
     "price": "41",
     "available": false
   },
@@ -25,14 +25,14 @@
     "name": "Nibiru - Amphibolit Brut Nature",
     "aoc": "Kamptal",
     "year": "2020",
-    "info": "(Chardonnay,Pinot Blanc)",
+    "info": "(Chardonnay, Pinot Blanc)",
     "price": "52",
     "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Domaine de Rotisson Cremant de Bourgogne Cuvée Prestige Blanc de Blancs",
+    "name": "Domaine de Rotisson - Cremant de Bourgogne Cuvée Prestige Blanc de Blancs",
     "aoc": null,
     "year": null,
     "info": "(Chardonnay)",
@@ -42,7 +42,7 @@
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Les Grandes Esperances Etoile Filante Pet Nat",
+    "name": "Les Grandes Esperances - Etoile Filante Pet Nat",
     "aoc": null,
     "year": null,
     "info": "(Chenin Blanc)",
@@ -52,27 +52,27 @@
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Andrè Stentz Crémant D’Alsace Brut",
+    "name": "Andrè Stentz - Crémant D’Alsace Brut",
     "aoc": null,
     "year": "2022",
-    "info": "(Pinot Blanc,Auxerrois)",
+    "info": "(Pinot Blanc, Auxerrois)",
     "price": "44",
     "available": false
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Baudin Fils Champagne Brut Tradition",
+    "name": "Baudin Fils - Champagne Brut Tradition",
     "aoc": null,
     "year": null,
-    "info": "(Pinot Noir,Chardonnay,Pinot Meunier)",
+    "info": "(Pinot Noir, Chardonnay, Pinot Meunier)",
     "price": "64",
     "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Noe Les Mallets - Petit Camusat Champagne Blanc de Blancs Brut",
+    "name": "Noe Les Mallets - Petit Camusat - Champagne Blanc de Blancs Brut",
     "aoc": null,
     "year": null,
     "info": "(Pinot Blanc)",
@@ -82,17 +82,17 @@
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "J.Charpentier Champagne Rosè Brut",
+    "name": "J.Charpentier - Champagne Rosè Brut",
     "aoc": null,
     "year": null,
-    "info": "(Pinot Meunier,Pinot Noir)",
+    "info": "(Pinot Meunier, Pinot Noir)",
     "price": "68",
     "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Sadi Malot - Terre d’Origine Champagne Blanc de Blancs Brut Premier Cru",
+    "name": "Sadi Malot - Terre d’Origine - Champagne Blanc de Blancs Brut Premier Cru",
     "aoc": null,
     "year": null,
     "info": "(Chardonnay)",
@@ -102,17 +102,17 @@
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Gatinois Champagne Brut Tradition Grand Cru",
+    "name": "Gatinois - Champagne Brut Tradition Grand Cru",
     "aoc": null,
     "year": null,
-    "info": "(Pinot Noir,Chardonnay)",
+    "info": "(Pinot Noir, Chardonnay)",
     "price": "77",
     "available": true
   },
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "Jean Vesselle Champagne Brut Oeil de Pedrix",
+    "name": "Jean Vesselle - Champagne Brut Oeil de Pedrix",
     "aoc": null,
     "year": null,
     "info": "(Pinot Noir)",
@@ -122,7 +122,7 @@
   {
     "category": "Le Bolle",
     "country": "Francia",
-    "name": "J.L.Vergnon - Conversation Champagne Blanc de Blancs Brut Grand Cru",
+    "name": "J.L.Vergnon - Conversation - Champagne Blanc de Blancs Brut Grand Cru",
     "aoc": null,
     "year": null,
     "info": "(Chardonnay)",
@@ -142,20 +142,20 @@
   {
     "category": "Le Bolle",
     "country": "Spagna",
-    "name": "Revento Rossell - Portium Cava Brut Nature",
+    "name": "Revento Rossell - Portium - Cava Brut Nature",
     "aoc": "Catalogna",
     "year": null,
-    "info": "(Macabeo,Xarel-Lo,Parellada,Chardonnay)",
+    "info": "(Macabeo, Xarel-Lo, Parellada, Chardonnay)",
     "price": "33",
     "available": false
   },
   {
     "category": "Le Bolle",
     "country": "Spagna",
-    "name": "Bocchoris Cava Brut Nature",
+    "name": "Bocchoris - Cava Brut Nature",
     "aoc": "Catalogna",
     "year": null,
-    "info": "( Macabeo,Xarel-Lo,Parellada)",
+    "info": "( Macabeo, Xarel-Lo, Parellada)",
     "price": "33",
     "available": false
   },
@@ -245,7 +245,7 @@
     "name": "Orelek - Orbelus",
     "aoc": "Struma",
     "year": "2019",
-    "info": "(Assyrtiko,Sandanski Misket)",
+    "info": "(Assyrtiko, Sandanski Misket)",
     "price": "36",
     "available": false
   },
@@ -275,7 +275,7 @@
     "name": "Chateau La Maroutine - Bordeaux Blanc",
     "aoc": null,
     "year": "2023",
-    "info": "(Sauvignon blanc,Semillon)",
+    "info": "(Sauvignon blanc, Semillon)",
     "price": "30",
     "available": false
   },
@@ -295,7 +295,7 @@
     "name": "Pierre Finon - Saint Joseph Quatuor",
     "aoc": "Valle del Rodano",
     "year": null,
-    "info": "(Marsanne,Roussanne)",
+    "info": "(Marsanne, Roussanne)",
     "price": "42",
     "available": true
   },
@@ -335,7 +335,7 @@
     "name": "Domaine de la Charbonnière - Chateauneuf du Pape",
     "aoc": "Rhone",
     "year": "2023",
-    "info": "(Roussanne,Grenache Blanc,Clairette)",
+    "info": "(Roussanne, Grenache Blanc, Clairette)",
     "price": "62",
     "available": true
   },
@@ -352,7 +352,7 @@
   {
     "category": "I Bianchi",
     "country": "Germania",
-    "name": "Loosen Bros - Dr.Loosen",
+    "name": "Loosen Bros - Dr. Loosen",
     "aoc": "Mosel",
     "year": "2023",
     "info": "(Riesling Dry)",
@@ -525,7 +525,7 @@
     "name": "Princic - Mihael Belo",
     "aoc": "Goriska Brda",
     "year": "2020",
-    "info": "(Rebula,Chardonnay,Sauvignon)",
+    "info": "(Rebula, Chardonnay, Sauvignon)",
     "price": "42",
     "available": true
   },
@@ -585,7 +585,7 @@
     "name": "Fulop - The Phenomenon Dry Tokaji",
     "aoc": null,
     "year": "2021",
-    "info": "(Furmint,Harsevelu,Moscato)",
+    "info": "(Furmint, Harsevelu, Moscato)",
     "price": "34",
     "available": true
   },
@@ -615,7 +615,7 @@
     "name": "Peyrassol - Rosè Meditarranee",
     "aoc": "Brignoles",
     "year": "2024",
-    "info": "(Cinsault,Grenache,Syrah,Carignan)",
+    "info": "(Cinsault, Grenache, Syrah, Carignan)",
     "price": "28",
     "available": true
   },
@@ -625,7 +625,7 @@
     "name": "Chateau de Pibarnon",
     "aoc": "Bandol",
     "year": "2022",
-    "info": "(Mourvedre,Cinsault)",
+    "info": "(Mourvedre, Cinsault)",
     "price": "85",
     "available": true
   },
@@ -635,7 +635,7 @@
     "name": "Chateau de Pibarnon - Nuances",
     "aoc": "Bandol",
     "year": "2022",
-    "info": "(Mourvedre,Cinsault,Grenache)",
+    "info": "(Mourvedre, Cinsault, Grenache)",
     "price": "100",
     "available": true
   },
@@ -715,7 +715,7 @@
     "name": "Torbreck Vintners - Torbreck",
     "aoc": "Barossa Valley",
     "year": null,
-    "info": "(Grenache,Mourvedre, Shiraz)",
+    "info": "(Grenache, Mourvedre, Shiraz)",
     "price": "78",
     "available": true
   },
@@ -755,7 +755,7 @@
     "name": "Domaine Vico - Le Bois du Cerf Rouge",
     "aoc": "Ponte Leccia",
     "year": "2022",
-    "info": "(Sciaccarellu,Niellucciu)",
+    "info": "(Sciaccarellu, Niellucciu)",
     "price": "43",
     "available": true
   },
@@ -772,7 +772,7 @@
   {
     "category": "I Rossi",
     "country": "Francia",
-    "name": "Gilles Capiret-Fleurie La Madone",
+    "name": "Gilles Capiret - Fleurie La Madone",
     "aoc": "Beaujolais",
     "year": "2023",
     "info": "(Gamay)",
@@ -785,7 +785,7 @@
     "name": "Domaine de la Charbonnière - Cotes Du Rhone",
     "aoc": "Chateauneuf du Pape",
     "year": "2023",
-    "info": "(Grenache,Syrah)",
+    "info": "(Grenache, Syrah)",
     "price": "32",
     "available": true
   },
@@ -795,7 +795,7 @@
     "name": "Chateau Tour saint Pierre",
     "aoc": "Saint Emilion",
     "year": "2021",
-    "info": "(Cabernet Sauvignon,Cabernet Franc,Merlot)",
+    "info": "(Cabernet Sauvignon, Cabernet Franc, Merlot)",
     "price": "46",
     "available": false
   },
@@ -822,7 +822,7 @@
   {
     "category": "I Rossi",
     "country": "Francia",
-    "name": "Patrick Miolane -Saint Aubin Rouge 1er Cru",
+    "name": "Patrick Miolane - Saint Aubin Rouge 1er Cru",
     "aoc": "Cote de Beaune",
     "year": "2018",
     "info": "(Pinot Noir)",
@@ -845,7 +845,7 @@
     "name": "Estate Theodorakakos - Perivleptos",
     "aoc": "Peloponneso",
     "year": "2020",
-    "info": "(Mavroudi,Agiorgitiko)",
+    "info": "(Mavroudi, Agiorgitiko)",
     "price": "28",
     "available": true
   },
@@ -885,7 +885,7 @@
     "name": "Christie’s Port Wine - Castelinho",
     "aoc": "Douro",
     "year": "2021",
-    "info": "(Touriga Nacional,Touriga Franca,Tinta Baroca, Tinta Roriz)",
+    "info": "(Touriga Nacional, Touriga Franca, Tinta Baroca, Tinta Roriz)",
     "price": "30",
     "available": true
   },
@@ -895,14 +895,14 @@
     "name": "Christie’s Port Wine - Dona Mafalda",
     "aoc": null,
     "year": null,
-    "info": "(Tinta Roriz,Touriga Franca,Touriga Nacional)",
+    "info": "(Tinta Roriz, Touriga Franca, Touriga Nacional)",
     "price": "42",
     "available": true
   },
   {
     "category": "I Rossi",
     "country": "Spagna",
-    "name": "La Locomotora-Tempranillo",
+    "name": "La Locomotora - Tempranillo",
     "aoc": "Rioja",
     "year": "2023",
     "info": "(Tempranillo)",
@@ -965,14 +965,14 @@
     "name": "Badenhorst - Secateurs",
     "aoc": "Swartland",
     "year": "2019",
-    "info": "(Cinsault,Grenache,Shiraz)",
+    "info": "(Cinsault, Grenache, Shiraz)",
     "price": "40",
     "available": true
   },
   {
     "category": "I Rossi",
     "country": "Sud Africa",
-    "name": "Kershaw Wines-The Smuggler’s Boot",
+    "name": "Kershaw Wines - The Smuggler’s Boot",
     "aoc": null,
     "year": "2023",
     "info": "(Pinot Noir)",
@@ -995,7 +995,7 @@
     "name": "Chateau Filhot - Sauternes",
     "aoc": "Bordeaux",
     "year": "2020",
-    "info": "(Sauvignon Blanc,Semillon)",
+    "info": "(Sauvignon Blanc, Semillon)",
     "price": "50",
     "available": true
   },
@@ -1045,7 +1045,7 @@
     "name": "Dow’s - Porto LBV",
     "aoc": null,
     "year": "2018",
-    "info": "(Touriga Nacional,Touriga Franca,Tinta Barroca, Tinta Roriz)",
+    "info": "(Touriga Nacional, Touriga Franca, Tinta Barroca, Tinta Roriz)",
     "price": "52",
     "available": true
   },
@@ -1055,7 +1055,7 @@
     "name": "Dow’s - Vintage Port",
     "aoc": null,
     "year": "2017",
-    "info": "(Touriga Nacional,Touriga Franca,Sousao,Alicante, Bouschet)",
+    "info": "(Touriga Nacional, Touriga Franca, Sousao, Alicante, Bouschet)",
     "price": "150",
     "available": true
   },
@@ -1075,7 +1075,7 @@
     "name": "Disznòko - 1413 EdesSzam Tokaji",
     "aoc": "Tokaji",
     "year": "2018",
-    "info": "(Furmint,Harsevelu)",
+    "info": "(Furmint, Harsevelu)",
     "price": "52",
     "available": true
   }
