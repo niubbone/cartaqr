@@ -142,7 +142,7 @@
   {
     "category": "Le Bolle",
     "country": "Spagna",
-    "name": "Revento Rossell - Portium - Cava Brut Nature",
+    "name": "Raventos Rossell - Portium - Cava Brut Nature",
     "info": "(Macabeo, Xarel-Lo, Parellada, Chardonnay)",
     "aoc": "Catalogna",
     "year": null,
@@ -202,7 +202,7 @@
   {
     "category": "I Bianchi",
     "country": "Armenia",
-    "name": "Armenia Wine Factory - Takar",
+    "name": "Armenia Wines Companyy - Takar",
     "info": "(Kangun)",
     "aoc": "Aragatsotn",
     "year": "2019",
@@ -236,7 +236,7 @@
     "info": "(Chardonnay)",
     "aoc": "Patagonia",
     "year": "2019",
-    "price": "130",
+    "price": "110",
     "available": true
   },
   {
@@ -251,10 +251,10 @@
   },
   {
     "category": "I Bianchi",
-    "country": "Corsica",
+    "country": "Francia",
     "name": "Domaine Vico - Le Bois du Cerf Blanc",
     "info": "(Vermentinu)",
-    "aoc": "Ponte Leccia",
+    "aoc": "Corsica",
     "year": "2023",
     "price": "42",
     "available": true
@@ -316,7 +316,7 @@
     "info": "(Riesling)",
     "aoc": "Alsazia",
     "year": "2023",
-    "price": "45",
+    "price": "47",
     "available": true
   },
   {
@@ -334,7 +334,7 @@
     "country": "Francia",
     "name": "Domaine de la Charbonnière - Chateauneuf du Pape",
     "info": "(Roussanne, Grenache Blanc, Clairette)",
-    "aoc": "Rhone",
+    "aoc": "Valle del Rodano",
     "year": "2023",
     "price": "62",
     "available": true
@@ -352,9 +352,9 @@
   {
     "category": "I Bianchi",
     "country": "Germania",
-    "name": "Loosen Bros - Dr. Loosen",
-    "info": "(Riesling Dry)",
-    "aoc": "Mosel",
+    "name": "Dr. Loosen Riesling Dry",
+    "info": "(Riesling)",
+    "aoc": "Mosella",
     "year": "2023",
     "price": "30",
     "available": true
@@ -362,9 +362,9 @@
   {
     "category": "I Bianchi",
     "country": "Germania",
-    "name": "Erben Thanisch - Thanisch",
-    "info": "(Riesling Trocken)",
-    "aoc": "Mosel",
+    "name": "Erben Thanisch - Riesling Trocken",
+    "info": "(Riesling)",
+    "aoc": "Mosella",
     "year": "2022",
     "price": "41",
     "available": true
@@ -372,9 +372,9 @@
   {
     "category": "I Bianchi",
     "country": "Germania",
-    "name": "Donnhoff - Tonschiefer",
-    "info": "(Riesling Trocken)",
-    "aoc": "Mosel",
+    "name": "Donnhoff - Tonschiefer Trocken",
+    "info": "(Riesling)",
+    "aoc": "Mosella",
     "year": "2018",
     "price": "54",
     "available": true
@@ -382,9 +382,9 @@
   {
     "category": "I Bianchi",
     "country": "Germania",
-    "name": "Marcus Molitor - Graacher Domprobst",
-    "info": "(Riesling Kabinett)",
-    "aoc": "Mosel",
+    "name": "Marcus Molitor - Graacher Domprobst Kabinett",
+    "info": "(Riesling)",
+    "aoc": "Mosella",
     "year": "2019",
     "price": "55",
     "available": true
@@ -392,8 +392,8 @@
   {
     "category": "I Bianchi",
     "country": "Germania",
-    "name": "Marcus Molitor - Wehlener Sonnenhur",
-    "info": "(Riesling Spatlese)",
+    "name": "Marcus Molitor - Wehlener Sonnenhur Spatlese",
+    "info": "(Riesling)",
     "aoc": "Mosel",
     "year": "2019",
     "price": "65",
@@ -412,7 +412,7 @@
   {
     "category": "I Bianchi",
     "country": "Grecia",
-    "name": "Tenuta Thedorakakos - Perivleptos",
+    "name": "Thedorakakos - Perivleptos",
     "info": "(Monemvasià)",
     "aoc": "Laconia",
     "year": "2023",
@@ -430,9 +430,9 @@
     "available": true
   },
   {
-    "category": "I Bianchi",
+    "category": "I Rossi",
     "country": "Grecia",
-    "name": "Markos Markovitis - Xinomavro",
+    "name": "Markovitis - Xinomavro",
     "info": "(Xinomavro)",
     "aoc": "Macedonia",
     "year": "2016",
@@ -1080,4 +1080,5 @@
     "available": true
   }
 ]
+
 
