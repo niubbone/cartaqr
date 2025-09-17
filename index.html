@@ -85,7 +85,8 @@
                     let aocText = wine.aoc ? ` ${wine.aoc}` : '';
                     let infoText = wine.info ? ` ${wine.info}` : '';
                     
-                    if (wine.available === false) {
+                    // La condizione qui sotto è stata modificata per controllare se la disponibilità è 0
+                    if (wine.available === 0) {
                         wineDetails.innerHTML = `<span class="unavailable">NON DISPONIBILE</span> - <span class="wine-name">${wine.name}</span>, ${wine.country}${yearText}${aocText}${infoText}, ${wine.price}€`;
                     } else {
                         wineDetails.innerHTML = `<span class="wine-name">${wine.name}</span>, ${wine.country}${yearText}${aocText}${infoText}, ${wine.price}€`;
