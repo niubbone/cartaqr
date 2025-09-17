@@ -208,7 +208,14 @@
 
                                 const info = document.createElement('div');
                                 info.className = 'wine-info';
-                                info.textContent = wine.info;
+                                
+                                // Gestione delle informazioni in modo più strutturato
+                                const infoParts = [];
+                                if (wine.info) infoParts.push(wine.info);
+                                if (wine.year) infoParts.push(wine.year);
+                                if (wine.aoc) infoParts.push(wine.aoc);
+                                
+                                info.textContent = infoParts.join(' ');
                                 details.appendChild(info);
 
                                 item.appendChild(details);
@@ -219,10 +226,10 @@
                                     price.textContent = `€ ${wine.price}`;
                                     item.appendChild(price);
                                 } else {
-                                    const unavailableTag = document.createElement('span');
-                                    unavailableTag.className = 'unavailability-tag';
-                                    unavailableTag.textContent = 'Non disponibile';
-                                    item.appendChild(unavailableTag);
+                                    const unavailabilityTag = document.createElement('div');
+                                    unavailabilityTag.className = 'unavailability-tag';
+                                    unavailabilityTag.textContent = 'Non disponibile';
+                                    item.appendChild(unavailabilityTag);
                                 }
                                 
                                 section.appendChild(item);
@@ -236,5 +243,4 @@
     </script>
 
 </body>
-
 </html>
