@@ -284,20 +284,31 @@
 
                     listItem.addEventListener('click', () => {
                         const newAvailability = bulletSpan.classList.contains('unavailable');
+                        
+                        // Aggiorna immediatamente l'interfaccia
+                        if (newAvailability) {
+                            bulletSpan.classList.remove('unavailable');
+                            bulletSpan.classList.add('available');
+                        } else {
+                            bulletSpan.classList.remove('available');
+                            bulletSpan.classList.add('unavailable');
+                        }
+
+                        // Invia la richiesta al server
                         updateAvailability(wine.Nome, newAvailability)
                             .then(success => {
                                 if (success) {
                                     showMessage('Vino aggiornato con successo!', 'success');
-                                    // Aggiorna lo stato del bullet
+                                } else {
+                                    // Se l'aggiornamento fallisce, ripristina lo stato visivo
+                                    showMessage('Errore durante l\'aggiornamento.', 'error');
                                     if (newAvailability) {
-                                        bulletSpan.classList.remove('unavailable');
-                                        bulletSpan.classList.add('available');
-                                    } else {
                                         bulletSpan.classList.remove('available');
                                         bulletSpan.classList.add('unavailable');
+                                    } else {
+                                        bulletSpan.classList.remove('unavailable');
+                                        bulletSpan.classList.add('available');
                                     }
-                                } else {
-                                    showMessage('Errore durante l\'aggiornamento.', 'error');
                                 }
                             });
                     });
