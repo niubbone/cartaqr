@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta dei Vini</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+        :root {
+            --primary-color: #5d0f10;
+            --secondary-color: #2a619e;
+            --text-color: #333;
+            --bg-color: #f9f7f4;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Roboto', sans-serif;
+            --unavailable-color: #c94040;
+            --unavailable-bg: #fff;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 2.8em;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+        }
+
+        .wine-section {
+            margin-bottom: 30px;
+        }
+
+        .wine-section-title {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            display: block;
+        }
+
+        .country-title {
+            font-family: var(--font-serif);
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .wine-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .wine-details {
+            flex-grow: 1;
+        }
+
+        .wine-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: var(--primary-color);
+        }
+
+        .wine-info {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .wine-price {
+            font-family: var(--font-serif);
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 20px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .unavailability-tag {
+            font-size: 0.8em;
+            color: var(--unavailable-color);
+            border: 1px solid var(--unavailable-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: var(--unavailable-bg);
+            text-transform: uppercase;
+        }
+
+        .unavailable .wine-details,
+        .unavailable .wine-price {
+            opacity: 0.5;
+        }
+
+        .unavailable .wine-price {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+
+        /* Stili per l'animazione di caricamento basata su testo */
+        #loading-text {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-top: 50px;
+            display: none; /* Inizialmente nascosto */
+        }
+        
+        #loading-text span {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+
+        #loading-text span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        #loading-text span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>CARTA DEI VINI</h1>
+        </header>
+        
+        <main id="wine-list"></main>
+
+        <div id="loading-text">
+            Controllo in cantina<span>.</span><span>.</span><span>.</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
+            const wineList = document.getElementById('wine-list');
+            const loadingText = document.getElementById('loading-text');
+
+            function showLoading() {
+                loadingText.style.display = 'block';
+                wineList.style.display = 'none';
+            }
+
+            function hideLoading() {
+                loadingText.style.display = 'none';
+                wineList.style.display = 'block';
+            }
+
+            function groupAndRenderWines(wines) {
+                wineList.innerHTML = '';
+                
+                const groupedWines = wines.reduce((acc, wine) => {
+                    const category = wine.Categoria;
+                    const country = wine.Nazione;
+
+                    if (!acc[category]) {
+                        acc[category] = {};
+                    }
+                    if (!acc[category][country]) {
+                        acc[category][country] = [];
+                    }
+                    acc[category][country].push(wine);
+                    return acc;
+                }, {});
+
+                for (const category in groupedWines) {
+                    const section = document.createElement('section');
+                    section.className = 'wine-section';
+
+                    const title = document.createElement('h2');
+                    title.className = 'wine-section-title';
+                    title.textContent = category;
+                    section.appendChild(title);
+
+                    for (const country in groupedWines[category]) {
+                        const countryTitle = document.createElement('h3');
+                        countryTitle.className = 'country-title';
+                        countryTitle.textContent = country;
+                        section.appendChild(countryTitle);
+
+                        groupedWines[category][country].forEach(wine => {
+                            const isAvailable = wine.Disponibile;
+                            
+                            const item = document.createElement('div');
+                            item.className = 'wine-item';
+                            if (!isAvailable) {
+                                item.classList.add('unavailable');
+                            }
+
+                            const details = document.createElement('div');
+                            details.className = 'wine-details';
+
+                            const name = document.createElement('div');
+                            name.className = 'wine-name';
+                            name.textContent = wine.Nome;
+                            details.appendChild(name);
+
+                            const info = document.createElement('div');
+                            info.className = 'wine-info';
+                            
+                            let infoContent = '';
+                            const parts = [];
+                            
+                            if (wine.AOC) {
+                                parts.push(wine.AOC);
+                            }
+                            
+                            if (wine.Annata) {
+                                parts.push(wine.Annata);
+                            }
+                            
+                            if (parts.length > 0) {
+                                infoContent += parts.join(' - ');
+                            }
+                            
+                            if (wine.Vitigni) {
+                                if (infoContent.length > 0) {
+                                    infoContent += ' ';
+                                }
+                                infoContent += `(${wine.Vitigni})`;
+                            }
+
+                            info.textContent = infoContent.trim();
+                            details.appendChild(info);
+
+                            item.appendChild(details);
+
+                            if (isAvailable) {
+                                const price = document.createElement('div');
+                                price.className = 'wine-price';
+                                price.textContent = `€ ${wine.Prezzo}`;
+                                item.appendChild(price);
+                            } else {
+                                const unavailableTag = document.createElement('span');
+                                unavailableTag.className = 'unavailability-tag';
+                                unavailableTag.textContent = 'Non disponibile';
+                                item.appendChild(unavailableTag);
+                            }
+                            
+                            section.appendChild(item);
+                        });
+                    }
+                    wineList.appendChild(section);
+                    wineList.appendChild(document.createElement('hr'));
+                }
+            }
+
+            function fetchWines() {
+                showLoading(); // Mostra l'indicatore di caricamento
+                fetch(appsScriptUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Errore di rete. Status: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(wines => {
+                        groupAndRenderWines(wines);
+                    })
+                    .catch(error => {
+                        console.error('Errore nel caricamento dei vini:', error);
+                        wineList.innerHTML = '<p style="text-align: center; color: var(--unavailable-color);">Errore nel caricamento della carta dei vini. Riprova più tardi.</p>';
+                    })
+                    .finally(() => {
+                        hideLoading(); // Nasconde l'indicatore di caricamento
+                    });
+            }
+            
+            fetchWines();
+        });
+    </script>
+</body>
+</html>
