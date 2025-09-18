@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Vini - Admin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+        :root {
+            --primary-color: #5d0f10;
+            --secondary-color: #2a619e;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            padding: 20px;
+            background-color: var(--bg-color);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Stile per la schermata di login */
+        #login-container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        #login-container input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #login-container button {
+            padding: 10px 20px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #login-container button:hover {
+            background-color: #4a0b0b;
+        }
+        
+        #error-message {
+            color: var(--primary-color);
+            margin-top: 10px;
+        }
+
+        #main-content {
+            display: none; /* Inizialmente nascosto */
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-family: var(--font-serif);
+        }
+
+        #search-container {
+            margin-bottom: 20px;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .wine-category-title {
+            font-family: var(--font-serif);
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        .wine-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wine-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .wine-item:last-child {
+            border-bottom: none;
+        }
+
+        .wine-name {
+            flex-grow: 1;
+            font-weight: bold;
+        }
+
+        .availability-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+        
+        .availability-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .loading {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="login-container">
+        <h1>Accesso Amministrazione</h1>
+        <input type="password" id="password-input" placeholder="Inserisci la password">
+        <button id="login-button">Accedi</button>
+        <div id="error-message"></div>
+    </div>
+
+    <div id="main-content">
+        <h1>Gestione Disponibilità Vini</h1>
+        
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
+        </div>
+
+        <div id="loading-message" class="loading" style="display:none;">Caricamento vini...</div>
+        <div id="wine-list-container"></div>
+        <div id="message" class="message"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
+        
+        // ELEMENTI PER IL LOGIN
+        const loginContainer = document.getElementById('login-container');
+        const passwordInput = document.getElementById('password-input');
+        const loginButton = document.getElementById('login-button');
+        const errorMessage = document.getElementById('error-message');
+        const mainContent = document.getElementById('main-content');
+        
+        // ELEMENTI PER LA PAGINA ADMIN
+        const wineListContainer = document.getElementById('wine-list-container');
+        const messageDiv = document.getElementById('message');
+        const searchInput = document.getElementById('search-input');
+        const loadingMessage = document.getElementById('loading-message');
+        let allWines = [];
+        
+        // IMPOSTA LA TUA PASSWORD QUI
+        const adminPassword = 'Autocarro38';
+
+        loginButton.addEventListener('click', () => {
+            if (passwordInput.value === adminPassword) {
+                loginContainer.style.display = 'none';
+                mainContent.style.display = 'block';
+                fetchWines();
+            } else {
+                errorMessage.textContent = 'Password errata. Riprova.';
+            }
+        });
+        
+        // Permetti il login premendo Invio
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginButton.click();
+            }
+        });
+
+        // --- FUNZIONI DI GESTIONE DEI VINI (GIÀ VISTE) ---
+
+        function showMessage(msg, type) {
+            messageDiv.textContent = msg;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.opacity = '1';
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+            }, 3000);
+        }
+
+        function groupAndRenderWines(wines) {
+            wineListContainer.innerHTML = '';
+            
+            const groupedWines = wines.reduce((acc, wine) => {
+                const category = wine.Categoria;
+                if (!acc[category]) {
+                    acc[category] = [];
+                }
+                acc[category].push(wine);
+                return acc;
+            }, {});
+
+            for (const category in groupedWines) {
+                const categorySection = document.createElement('div');
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'wine-category-title';
+                categoryTitle.textContent = category;
+                categorySection.appendChild(categoryTitle);
+
+                const wineList = document.createElement('ul');
+                wineList.className = 'wine-list';
+                
+                groupedWines[category].forEach(wine => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'wine-item';
+                    
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'wine-name';
+                    nameSpan.textContent = wine.Nome;
+                    listItem.appendChild(nameSpan);
+
+                    const switchLabel = document.createElement('label');
+                    switchLabel.className = 'availability-switch';
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.checked = wine.Disponibile === true;
+                    
+                    checkbox.addEventListener('change', () => {
+                        const isAvailable = checkbox.checked;
+                        updateAvailability(wine.Nome, isAvailable)
+                            .then(success => {
+                                if (success) {
+                                    showMessage('Vino aggiornato con successo!', 'success');
+                                } else {
+                                    showMessage('Errore durante l\'aggiornamento.', 'error');
+                                }
+                            });
+                    });
+
+                    const slider = document.createElement('span');
+                    slider.className = 'slider';
+
+                    switchLabel.appendChild(checkbox);
+                    switchLabel.appendChild(slider);
+                    listItem.appendChild(switchLabel);
+                    wineList.appendChild(listItem);
+                });
+
+                categorySection.appendChild(wineList);
+                wineListContainer.appendChild(categorySection);
+            }
+        }
+
+        function fetchWines() {
+            loadingMessage.style.display = 'block';
+            wineListContainer.style.display = 'none';
+
+            fetch(appsScriptUrl)
+                .then(response => response.json())
+                .then(wines => {
+                    allWines = wines;
+                    groupAndRenderWines(allWines);
+                    loadingMessage.style.display = 'none';
+                    wineListContainer.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento dei vini:', error);
+                    loadingMessage.textContent = 'Errore nel caricamento dei dati.';
+                });
+        }
+        
+        function filterWines(query) {
+            const lowerCaseQuery = query.toLowerCase();
+            const filteredWines = allWines.filter(wine => {
+                const nameMatch = wine.Nome && wine.Nome.toLowerCase().includes(lowerCaseQuery);
+                const categoryMatch = wine.Categoria && wine.Categoria.toLowerCase().includes(lowerCaseQuery);
+                const aocMatch = wine.AOC && wine.AOC.toLowerCase().includes(lowerCaseQuery);
+                const vitigniMatch = wine.Vitigni && wine.Vitigni.toLowerCase().includes(lowerCaseQuery);
+                return nameMatch || categoryMatch || aocMatch || vitigniMatch;
+            });
+            groupAndRenderWines(filteredWines);
+        }
+        
+        searchInput.addEventListener('input', (e) => {
+            filterWines(e.target.value);
+        });
+
+        function updateAvailability(nome, disponibilita) {
+            const data = { nome, disponibilita };
+            return fetch(appsScriptUrl, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                mode: 'no-cors'
+            })
+            .then(() => true)
+            .catch(error => {
+                console.error('Errore nell\'aggiornamento della disponibilità:', error);
+                return false;
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
