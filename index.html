@@ -31,7 +31,7 @@
             max-width: 900px;
             margin: auto;
             background: #fff;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-radius: 8px;
         }
@@ -82,8 +82,6 @@
             color: var(--secondary-color);
             margin-top: 25px;
             margin-bottom: 15px;
-            border-bottom: 1px dashed var(--secondary-color);
-            padding-bottom: 3px;
         }
 
         .wine-item {
@@ -121,7 +119,7 @@
             white-space: nowrap;
         }
 
-        /* Stili per i vini non disponibili */
+        /* Stili per i vini non disponibili - Questo è il blocco corretto */
         .unavailability-tag {
             font-size: 0.8em;
             color: var(--unavailable-color);
@@ -155,7 +153,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // INSERISCI QUI L'URL DEL TUO SCRIPT DI GOOGLE APPS
             const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
             const wineList = document.getElementById('wine-list');
 
@@ -280,5 +277,3 @@
     </script>
 </body>
 </html>
-
-
