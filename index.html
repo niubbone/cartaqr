@@ -5,67 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carta dei Vini</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
-
-        :root {
-            --primary-color: #5d0f10;
-            --secondary-color: #2a619e;
-            --text-color: #333;
-            --bg-color: #f9f7f4;
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Roboto', sans-serif;
-            --unavailable-color: #c94040;
-            --unavailable-bg: #fff;
-        }
-
         body {
-            font-family: var(--font-sans);
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            font-family: sans-serif;
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
         .container {
-            max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         h1 {
-            font-family: var(--font-serif);
-            font-size: 2.5em;
             text-align: center;
-            color: var(--primary-color);
+            font-size: 24px;
+            color: #333;
             margin-bottom: 20px;
         }
-        
-        h2.category-title {
-            font-family: var(--font-serif);
-            font-size: 1.8em;
-            color: var(--secondary-color);
-            margin-top: 2em;
-            margin-bottom: 1em;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 5px;
-        }
 
-        .wine-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        h2 {
+            font-size: 18px;
+            color: #555;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
         }
 
         .wine-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px dashed #ddd;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc;
         }
 
         .wine-item:last-child {
@@ -78,30 +54,27 @@
         }
 
         .wine-name {
-            font-weight: 700;
-            font-size: 1.1em;
+            font-weight: bold;
         }
 
         .wine-info {
-            font-size: 0.9em;
+            font-size: 12px;
             color: #666;
-            font-style: italic;
-        }
-        
-        .wine-price {
-            font-family: var(--font-serif);
-            font-size: 1.2em;
-            font-weight: 700;
-            color: var(--primary-color);
         }
 
+        .wine-price {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* Stile per il tag "Non disponibile" - L'unica modifica voluta */
         .unavailability-tag {
             font-size: 0.8em;
-            color: var(--unavailable-color);
-            border: 1px solid var(--unavailable-color);
+            color: #c94040;
+            border: 1px solid #c94040;
             padding: 4px 8px;
             border-radius: 4px;
-            background-color: var(--unavailable-bg);
+            background-color: #fff;
             text-transform: uppercase;
         }
     </style>
@@ -109,18 +82,18 @@
 <body>
 
 <div class="container">
-    <h1>La Nostra Carta dei Vini</h1>
-    <div id="wine-list-container"></div>
+    <h1>La nostra carta dei vini</h1>
+
+    <div id="wine-list"></div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Inserisci qui l'URL del tuo script di Google Apps
         const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
-        const wineListContainer = document.getElementById('wine-list-container');
-        
+        const wineList = document.getElementById('wine-list');
+
         function groupAndRenderWines(wines) {
-            wineListContainer.innerHTML = '';
+            wineList.innerHTML = '';
             
             const groupedWines = wines.reduce((acc, wine) => {
                 const category = wine.Categoria;
@@ -132,18 +105,13 @@
             }, {});
 
             for (const category in groupedWines) {
-                const categorySection = document.createElement('div');
                 const categoryTitle = document.createElement('h2');
-                categoryTitle.className = 'category-title';
                 categoryTitle.textContent = category;
-                categorySection.appendChild(categoryTitle);
+                wineList.appendChild(categoryTitle);
 
-                const wineList = document.createElement('ul');
-                wineList.className = 'wine-list';
-                
                 groupedWines[category].forEach(wine => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'wine-item';
+                    const item = document.createElement('div');
+                    item.className = 'wine-item';
                     
                     const details = document.createElement('div');
                     details.className = 'wine-details';
@@ -155,7 +123,7 @@
 
                     const info = document.createElement('div');
                     info.className = 'wine-info';
-                    
+
                     let infoContent = '';
                     if (wine.Vitigni) {
                         infoContent += `(${wine.Vitigni}) `;
@@ -166,29 +134,26 @@
                     if (wine.Annata) {
                         infoContent += `${wine.Annata}`;
                     }
-
+                    
                     info.textContent = infoContent.trim();
                     details.appendChild(info);
 
-                    listItem.appendChild(details);
+                    item.appendChild(details);
 
                     if (wine.Disponibile) {
                         const price = document.createElement('div');
                         price.className = 'wine-price';
                         price.textContent = `€ ${wine.Prezzo}`;
-                        listItem.appendChild(price);
+                        item.appendChild(price);
                     } else {
                         const unavailableTag = document.createElement('span');
                         unavailableTag.className = 'unavailability-tag';
                         unavailableTag.textContent = 'Non disponibile';
-                        listItem.appendChild(unavailableTag);
+                        item.appendChild(unavailableTag);
                     }
                     
-                    wineList.appendChild(listItem);
+                    wineList.appendChild(item);
                 });
-                
-                categorySection.appendChild(wineList);
-                wineListContainer.appendChild(categorySection);
             }
         }
 
@@ -196,13 +161,12 @@
             fetch(appsScriptUrl)
                 .then(response => response.json())
                 .then(wines => {
-                    // Filtra solo i vini che sono impostati come "Visibile"
                     const visibleWines = wines.filter(wine => wine.Visibile === true);
                     groupAndRenderWines(visibleWines);
                 })
                 .catch(error => {
                     console.error('Errore nel caricamento dei vini:', error);
-                    wineListContainer.innerHTML = '<p style="text-align: center; color: #c94040;">Errore nel caricamento della carta dei vini. Riprova più tardi.</p>';
+                    wineList.innerHTML = '<p style="text-align: center; color: #c94040;">Errore nel caricamento della carta dei vini. Riprova più tardi.</p>';
                 });
         }
 
