@@ -72,17 +72,35 @@
             font-family: var(--font-serif);
         }
 
-        #search-container {
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         #search-input {
-            width: 100%;
+            flex-grow: 1;
             padding: 10px;
-            box-sizing: border-box;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1em;
+            min-width: 200px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        #toggle-edit-mode {
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            white-space: nowrap;
+            margin-bottom: 10px;
         }
 
         .wine-category-title {
@@ -94,13 +112,23 @@
             border-bottom: 1px solid var(--secondary-color);
             padding-bottom: 5px;
         }
+        
+        .wine-country-title {
+            font-family: var(--font-serif);
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
 
         .wine-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
+        
+        /* Stili per la modalità semplificata */
         .wine-item {
             display: flex;
             justify-content: space-between;
@@ -116,6 +144,12 @@
         .wine-name {
             flex-grow: 1;
             font-weight: bold;
+        }
+        
+        .wine-info-simple {
+            font-size: 0.85em;
+            color: #777;
+            margin-left: 15px;
         }
 
         .availability-switch {
@@ -163,6 +197,63 @@
             transform: translateX(20px);
         }
 
+        /* Stili per la modalità di modifica completa */
+        .edit-mode-container .wine-item {
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #fafafa;
+        }
+        
+        .edit-mode-container .wine-details-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .edit-mode-container .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .edit-mode-container .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .edit-mode-container .form-group input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .edit-mode-container .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+        
+        .edit-mode-container .actions button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            margin-left: 10px;
+        }
+        
+        .edit-mode-container .actions .save-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .edit-mode-container .actions .cancel-btn {
+            background-color: #ccc;
+        }
+        
         .message {
             margin-top: 20px;
             padding: 10px;
@@ -201,10 +292,11 @@
     </div>
 
     <div id="main-content">
-        <h1>Gestione Disponibilità Vini</h1>
+        <h1>Gestione Vini</h1>
         
-        <div id="search-container">
+        <div id="controls">
             <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
+            <button id="toggle-edit-mode">Modalità Modifica Dettagli</button>
         </div>
 
         <div id="loading-message" class="loading" style="display:none;">Caricamento vini...</div>
@@ -229,7 +321,10 @@
         const messageDiv = document.getElementById('message');
         const searchInput = document.getElementById('search-input');
         const loadingMessage = document.getElementById('loading-message');
+        const toggleButton = document.getElementById('toggle-edit-mode');
+        
         let allWines = [];
+        let isEditMode = false;
         
         // IMPOSTA LA TUA PASSWORD QUI
         const adminPassword = 'Autocarro38';
@@ -251,7 +346,11 @@
             }
         });
 
-        // --- FUNZIONI DI GESTIONE DEI VINI (GIÀ VISTE) ---
+        toggleButton.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            toggleButton.textContent = isEditMode ? 'Torna alla Lista' : 'Modalità Modifica Dettagli';
+            renderWines(allWines);
+        });
 
         function showMessage(msg, type) {
             messageDiv.textContent = msg;
@@ -262,15 +361,43 @@
             }, 3000);
         }
 
-        function groupAndRenderWines(wines) {
+        function updateWine(originalName, updatedFields) {
+            const data = {
+                nomeOriginale: originalName,
+                updatedWine: updatedFields
+            };
+            
+            fetch(appsScriptUrl, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    showMessage('Vino aggiornato con successo!', 'success');
+                    fetchWines(); // Ricarica i dati per mostrare le modifiche
+                } else {
+                    showMessage(`Errore: ${result.message}`, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Errore durante l\'aggiornamento:', error);
+                showMessage('Errore di rete. Riprova più tardi.', 'error');
+            });
+        }
+
+        function renderWines(wines) {
             wineListContainer.innerHTML = '';
             
             const groupedWines = wines.reduce((acc, wine) => {
                 const category = wine.Categoria;
-                if (!acc[category]) {
-                    acc[category] = [];
-                }
-                acc[category].push(wine);
+                const country = wine.Nazione;
+                if (!acc[category]) acc[category] = {};
+                if (!acc[category][country]) acc[category][country] = [];
+                acc[category][country].push(wine);
                 return acc;
             }, {});
 
@@ -280,48 +407,128 @@
                 categoryTitle.className = 'wine-category-title';
                 categoryTitle.textContent = category;
                 categorySection.appendChild(categoryTitle);
-
-                const wineList = document.createElement('ul');
-                wineList.className = 'wine-list';
                 
-                groupedWines[category].forEach(wine => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'wine-item';
-                    
-                    const nameSpan = document.createElement('span');
-                    nameSpan.className = 'wine-name';
-                    nameSpan.textContent = wine.Nome;
-                    listItem.appendChild(nameSpan);
+                for (const country in groupedWines[category]) {
+                    const countryTitle = document.createElement('h3');
+                    countryTitle.className = 'wine-country-title';
+                    countryTitle.textContent = country;
+                    categorySection.appendChild(countryTitle);
 
-                    const switchLabel = document.createElement('label');
-                    switchLabel.className = 'availability-switch';
-
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.checked = wine.Disponibile === true;
+                    const wineList = document.createElement('ul');
+                    wineList.className = 'wine-list';
                     
-                    checkbox.addEventListener('change', () => {
-                        const isAvailable = checkbox.checked;
-                        updateAvailability(wine.Nome, isAvailable)
-                            .then(success => {
-                                if (success) {
-                                    showMessage('Vino aggiornato con successo!', 'success');
+                    groupedWines[category][country].forEach(wine => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'wine-item';
+                        
+                        if (isEditMode) {
+                            // Modalità di modifica completa
+                            listItem.classList.add('edit-mode-container');
+                            const form = document.createElement('form');
+                            form.className = 'wine-details-form';
+                            
+                            const fields = ['Nome', 'Categoria', 'Nazione', 'AOC', 'Vitigni', 'Annata', 'Prezzo', 'Visibile', 'Disponibile'];
+                            
+                            fields.forEach(field => {
+                                const formGroup = document.createElement('div');
+                                formGroup.className = 'form-group';
+                                const label = document.createElement('label');
+                                label.textContent = field;
+                                
+                                if (field === 'Visibile' || field === 'Disponibile') {
+                                    const checkbox = document.createElement('input');
+                                    checkbox.type = 'checkbox';
+                                    checkbox.name = field;
+                                    checkbox.checked = wine[field];
+                                    formGroup.appendChild(label);
+                                    formGroup.appendChild(checkbox);
                                 } else {
-                                    showMessage('Errore durante l\'aggiornamento.', 'error');
+                                    const input = document.createElement('input');
+                                    input.type = 'text';
+                                    input.name = field;
+                                    input.value = wine[field] || '';
+                                    formGroup.appendChild(label);
+                                    formGroup.appendChild(input);
                                 }
+                                form.appendChild(formGroup);
                             });
+
+                            const actionsDiv = document.createElement('div');
+                            actionsDiv.className = 'actions';
+                            const saveButton = document.createElement('button');
+                            saveButton.type = 'button';
+                            saveButton.textContent = 'Salva';
+                            saveButton.className = 'save-btn';
+                            saveButton.onclick = () => {
+                                const updatedFields = {};
+                                const inputs = form.querySelectorAll('input');
+                                inputs.forEach(input => {
+                                    if (input.type === 'checkbox') {
+                                        updatedFields[input.name] = input.checked;
+                                    } else {
+                                        updatedFields[input.name] = input.value;
+                                    }
+                                });
+                                updateWine(wine.Nome, updatedFields);
+                            };
+                            
+                            const cancelButton = document.createElement('button');
+                            cancelButton.type = 'button';
+                            cancelButton.textContent = 'Annulla';
+                            cancelButton.className = 'cancel-btn';
+                            cancelButton.onclick = () => {
+                                isEditMode = false;
+                                toggleButton.textContent = 'Modalità Modifica Dettagli';
+                                renderWines(allWines);
+                            };
+
+                            actionsDiv.appendChild(cancelButton);
+                            actionsDiv.appendChild(saveButton);
+                            form.appendChild(actionsDiv);
+                            listItem.appendChild(form);
+
+                        } else {
+                            // Modalità semplificata
+                            const nameSpan = document.createElement('span');
+                            nameSpan.className = 'wine-name';
+                            nameSpan.textContent = wine.Nome;
+                            listItem.appendChild(nameSpan);
+                            
+                            const infoSpan = document.createElement('span');
+                            infoSpan.className = 'wine-info-simple';
+                            let infoContent = '';
+                            const parts = [];
+                            if (wine.AOC) parts.push(wine.AOC);
+                            if (wine.Annata) parts.push(wine.Annata);
+                            if (wine.Vitigni) parts.push(`(${wine.Vitigni})`);
+                            infoContent = parts.join(' ');
+                            infoSpan.textContent = infoContent;
+                            listItem.appendChild(infoSpan);
+
+                            const switchLabel = document.createElement('label');
+                            switchLabel.className = 'availability-switch';
+
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.checked = wine.Disponibile === true;
+                            
+                            checkbox.addEventListener('change', () => {
+                                const isAvailable = checkbox.checked;
+                                updateWine(wine.Nome, { Disponibile: isAvailable });
+                            });
+
+                            const slider = document.createElement('span');
+                            slider.className = 'slider';
+
+                            switchLabel.appendChild(checkbox);
+                            switchLabel.appendChild(slider);
+                            listItem.appendChild(switchLabel);
+                        }
+                        wineList.appendChild(listItem);
                     });
 
-                    const slider = document.createElement('span');
-                    slider.className = 'slider';
-
-                    switchLabel.appendChild(checkbox);
-                    switchLabel.appendChild(slider);
-                    listItem.appendChild(switchLabel);
-                    wineList.appendChild(listItem);
-                });
-
-                categorySection.appendChild(wineList);
+                    categorySection.appendChild(wineList);
+                }
                 wineListContainer.appendChild(categorySection);
             }
         }
@@ -334,7 +541,7 @@
                 .then(response => response.json())
                 .then(wines => {
                     allWines = wines;
-                    groupAndRenderWines(allWines);
+                    renderWines(allWines);
                     loadingMessage.style.display = 'none';
                     wineListContainer.style.display = 'block';
                 })
@@ -351,31 +558,15 @@
                 const categoryMatch = wine.Categoria && wine.Categoria.toLowerCase().includes(lowerCaseQuery);
                 const aocMatch = wine.AOC && wine.AOC.toLowerCase().includes(lowerCaseQuery);
                 const vitigniMatch = wine.Vitigni && wine.Vitigni.toLowerCase().includes(lowerCaseQuery);
-                return nameMatch || categoryMatch || aocMatch || vitigniMatch;
+                const countryMatch = wine.Nazione && wine.Nazione.toLowerCase().includes(lowerCaseQuery);
+                return nameMatch || categoryMatch || aocMatch || vitigniMatch || countryMatch;
             });
-            groupAndRenderWines(filteredWines);
+            renderWines(filteredWines);
         }
         
         searchInput.addEventListener('input', (e) => {
             filterWines(e.target.value);
         });
-
-        function updateAvailability(nome, disponibilita) {
-            const data = { nome, disponibilita };
-            return fetch(appsScriptUrl, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                mode: 'no-cors'
-            })
-            .then(() => true)
-            .catch(error => {
-                console.error('Errore nell\'aggiornamento della disponibilità:', error);
-                return false;
-            });
-        }
     });
 </script>
 
