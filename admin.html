@@ -102,6 +102,10 @@
             white-space: nowrap;
             margin-bottom: 10px;
         }
+        
+        #toggle-edit-mode.hidden {
+            display: none;
+        }
 
         .wine-category-title {
             font-family: var(--font-serif);
@@ -326,13 +330,20 @@
         let allWines = [];
         let isEditMode = false;
         
-        // IMPOSTA LA TUA PASSWORD QUI
+        // IMPOSTA LE TUE PASSWORD QUI
         const adminPassword = 'Autocarro38';
+        const superAdminPassword = 'Coravin';
 
         loginButton.addEventListener('click', () => {
-            if (passwordInput.value === adminPassword) {
+            const enteredPassword = passwordInput.value;
+            if (enteredPassword === adminPassword || enteredPassword === superAdminPassword) {
                 loginContainer.style.display = 'none';
                 mainContent.style.display = 'block';
+                if (enteredPassword === adminPassword) {
+                    toggleButton.classList.add('hidden');
+                } else {
+                    toggleButton.classList.remove('hidden');
+                }
                 fetchWines();
             } else {
                 errorMessage.textContent = 'Password errata. Riprova.';
