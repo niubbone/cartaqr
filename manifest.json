@@ -1,6 +1,6 @@
 {
   "name": "Carta dei Vini",
-  "short_name": "Vini",
+  "short_name": "Carta Vini",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
