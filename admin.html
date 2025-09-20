@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione Vini - Admin</title>
-    <!-- Favicon personalizzata in formato PNG -->
+    <!-- Favicon personalizzata -->
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABuUlEQVR42u2bP0vDUBSGzylHqQxYpILgE0iHghYnU0wXpB+g8wR+g3wG8d/RCRy8uBgkOJhI0A8wCIo0oA6kUEoM6kG/gN+k/6k3hDQQeLpL8+a9a5f78aH3u7u7/32+7kEQBGkF+2A3d4hW4i8wA38xK6YAbc77QxYF819A9fC1j8jY9X8oQd1t8J5o+0z4B17L8A7Nl3gG2m/j8y/q5P2Y6j+3ePq/kH+2J3J/F4s4cQfOQf/wHwD7wD70C9s2N+i0vI68hG0YFjH/D3A15/9t53Qh/W2I3iA/Yj5bC/n3eKDbhEbgD7nO+N6D/7f+zM/4eYI0Qd/w342Qf55uPj2H4D/GgJ/hL7gBv82sK5vA+5t4v0v+T5vPj2P4Zg+9tU3Jm2/LqC/3Y/3Y/m34rQ/5x/C2oWzW27kQZ99bYqYF074/w2LdO+s8P1QJvH/A/1Nl+f3tO/P/0d7/rQ9gG3sV55d4/k/wF+2L9d//D+d+M+M+/M8Gf9h+T6z9Vp/d3c333oQfX3o/H8O+uJ2J/F4s/2/V7+l1w+b4d+e9+H7L/D6/v7+4QcgCOJ/x+bFv82+uL9h/9d3+d/Fv1X7gD+0l+CgL/G/Vq+5m/sA/4A/sJ/t+K7vA/Yf/Gj+e/22oXgR9i/4D/Gv9/L2E/Qf/2mN6P59/Gv+8b+88/8v/gA/gP93G+M+/I/gP9/j+P/fxfwD5T//B0s4v33Y/L1/e//x+wO2f/wG3hMvH/P22XfQd33H/L/Tf287w4Afx28c/wD26w34r/Qf71+E+w3nF5f+g/03+L9/f//3p+7u5v8A+w+y886H/QAAAAASUVORK5CYII=">
     <!-- Icona ad alta risoluzione per la schermata home di iOS -->
     <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABuUlEQVR42u2bP0vDUBSGzylHqQxYpILgE0iHghYnU0wXpB+g8wR+g3wG8d/RCRy8uBgkOJhI0A8wCIo0oA6kUEoM6kG/gN+k/6k3hDQQeLpL8+a9a5f78aH3u7u7/32+7kEQBGkF+2A3d4hW4i8wA38xK6YAbc77QxYF819A9fC1j8jY9X8oQd1t8J5o+0z4B17L8A7Nl3gG2m/j8y/q5P2Y6j+3ePq/kH+2J3J/F4s4cQfOQf/wHwD7wD70C9s2N+i0vI68hG0YFjH/D3A15/9t53Qh/W2I3iA/Yj5bC/n3eKDbhEbgD7nO+N6D/7f+zM/4eYI0Qd/w342Qf55uPj2H4D/GgJ/hL7gBv82sK5vA+5t4v0v+T5vPj2P4Zg+9tU3Jm2/LqC/3Y/3Y/m34rQ/5x/C2oWzW27kQZ99bYqYF074/w2LdO+s8P1QJvH/A/1Nl+f3tO/P/0d7/rQ9gG3sV55d4/k/wF+2L9d//D+d+M+M+/M8Gf9h+T6z9Vp/d3c333oQfX3o/H8O+uJ2J/F4s/2/V7+l1w+b4d+e9+H7L/D6/v7+4QcgCOJ/x+bFv82+uL9h/9d3+d/Fv1X7gD+0l+CgL/G/Vq+5m/sA/4A/sJ/t+K7vA/Yf/Gj+e/22oXgR9i/4D/Gv9/L2E/Qf/2mN6P59/Gv+8b+88/8v/gA/gP93G+M+/I/gP9/j+P/fxfwD5T//B0s4v33Y/L1/e//x+wO2f/wG3hMvH/P22XfQd33H/L/Tf287w4Afx28c/wD26w34r/Qf71+E+w3nF5f+g/03+L9/f//3p+7u5v8A+w+y886H/QAAAAASUVORK5CYII=">
-    <!-- Web App Manifest per Android e browser moderni -->
+    <!-- Web App Manifest -->
     <link rel="manifest" href="admin_manifest.json">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
@@ -45,262 +45,303 @@
         #login-container input {
             padding: 15px;
             margin: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
             width: 80%;
             max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1.2em; /* Aumentato per mobile */
+            box-sizing: border-box;
         }
 
         #login-container button {
-            padding: 15px 30px;
+            padding: 10px 20px;
             border: none;
             background-color: var(--primary-color);
             color: white;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-        
-        #login-container button:hover {
-            background-color: var(--secondary-color);
         }
 
+        #login-container button:hover {
+            background-color: #4a0b0b;
+        }
+        
         #error-message {
-            color: red;
+            color: var(--primary-color);
             margin-top: 10px;
         }
 
-        /* Stile per il pannello di amministrazione */
-        #admin-panel {
-            display: none;
+        #main-content {
+            display: none; /* Inizialmente nascosto */
         }
 
         h1 {
-            font-family: var(--font-serif);
-            color: var(--primary-color);
             text-align: center;
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-family: var(--font-serif);
         }
 
         #search-container {
-            text-align: center;
             margin-bottom: 20px;
         }
 
         #search-input {
-            width: 80%;
-            max-width: 500px;
-            padding: 12px;
-            border-radius: 20px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
             border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1) inset;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .wine-category-title {
+            font-family: var(--font-serif);
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 5px;
+            display: block;
         }
 
         .wine-list {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .wine-card {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-            position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .wine-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .wine-card.unavailable {
-            background-color: var(--unavailable-color);
-        }
-
-        .wine-card h3 {
-            font-family: var(--font-serif);
-            font-size: 1.3em;
-            color: var(--primary-color);
-            margin: 0 0 5px;
-        }
-
-        .wine-card p {
-            font-size: 0.9em;
-            color: #555;
-            margin: 0 0 10px;
-        }
-
-        .toggle-container {
+        .wine-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-top: 10px;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer; /* Indica che l'elemento è cliccabile */
+        }
+        
+        .wine-item:last-child {
+            border-bottom: none;
         }
 
-        .toggle-container label {
-            font-size: 1em;
+        .wine-name {
+            flex-grow: 1;
             font-weight: bold;
-            color: var(--secondary-color);
         }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 45px;
-            height: 25px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 25px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
+        /* Stili per il nuovo indicatore a pallino */
+        .availability-bullet {
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
         }
 
-        input:checked + .slider {
-            background-color: var(--secondary-color);
+        .availability-bullet.available {
+            background-color: #4CAF50; /* Verde */
         }
 
-        input:checked + .slider:before {
-            transform: translateX(20px);
+        .availability-bullet.unavailable {
+            background-color: var(--unavailable-color); /* Grigio */
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .loading {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div id="login-container">
-            <h1>Login Admin</h1>
-            <input type="password" id="password-input" placeholder="Inserisci la password">
-            <button id="login-button">Accedi</button>
-            <p id="error-message"></p>
+<div class="container">
+    <div id="login-container">
+        <h1>Gestione Carta Vini</h1>
+        <input type="password" id="password-input" placeholder="Inserisci la password">
+        <button id="login-button">Accedi</button>
+        <div id="error-message"></div>
+    </div>
+
+    <div id="main-content">
+        <h1>Gestione Disponibilità Vini</h1>
+        
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
         </div>
 
-        <div id="admin-panel">
-            <h1>Gestione Vini</h1>
-            <div id="search-container">
-                <input type="text" id="search-input" placeholder="Cerca vino...">
-            </div>
-            <div id="wine-list" class="wine-list"></div>
-        </div>
+        <div id="loading-message" class="loading" style="display:none;">Caricamento vini...</div>
+        <div id="wine-list-container"></div>
+        <div id="message" class="message"></div>
     </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
+        
+        // ELEMENTI PER IL LOGIN
+        const loginContainer = document.getElementById('login-container');
         const passwordInput = document.getElementById('password-input');
         const loginButton = document.getElementById('login-button');
         const errorMessage = document.getElementById('error-message');
-        const loginContainer = document.getElementById('login-container');
-        const adminPanel = document.getElementById('admin-panel');
-        const wineList = document.getElementById('wine-list');
-        const searchInput = document.getElementById('search-input');
+        const mainContent = document.getElementById('main-content');
         
-        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
+        // ELEMENTI PER LA PAGINA ADMIN
+        const wineListContainer = document.getElementById('wine-list-container');
+        const messageDiv = document.getElementById('message');
+        const searchInput = document.getElementById('search-input');
+        const loadingMessage = document.getElementById('loading-message');
         let allWines = [];
+        
+        // IMPOSTA LA TUA PASSWORD QUI
+        const adminPassword = 'Autocarro38';
 
         loginButton.addEventListener('click', () => {
-            const password = passwordInput.value;
-            // Password hard-coded per la demo. In un'applicazione reale, useresti un sistema di autenticazione sicuro.
-            if (password === 'ciao') {
+            if (passwordInput.value === adminPassword) {
                 loginContainer.style.display = 'none';
-                adminPanel.style.display = 'block';
+                mainContent.style.display = 'block';
                 fetchWines();
             } else {
-                errorMessage.textContent = 'Password errata.';
+                errorMessage.textContent = 'Password errata. Riprova.';
+            }
+        });
+        
+        // Permetti il login premendo Invio
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginButton.click();
             }
         });
 
-        function createWineCard(wine) {
-            const card = document.createElement('div');
-            card.className = `wine-card ${wine.Disponibile ? '' : 'unavailable'}`;
+        // --- FUNZIONI DI GESTIONE DEI VINI ---
 
-            card.innerHTML = `
-                <h3>${wine.Nome}</h3>
-                <p>${wine.Annata ? wine.Annata + ' - ' : ''}${wine.Categoria}</p>
-                <div class="toggle-container">
-                    <label>Disponibile</label>
-                    <label class="switch">
-                        <input type="checkbox" ${wine.Disponibile ? 'checked' : ''} data-wine-name="${wine.Nome}">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            `;
-            
-            const checkbox = card.querySelector('input[type="checkbox"]');
-            checkbox.addEventListener('change', (e) => {
-                const isChecked = e.target.checked;
-                const wineName = e.target.dataset.wineName;
-                
-                updateAvailability(wineName, isChecked).then(success => {
-                    if (success) {
-                        // Aggiorna l'opacità della card
-                        if (isChecked) {
-                            card.classList.remove('unavailable');
-                        } else {
-                            card.classList.add('unavailable');
-                        }
-                    } else {
-                        // Se l'aggiornamento fallisce, ripristina la checkbox
-                        e.target.checked = !isChecked;
-                    }
-                });
-            });
-            
-            return card;
+        function showMessage(msg, type) {
+            messageDiv.textContent = msg;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.opacity = '1';
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+            }, 3000);
         }
 
         function groupAndRenderWines(wines) {
-            wineList.innerHTML = '';
+            wineListContainer.innerHTML = '';
             
-            wines.forEach(wine => {
-                const card = createWineCard(wine);
-                wineList.appendChild(card);
-            });
+            const groupedWines = wines.reduce((acc, wine) => {
+                const category = wine.Categoria;
+                if (!acc[category]) {
+                    acc[category] = [];
+                }
+                acc[category].push(wine);
+                return acc;
+            }, {});
+
+            for (const category in groupedWines) {
+                const categorySection = document.createElement('div');
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'wine-category-title';
+                categoryTitle.textContent = category;
+                categorySection.appendChild(categoryTitle);
+
+                const wineList = document.createElement('ul');
+                wineList.className = 'wine-list';
+                
+                groupedWines[category].forEach(wine => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'wine-item';
+                    
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'wine-name';
+                    nameSpan.textContent = wine.Nome;
+                    listItem.appendChild(nameSpan);
+
+                    const bulletSpan = document.createElement('span');
+                    bulletSpan.className = 'availability-bullet';
+                    if (wine.Disponibile === true) {
+                        bulletSpan.classList.add('available');
+                    } else {
+                        bulletSpan.classList.add('unavailable');
+                    }
+
+                    listItem.appendChild(bulletSpan);
+
+                    listItem.addEventListener('click', () => {
+                        const newAvailability = bulletSpan.classList.contains('unavailable');
+                        
+                        // Aggiorna immediatamente l'interfaccia
+                        if (newAvailability) {
+                            bulletSpan.classList.remove('unavailable');
+                            bulletSpan.classList.add('available');
+                        } else {
+                            bulletSpan.classList.remove('available');
+                            bulletSpan.classList.add('unavailable');
+                        }
+
+                        // Invia la richiesta al server
+                        updateAvailability(wine.Nome, newAvailability)
+                            .then(success => {
+                                if (success) {
+                                    showMessage('Vino aggiornato con successo!', 'success');
+                                } else {
+                                    // Se l'aggiornamento fallisce, ripristina lo stato visivo
+                                    showMessage('Errore durante l\'aggiornamento.', 'error');
+                                    if (newAvailability) {
+                                        bulletSpan.classList.remove('available');
+                                        bulletSpan.classList.add('unavailable');
+                                    } else {
+                                        bulletSpan.classList.remove('unavailable');
+                                        bulletSpan.classList.add('available');
+                                    }
+                                }
+                            });
+                    });
+
+                    wineList.appendChild(listItem);
+                });
+
+                categorySection.appendChild(wineList);
+                wineListContainer.appendChild(categorySection);
+            }
         }
 
         function fetchWines() {
+            loadingMessage.style.display = 'block';
+            wineListContainer.style.display = 'none';
+
             fetch(appsScriptUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Errore di rete. Status: ' + response.status);
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(wines => {
-                    allWines = wines; // Salva tutti i vini
+                    allWines = wines;
                     groupAndRenderWines(allWines);
+                    loadingMessage.style.display = 'none';
+                    wineListContainer.style.display = 'block';
                 })
                 .catch(error => {
-                    console.error('Errore nel caricamento dei dati:', error);
-                    wineList.innerHTML = 'Errore nel caricamento dei dati.';
+                    console.error('Errore nel caricamento dei vini:', error);
+                    loadingMessage.textContent = 'Errore nel caricamento dei dati.';
                 });
         }
         
