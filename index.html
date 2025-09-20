@@ -10,6 +10,8 @@
     <link rel="apple-touch-icon" href="https://niubbone.github.io/cartaqr/graphic/logo.png">
     <!-- Web App Manifest per Android e browser moderni -->
     <link rel="manifest" href="manifest.json">
+    <!-- Libreria per le icone (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
 
@@ -40,7 +42,7 @@
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-radius: 8px;
-            position: relative; /* Aggiunto per posizionare il link admin */
+            position: relative;
         }
 
         .header {
@@ -179,7 +181,7 @@
             position: absolute;
             bottom: 10px;
             right: 10px;
-            font-size: 0.8em;
+            font-size: 1.5em; /* Aumentato per l'icona */
             opacity: 0.1;
             transition: opacity 0.3s ease-in-out;
             color: var(--primary-color);
@@ -204,8 +206,10 @@
             Controllo in cantina<span>.</span><span>.</span><span>.</span>
         </div>
 
-        <!-- Link per la pagina di amministrazione, nascosto e posizionato in basso a destra -->
-        <a href="admin.html" class="admin-link">Admin</a>
+        <!-- Link per la pagina di amministrazione, ora con un'icona -->
+        <a href="admin.html" class="admin-link" aria-label="Vai alla pagina di amministrazione">
+            <i class="fas fa-cog"></i>
+        </a>
     </div>
 
     <script>
