@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta dei Vini</title>
+    <link rel="icon" type="image/png" href="https://niubbone.github.io/cartaqr/graphic/logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+        :root {
+            --primary-color: #5d0f10;
+            --secondary-color: #2a619e;
+            --text-color: #333;
+            --bg-color: #f9f7f4;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Roboto', sans-serif;
+            --unavailable-color: #c94040;
+            --unavailable-bg: #fff;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .wine-item {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #fcfcfc;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .wine-item:hover {
+            transform: scale(1.01);
+        }
+
+        .wine-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .wine-details {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .wine-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .unavailable-tag {
+            background-color: var(--unavailable-color);
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        #loading-indicator {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-color);
+            font-size: 1.2em;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="https://niubbone.github.io/cartaqr/graphic/logo.png" alt="Logo Vecchia Dogana Bologna" style="max-width: 150px; height: auto;">
+            <h1>Carta dei Vini</h1>
+        </header>
+
+        <main id="wine-list">
+            <div id="loading-indicator">Caricamento...</div>
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwRk6fD_lV_o-r6rBw4d_hS7V4s/exec'; // URL del tuo Apps Script
+            const wineList = document.getElementById('wine-list');
+            const loadingIndicator = document.getElementById('loading-indicator');
+
+            function showLoading() {
+                loadingIndicator.style.display = 'block';
+            }
+
+            function hideLoading() {
+                loadingIndicator.style.display = 'none';
+            }
+
+            function groupAndRenderWines(wines) {
+                wineList.innerHTML = '';
+                const groupedWines = wines.reduce((acc, wine) => {
+                    if (!acc[wine.Categoria]) {
+                        acc[wine.Categoria] = [];
+                    }
+                    acc[wine.Categoria].push(wine);
+                    return acc;
+                }, {});
+
+                for (const category in groupedWines) {
+                    const section = document.createElement('section');
+                    const heading = document.createElement('h2');
+                    heading.textContent = category;
+                    section.appendChild(heading);
+
+                    const categoryWines = groupedWines[category].sort((a, b) => a.Nome.localeCompare(b.Nome));
+                    for (const wine of categoryWines) {
+                        const item = document.createElement('div');
+                        item.className = 'wine-item';
+                        
+                        const title = document.createElement('div');
+                        title.className = 'wine-title';
+                        title.textContent = wine.Nome;
+
+                        const details = document.createElement('div');
+                        details.className = 'wine-details';
+                        details.innerHTML = `
+                            ${wine.Nazione ? `<span>${wine.Nazione}, </span>` : ''}
+                            ${wine.AOC ? `<span>${wine.AOC}</span>` : ''}
+                            ${wine.Anno ? `<span>, ${wine.Anno}</span>` : ''}
+                        `;
+                        
+                        const vitigni = document.createElement('div');
+                        vitigni.className = 'wine-details';
+                        if (wine.Vitigni) {
+                             vitigni.innerHTML = `Uvaggio: <strong>${wine.Vitigni}</strong>`;
+                        } else {
+                            vitigni.innerHTML = 'Uvaggio: N/A';
+                        }
+                        
+                        const description = document.createElement('div');
+                        description.className = 'wine-details';
+                        description.textContent = wine.Descrizione;
+
+                        const price = document.createElement('div');
+                        price.className = 'wine-price';
+                        price.textContent = `${wine.Prezzo} €`;
+
+                        item.appendChild(title);
+                        item.appendChild(details);
+                        if (wine.Vitigni) item.appendChild(vitigni);
+                        if (wine.Descrizione) item.appendChild(description);
+                        item.appendChild(price);
+
+                        if (wine.Disponibile === false) {
+                            item.style.backgroundColor = 'var(--unavailable-bg)';
+                            item.style.color = '#777';
+                            item.style.border = '1px solid #ccc';
+                            item.style.opacity = '0.7';
+
+                            const unavailableTag = document.createElement('span');
+                            unavailableTag.className = 'unavailable-tag';
+                            unavailableTag.textContent = 'Non disponibile';
+                            item.appendChild(unavailableTag);
+                        }
+                        
+                        section.appendChild(item);
+                    }
+                    wineList.appendChild(section);
+                    wineList.appendChild(document.createElement('hr'));
+                }
+            }
+
+            function fetchWines() {
+                showLoading(); // Mostra l'indicatore di caricamento
+                fetch(appsScriptUrl, {
+                    mode: 'cors'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Errore di rete. Status: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(wines => {
+                        groupAndRenderWines(wines);
+                    })
+                    .catch(error => {
+                        console.error('Errore nel caricamento dei vini:', error);
+                        wineList.innerHTML = '<p style="text-align: center; color: var(--unavailable-color);">Errore nel caricamento della carta dei vini. Riprova più tardi.</p>';
+                    })
+                    .finally(() => {
+                        hideLoading(); // Nasconde l'indicatore di caricamento
+                    });
+            }
+            
+            fetchWines();
+        });
+    </script>
+</body>
+</html>
