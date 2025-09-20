@@ -40,6 +40,7 @@
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-radius: 8px;
+            position: relative; /* Aggiunto per posizionare il link admin */
         }
 
         .header {
@@ -172,6 +173,22 @@
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
         }
+
+        /* Stili per il link admin nascosto */
+        .admin-link {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            opacity: 0.1;
+            transition: opacity 0.3s ease-in-out;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .admin-link:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -186,6 +203,9 @@
         <div id="loading-text">
             Controllo in cantina<span>.</span><span>.</span><span>.</span>
         </div>
+
+        <!-- Link per la pagina di amministrazione, nascosto e posizionato in basso a destra -->
+        <a href="admin.html" class="admin-link">Admin</a>
     </div>
 
     <script>
