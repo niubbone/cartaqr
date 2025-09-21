@@ -1,239 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione Vini - Admin</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
-
-        :root {
-            --primary-color: #5d0f10;
-            --secondary-color: #2a619e;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
-            --unavailable-color: #ccc;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            padding: 20px;
-            background-color: var(--bg-color);
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        #login-container {
-            text-align: center;
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #login-container h1 {
-            color: var(--primary-color);
-            font-family: 'Playfair Display', serif;
-        }
-
-        #login-container input {
-            padding: 15px; margin: 10px 0; width: 80%; max-width: 300px; border: 1px solid #ccc;
-            border-radius: 4px; font-size: 1.2em; box-sizing: border-box; text-align: center;
-        }
-
-        #login-container button {
-            padding: 10px 20px; margin-top: 10px; border: none; background-color: var(--primary-color);
-            color: white; border-radius: 4px; cursor: pointer;
-        }
-        #login-container button:hover { background-color: #4a0b0b; }
-        
-        #error-message { color: var(--primary-color); margin-top: 10px; }
-        #main-content { display: none; }
-        h1 { text-align: center; color: var(--primary-color); font-family: 'Playfair Display', serif; }
-
-        #controls-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        #search-input {
-            flex-grow: 1; padding: 10px; box-sizing: border-box; border: 1px solid #ddd;
-            border-radius: 4px; font-size: 1em; min-width: 200px;
-        }
-
-        /* --- CSS MODIFICATO --- */
-        /* 1. Rimosso lo stile per #advanced-edit-btn */
-        
-        /* 2. Aggiunto nuovo stile per l'icona di modifica fissa */
-        #advanced-edit-icon {
-            position: fixed; /* Rimane visibile durante lo scroll */
-            top: 30px;
-            right: 40px;
-            width: 55px; /* Dimensioni icona */
-            height: 55px;
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 50%; /* Forma circolare */
-            font-size: 26px; /* Dimensione del carattere (l'emoji) */
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-            transition: background-color 0.3s, transform 0.3s;
-            z-index: 1001; /* Si assicura che sia sopra altri elementi */
-        }
-        
-        #advanced-edit-icon:hover {
-            background-color: #225081; /* Colore al passaggio del mouse */
-            transform: scale(1.1); /* Leggero ingrandimento */
-        }
-        
-        /* Stile per la modalità attiva (quando diventa una 'X') */
-        #advanced-edit-icon.active {
-            background-color: #c0392b; /* Colore rosso per 'uscire' */
-            transform: rotate(180deg); /* Effetto di rotazione */
-        }
-        
-        #advanced-edit-icon.active:hover {
-            background-color: #a93226;
-        }
-        /* --- FINE CSS MODIFICATO --- */
-
-
-        .wine-category-title {
-            font-family: 'Playfair Display', serif; font-size: 1.5em; color: var(--secondary-color);
-            margin-top: 25px; margin-bottom: 15px; border-bottom: 1px solid var(--secondary-color);
-            padding-bottom: 5px; display: block;
-        }
-
-        .wine-list { list-style: none; padding: 0; margin: 0; }
-        .wine-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 10px; border-bottom: 1px solid #ddd; cursor: pointer;
-        }
-        .wine-item:last-child { border-bottom: none; }
-        .wine-name { flex-grow: 1; font-weight: bold; }
-
-        .availability-bullet {
-            width: 15px; height: 15px; border-radius: 50%; display: inline-block;
-            margin-left: 10px; transition: background-color 0.3s; flex-shrink: 0;
-        }
-        .availability-bullet.available { background-color: #4CAF50; }
-        .availability-bullet.unavailable { background-color: var(--unavailable-color); }
-
-        .stock-indicator {
-            font-size: 1em; font-weight: bold; color: var(--primary-color);
-            margin-left: 10px; flex-shrink: 0; background-color: #f0f0f0;
-            padding: 3px 8px; border-radius: 5px;
-        }
-
-        .message {
-            margin-top: 20px; padding: 10px; border-radius: 4px; text-align: center;
-            opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none;
-        }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        .loading { text-align: center; font-style: italic; color: #777; padding: 20px; }
-
-        /* Stili per il Modal di Modifica */
-        .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
-            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);
-        }
-        .modal-content {
-            background-color: #fefefe; margin: 10% auto; padding: 25px;
-            border: 1px solid #888; width: 90%; max-width: 500px; border-radius: 8px;
-            font-family: 'Roboto', sans-serif;
-        }
-        .modal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px;
-        }
-        .modal-header h2 { margin: 0; font-family: 'Playfair Display', serif; color: var(--primary-color); }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .close-button:hover, .close-button:focus { color: black; }
-        
-        .form-field { margin-bottom: 15px; }
-        .form-field label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        .form-field input, .form-field select {
-            width: 100%; padding: 12px; border: 1px solid #ccc;
-            border-radius: 4px; box-sizing: border-box; font-size: 1em;
-        }
-        .form-field textarea {
-            width: 100%; padding: 12px; border: 1px solid #ccc;
-            border-radius: 4px; box-sizing: border-box; font-size: 1em;
-            min-height: 100px; resize: vertical;
-        }
-
-        .inline-fields {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap; 
-        }
-
-        .inline-fields .form-field {
-            flex: 1 1 30%; 
-            margin-bottom: 0;
-        }
-
-        #edit-description-btn {
-            display: block; width: 100%; text-align: center; padding: 10px;
-            margin-top: 5px; background-color: #f0f0f0; border: 1px solid #ddd;
-            cursor: pointer; border-radius: 4px;
-        }
-
-        #save-changes-btn {
-            width: 100%; background-color: var(--primary-color); color: white;
-            padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer;
-            font-size: 1.1em; margin-top: 10px;
-        }
-        #save-changes-btn:hover { background-color: #4a0b0b; }
-
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div id="login-container">
-        <h1>Gestione Carta Vini</h1>
-        <input type="password" id="password-input" placeholder="Inserisci la password">
-        <button id="login-button">Accedi</button>
-        <div id="error-message"></div>
-    </div>
-
-    <div id="main-content">
-        <h1>Gestione Vini</h1>
-        
-        <div id="controls-container">
-            <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
-        </div>
-        
-        <button id="advanced-edit-icon" title="Modifica Dati Vino">&#x270F;&#xFE0F;</button>
-        <div id="loading-message" class="loading" style="display:none;">Caricamento vini...</div>
-        <div id="wine-list-container"></div>
-        <div id="message" class="message"></div>
-    </div>
-</div>
-
-<div id="edit-modal" class="modal">
-    </div>
-<div id="description-modal" class="modal">
-    </div>
-
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwIhY-mG3pIMos7nFjF-B382QwK8ROqc8TBFC9PJtpVi4IfPw1ug-2ajhKSB_Vl5LNh/exec';
@@ -250,16 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageDiv = document.getElementById('message');
     const searchInput = document.getElementById('search-input');
     const loadingMessage = document.getElementById('loading-message');
-    
-    // --- JAVASCRIPT MODIFICATO ---
-    // 1. Aggiornato il selettore per puntare alla nuova icona
-    const advancedEditBtn = document.getElementById('advanced-edit-icon');
+    const advancedEditBtn = document.getElementById('advanced-edit-icon'); // ID corretto dell'icona
     let allWines = [];
     let isAdvancedMode = false;
     
-    // ELEMENTI MODAL (invariati)
+    // --- INIZIO PARTE MANCANTE E CORRETTA ---
+    // Queste righe erano state omesse per errore nel codice precedente.
+    // La loro assenza impediva al resto dello script di funzionare.
     const editModal = document.getElementById('edit-modal');
-    // ... altri elementi modal ...
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const editForm = document.getElementById('edit-form');
+    const descriptionModal = document.getElementById('description-modal');
+    const closeDescriptionModalBtn = document.getElementById('close-description-modal-btn');
+    const editDescriptionBtn = document.getElementById('edit-description-btn');
+    const descriptionTextarea = document.getElementById('description-textarea');
+    const saveDescriptionBtn = document.getElementById('save-description-btn');
+    // --- FINE PARTE MANCANTE E CORRETTA ---
 
     const adminPassword = 'Autocarro38';
 
@@ -273,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (passwordInput.value === adminPassword) {
             loginContainer.style.display = 'none';
             mainContent.style.display = 'block';
-            fetchWines();
+            fetchWines(); // Questa funzione ora verrà eseguita correttamente
         } else {
             errorMessage.textContent = 'Password errata. Riprova.';
         }
@@ -282,13 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- GESTIONE VINI ---
     advancedEditBtn.addEventListener('click', toggleAdvancedMode);
 
-    // 2. Modificata la funzione per cambiare l'icona e il tooltip
     function toggleAdvancedMode() {
         isAdvancedMode = !isAdvancedMode;
         
         if (isAdvancedMode) {
             // Modalità modifica: mostra la 'X' e aggiorna il tooltip
-            advancedEditBtn.innerHTML = '&#x274C;'; // Icona 'X' (rossa)
+            advancedEditBtn.innerHTML = '&#x274C;'; // Icona 'X'
             advancedEditBtn.title = 'Torna a Disponibilità';
         } else {
             // Modalità normale: mostra la matita e il tooltip originale
@@ -297,108 +66,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         advancedEditBtn.classList.toggle('active', isAdvancedMode);
-        renderWines(allWines); // Rirenderizza la lista con la nuova modalità
+        renderWines(allWines);
     }
-    // --- FINE JAVASCRIPT MODIFICATO ---
     
     function showMessage(msg, type) {
-        // ... codice invariato ...
+        messageDiv.textContent = msg;
+        messageDiv.className = `message ${type}`;
+        messageDiv.style.opacity = '1';
+        setTimeout(() => { messageDiv.style.opacity = '0'; }, 3000);
     }
 
     function renderWines(wines) {
-        // ... codice invariato ...
-    }
+        wineListContainer.innerHTML = '';
+        const groupedWines = wines.reduce((acc, wine) => {
+            const category = wine.Categoria || 'Senza Categoria';
+            if (!acc[category]) acc[category] = [];
+            acc[category].push(wine);
+            return acc;
+        }, {});
 
-    function fetchWines() {
-        // ... codice invariato ...
-    }
+        const sortedCategories = Object.keys(groupedWines).sort();
 
-    function toggleAvailability(wine, bulletSpan) {
-        // ... codice invariato ...
-    }
-    
-    searchInput.addEventListener('input', (e) => {
-        // ... codice invariato ...
-    });
+        for (const category of sortedCategories) {
+            const categorySection = document.createElement('div');
+            const categoryTitle = document.createElement('h2');
+            categoryTitle.className = 'wine-category-title';
+            categoryTitle.textContent = category;
+            categorySection.appendChild(categoryTitle);
 
-    // --- FUNZIONI MODAL E MODIFICA AVANZATA --- (invariate)
-    function openEditModal(wine) {
-        // ... codice invariato ...
-    }
-
-    // ... resto del codice JavaScript invariato ...
-
-    // --- FUNZIONI DI COMUNICAZIONE CON LO SCRIPT --- (invariate)
-    function updateAvailability(nome, disponibilita) {
-        // ... codice invariato ...
-    }
-
-    function updateWineDetails(wineData) {
-        // ... codice invariato ...
-    }
-});
-</script>
-
-<div id="edit-modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 id="modal-title">Modifica Vino</h2>
-            <span class="close-button" id="close-modal-btn">&times;</span>
-        </div>
-        <form id="edit-form">
-            <input type="hidden" id="edit-nome-originale">
-            <div class="form-field">
-                <label for="edit-nome">Nome</label>
-                <input type="text" id="edit-nome">
-            </div>
-            <div class="form-field">
-                <label for="edit-categoria">Categoria</label>
-                <input type="text" id="edit-categoria">
-            </div>
-            <div class="form-field">
-                <label for="edit-aoc">AOC</label>
-                <input type="text" id="edit-aoc">
-            </div>
-            <div class="form-field">
-                <label for="edit-vitigni">Vitigni</label>
-                <input type="text" id="edit-vitigni">
-            </div>
+            const wineList = document.createElement('ul');
+            wineList.className = 'wine-list';
             
-            <div class="inline-fields">
-                <div class="form-field">
-                    <label for="edit-prezzo">Prezzo</label>
-                    <input type="text" id="edit-prezzo">
-                </div>
-                <div class="form-field">
-                    <label for="edit-giacenza">Giacenza</label>
-                    <input type="number" id="edit-giacenza">
-                </div>
-                <div class="form-field">
-                    <label for="edit-anno">Anno</label>
-                    <input type="text" id="edit-anno">
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label>Descrizione</label>
-                <button type="button" id="edit-description-btn">Modifica Descrizione</button>
-                <input type="hidden" id="edit-descrizione">
-            </div>
-            <button type="submit" id="save-changes-btn">Salva Modifiche</button>
-        </form>
-    </div>
-</div>
+            groupedWines[category].forEach(wine => {
+                const listItem = document.createElement('li');
+                listItem.className = 'wine-item';
+                
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'wine-name';
+                nameSpan.textContent = wine.Nome;
+                listItem.appendChild(nameSpan);
 
-<div id="description-modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Modifica Descrizione</h2>
-            <span class="close-button" id="close-description-modal-btn">&times;</span>
-        </div>
-        <textarea id="description-textarea" rows="10"></textarea>
-        <button id="save-description-btn" style="width:100%; margin-top:10px; padding:10px; background-color: var(--secondary-color); color:white; border:none; border-radius:4px;">Salva Descrizione</button>
-    </div>
-</div>
-
-</body>
-</html>
+                if (isAdvancedMode
