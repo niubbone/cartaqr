@@ -143,6 +143,19 @@
             min-height: 100px; resize: vertical;
         }
 
+        /* Nuovo stile per affiancare i campi */
+        .inline-fields {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap; /* Rende il layout reattivo */
+        }
+
+        .inline-fields .form-field {
+            flex: 1 1 30%; /* I campi si espandono in modo flessibile, con una base del 30% */
+            margin-bottom: 0;
+        }
+
         #edit-description-btn {
             display: block; width: 100%; text-align: center; padding: 10px;
             margin-top: 5px; background-color: #f0f0f0; border: 1px solid #ddd;
@@ -206,14 +219,22 @@
                 <label for="edit-vitigni">Vitigni</label>
                 <input type="text" id="edit-vitigni">
             </div>
-            <div class="form-field">
-                <label for="edit-prezzo">Prezzo</label>
-                <input type="text" id="edit-prezzo">
+            
+            <div class="inline-fields">
+                <div class="form-field">
+                    <label for="edit-prezzo">Prezzo</label>
+                    <input type="text" id="edit-prezzo">
+                </div>
+                <div class="form-field">
+                    <label for="edit-giacenza">Giacenza</label>
+                    <input type="number" id="edit-giacenza">
+                </div>
+                <div class="form-field">
+                    <label for="edit-anno">Anno</label>
+                    <input type="text" id="edit-anno">
+                </div>
             </div>
-             <div class="form-field">
-                <label for="edit-giacenza">Giacenza</label>
-                <input type="number" id="edit-giacenza">
-            </div>
+            
             <div class="form-field">
                 <label>Descrizione</label>
                 <button type="button" id="edit-description-btn">Modifica Descrizione</button>
@@ -415,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('edit-vitigni').value = wine.Vitigni || '';
         document.getElementById('edit-prezzo').value = wine.Prezzo || '';
         document.getElementById('edit-giacenza').value = wine.Giacenza || 0;
+        document.getElementById('edit-anno').value = wine.Anno || '';
         document.getElementById('edit-descrizione').value = wine.Descrizione || '';
         editModal.style.display = 'block';
     }
@@ -448,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Vitigni: document.getElementById('edit-vitigni').value,
             Prezzo: document.getElementById('edit-prezzo').value,
             Giacenza: parseInt(document.getElementById('edit-giacenza').value, 10),
+            Anno: document.getElementById('edit-anno').value,
             Descrizione: document.getElementById('edit-descrizione').value
         };
         
