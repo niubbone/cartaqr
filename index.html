@@ -252,7 +252,7 @@
             align-items: center;
             font-weight: bold;
             padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0; /* Linea di separazione */
+            border-bottom: 2px solid #e0e0e0;
         }
 
         #modal-wine-flag {
@@ -266,7 +266,7 @@
             line-height: 1.6;
             color: var(--text-color);
             white-space: pre-wrap;
-            padding-top: 15px; /* Spazio sopra la descrizione */
+            padding-top: 15px;
         }
 
     </style>
@@ -325,65 +325,55 @@
                 wineList.style.display = 'block';
             }
 
-            // Mappa COMPLETA delle bandiere per tutte le nazioni vinicole
             function getFlagEmoji(countryName) {
                 const countryMap = {
-                    // Europa
-                    'Francia': '🇫🇷',
-                    'Italia': '🇮🇹',
-                    'Spagna': '🇪🇸',
-                    'Germania': '🇩🇪',
-                    'Portogallo': '🇵🇹',
-                    'Austria': '🇦🇹',
-                    'Grecia': '🇬🇷',
-                    'Ungheria': '🇭🇺',
-                    'Slovenia': '🇸🇮',
-                    'Croazia': '🇭🇷',
-                    'Bulgaria': '🇧🇬',
-                    'Romania': '🇷🇴',
-                    'Svizzera': '🇨🇭',
-                    'Repubblica Ceca': '🇨🇿',
-                    'Slovacchia': '🇸🇰',
-                    'Moldavia': '🇲🇩',
-                    'Georgia': '🇬🇪',
-                    'Armenia': '🇦🇲',
-                    'Ucraina': '🇺🇦',
-                    'Regno Unito': '🇬🇧',
-                    'Inghilterra': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-                    
-                    // Americhe
-                    'Argentina': '🇦🇷',
-                    'Cile': '🇨🇱',
-                    'Stati Uniti': '🇺🇸',
-                    'USA': '🇺🇸',
-                    'Brasile': '🇧🇷',
-                    'Uruguay': '🇺🇾',
-                    'Messico': '🇲🇽',
-                    'Canada': '🇨🇦',
-                    'Perù': '🇵🇪',
-                    
-                    // Oceania
-                    'Australia': '🇦🇺',
-                    'Nuova Zelanda': '🇳🇿',
-                    
-                    // Africa
-                    'Sud Africa': '🇿🇦',
-                    'Sudafrica': '🇿🇦',
-                    'Marocco': '🇲🇦',
-                    'Tunisia': '🇹🇳',
-                    'Algeria': '🇩🇿',
-                    
-                    // Asia e Medio Oriente
-                    'Giappone': '🇯🇵',
-                    'Cina': '🇨🇳',
-                    'India': '🇮🇳',
-                    'Libano': '🇱🇧',
-                    'Israele': '🇮🇱',
-                    'Turchia': '🇹🇷',
-                    'Cipro': '🇨🇾'
+                    'Francia': '\uD83C\uDDEB\uD83C\uDDF7',
+                    'Italia': '\uD83C\uDDEE\uD83C\uDDF9',
+                    'Spagna': '\uD83C\uDDEA\uD83C\uDDF8',
+                    'Germania': '\uD83C\uDDE9\uD83C\uDDEA',
+                    'Portogallo': '\uD83C\uDDF5\uD83C\uDDF9',
+                    'Austria': '\uD83C\uDDE6\uD83C\uDDF9',
+                    'Grecia': '\uD83C\uDDEC\uD83C\uDDF7',
+                    'Ungheria': '\uD83C\uDDED\uD83C\uDDFA',
+                    'Slovenia': '\uD83C\uDDF8\uD83C\uDDEE',
+                    'Croazia': '\uD83C\uDDED\uD83C\uDDF7',
+                    'Bulgaria': '\uD83C\uDDE7\uD83C\uDDEC',
+                    'Romania': '\uD83C\uDDF7\uD83C\uDDF4',
+                    'Svizzera': '\uD83C\uDDE8\uD83C\uDDED',
+                    'Repubblica Ceca': '\uD83C\uDDE8\uD83C\uDDFF',
+                    'Slovacchia': '\uD83C\uDDF8\uD83C\uDDF0',
+                    'Moldavia': '\uD83C\uDDF2\uD83C\uDDE9',
+                    'Georgia': '\uD83C\uDDEC\uD83C\uDDEA',
+                    'Armenia': '\uD83C\uDDE6\uD83C\uDDF2',
+                    'Ucraina': '\uD83C\uDDFA\uD83C\uDDE6',
+                    'Regno Unito': '\uD83C\uDDEC\uD83C\uDDE7',
+                    'Inghilterra': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
+                    'Argentina': '\uD83C\uDDE6\uD83C\uDDF7',
+                    'Cile': '\uD83C\uDDE8\uD83C\uDDF1',
+                    'Stati Uniti': '\uD83C\uDDFA\uD83C\uDDF8',
+                    'USA': '\uD83C\uDDFA\uD83C\uDDF8',
+                    'Brasile': '\uD83C\uDDE7\uD83C\uDDF7',
+                    'Uruguay': '\uD83C\uDDFA\uD83C\uDDFE',
+                    'Messico': '\uD83C\uDDF2\uD83C\uDDFD',
+                    'Canada': '\uD83C\uDDE8\uD83C\uDDE6',
+                    'Peru': '\uD83C\uDDF5\uD83C\uDDEA',
+                    'Australia': '\uD83C\uDDE6\uD83C\uDDFA',
+                    'Nuova Zelanda': '\uD83C\uDDF3\uD83C\uDDFF',
+                    'Sud Africa': '\uD83C\uDDFF\uD83C\uDDE6',
+                    'Sudafrica': '\uD83C\uDDFF\uD83C\uDDE6',
+                    'Marocco': '\uD83C\uDDF2\uD83C\uDDE6',
+                    'Tunisia': '\uD83C\uDDF9\uD83C\uDDF3',
+                    'Algeria': '\uD83C\uDDE9\uD83C\uDDFF',
+                    'Giappone': '\uD83C\uDDEF\uD83C\uDDF5',
+                    'Cina': '\uD83C\uDDE8\uD83C\uDDF3',
+                    'India': '\uD83C\uDDEE\uD83C\uDDF3',
+                    'Libano': '\uD83C\uDDF1\uD83C\uDDE7',
+                    'Israele': '\uD83C\uDDEE\uD83C\uDDF1',
+                    'Turchia': '\uD83C\uDDF9\uD83C\uDDF7',
+                    'Cipro': '\uD83C\uDDE8\uD83C\uDDFE'
                 };
                 
-                return countryMap[countryName] || '🌍';
+                return countryMap[countryName] || '\uD83C\uDF0D';
             }
 
             function openModal(wine) {
