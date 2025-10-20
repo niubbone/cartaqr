@@ -96,12 +96,11 @@
             margin-bottom: 15px;
             padding: 10px;
             border-left: 3px solid var(--secondary-color);
-            transition: background-color 0.2s, border-left-color 0.2s; /* */
+            transition: background-color 0.2s, border-left-color 0.2s;
         }
 
-        /* */
         .wine-item[data-has-description="true"]:not(.unavailable):hover {
-            background-color: #fdfaf7; /* Un leggero hover */
+            background-color: #fdfaf7;
             border-left-color: var(--primary-color);
         }
 
@@ -151,14 +150,13 @@
             color: var(--secondary-color);
         }
 
-        /* Stili per l'animazione di caricamento basata su testo */
         #loading-text {
             text-align: center;
             font-family: var(--font-serif);
             font-size: 1.5em;
             color: var(--primary-color);
             margin-top: 50px;
-            display: none; /* Inizialmente nascosto */
+            display: none;
         }
         
         #loading-text span {
@@ -179,12 +177,11 @@
             50% { opacity: 1; }
         }
 
-        /* Stili per il link admin nascosto */
         .admin-link {
             position: absolute;
             bottom: 10px;
             right: 10px;
-            font-size: 1.5em; /* Aumentato per l'icona */
+            font-size: 1.5em;
             opacity: 0.1;
             transition: opacity 0.3s ease-in-out;
             color: var(--primary-color);
@@ -195,7 +192,6 @@
             opacity: 1;
         }
 
-        /* */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -203,7 +199,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
-            display: none; /* Gestito da JS */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -241,35 +237,37 @@
 
         #modal-wine-name {
             font-family: var(--font-serif);
-            color: var(--primary-color); /* Colore aggiunto */
+            color: var(--primary-color);
             font-size: 1.8em;
             margin-top: 0;
-            margin-bottom: 10px; /* Margine ridotto */
+            margin-bottom: 10px;
         }
         
         .modal-origin {
             font-family: var(--font-serif);
             font-size: 1.2em;
-            color: var(--secondary-color); /* Usa il colore secondario */
+            color: var(--secondary-color);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             font-weight: bold;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0; /* Linea di separazione */
         }
 
         #modal-wine-flag {
-            font-size: 1.8em; /* Rende l'emoji della bandiera più grande */
+            font-size: 1.8em;
             margin-right: 12px;
-            line-height: 1; /* Allinea l'emoji */
+            line-height: 1;
         }
         
         #modal-wine-description {
             font-size: 1.1em;
             line-height: 1.6;
             color: var(--text-color);
-            white-space: pre-wrap; /* Permette al testo di andare a capo */
+            white-space: pre-wrap;
+            padding-top: 15px; /* Spazio sopra la descrizione */
         }
-        /* */
 
     </style>
 </head>
@@ -310,12 +308,11 @@
             const wineList = document.getElementById('wine-list');
             const loadingText = document.getElementById('loading-text');
 
-            // --- NUOVA AGGIUNTA: Riferimenti al Modal ---
             const modal = document.getElementById('wine-modal');
             const modalClose = document.querySelector('.modal-close');
             const modalWineName = document.getElementById('modal-wine-name');
-            const modalWineFlag = document.getElementById('modal-wine-flag'); // Nuovo
-            const modalWineInfo = document.getElementById('modal-wine-info'); // Nuovo
+            const modalWineFlag = document.getElementById('modal-wine-flag');
+            const modalWineInfo = document.getElementById('modal-wine-info');
             const modalWineDescription = document.getElementById('modal-wine-description');
 
             function showLoading() {
@@ -328,38 +325,73 @@
                 wineList.style.display = 'block';
             }
 
-            // --- NUOVA AGGIUNTA: Funzione helper per le bandiere ---
+            // Mappa COMPLETA delle bandiere per tutte le nazioni vinicole
             function getFlagEmoji(countryName) {
-                // Mappa dei nomi paese (dal tuo foglio) alle emoji
-                // Aggiungi/modifica questa mappa in base ai tuoi dati
                 const countryMap = {
+                    // Europa
                     'Francia': '🇫🇷',
                     'Italia': '🇮🇹',
-                    'Argentina': '🇦🇷',
-                    'Austria': '🇦🇹',
                     'Spagna': '🇪🇸',
                     'Germania': '🇩🇪',
-                    'USA': '🇺🇸',
-                    'Stati Uniti': '🇺🇸',
-                    'Australia': '🇦🇺',
+                    'Portogallo': '🇵🇹',
+                    'Austria': '🇦🇹',
+                    'Grecia': '🇬🇷',
+                    'Ungheria': '🇭🇺',
+                    'Slovenia': '🇸🇮',
+                    'Croazia': '🇭🇷',
+                    'Bulgaria': '🇧🇬',
+                    'Romania': '🇷🇴',
+                    'Svizzera': '🇨🇭',
+                    'Repubblica Ceca': '🇨🇿',
+                    'Slovacchia': '🇸🇰',
+                    'Moldavia': '🇲🇩',
+                    'Georgia': '🇬🇪',
+                    'Armenia': '🇦🇲',
+                    'Ucraina': '🇺🇦',
+                    'Regno Unito': '🇬🇧',
+                    'Inghilterra': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+                    
+                    // Americhe
+                    'Argentina': '🇦🇷',
                     'Cile': '🇨🇱',
+                    'Stati Uniti': '🇺🇸',
+                    'USA': '🇺🇸',
+                    'Brasile': '🇧🇷',
+                    'Uruguay': '🇺🇾',
+                    'Messico': '🇲🇽',
+                    'Canada': '🇨🇦',
+                    'Perù': '🇵🇪',
+                    
+                    // Oceania
+                    'Australia': '🇦🇺',
+                    'Nuova Zelanda': '🇳🇿',
+                    
+                    // Africa
                     'Sud Africa': '🇿🇦',
-                    // Aggiungi altre nazioni se necessario
+                    'Sudafrica': '🇿🇦',
+                    'Marocco': '🇲🇦',
+                    'Tunisia': '🇹🇳',
+                    'Algeria': '🇩🇿',
+                    
+                    // Asia e Medio Oriente
+                    'Giappone': '🇯🇵',
+                    'Cina': '🇨🇳',
+                    'India': '🇮🇳',
+                    'Libano': '🇱🇧',
+                    'Israele': '🇮🇱',
+                    'Turchia': '🇹🇷',
+                    'Cipro': '🇨🇾'
                 };
                 
-                // Restituisce l'emoji corrispondente o un globo generico
                 return countryMap[countryName] || '🌍';
             }
 
-            // --- NUOVA AGGIUNTA: Funzione per aprire il Modal (aggiornata) ---
             function openModal(wine) {
                 modalWineName.textContent = wine.Nome;
                 modalWineDescription.textContent = wine.Descrizione;
 
-                // Popola i nuovi campi (bandiera e info)
                 modalWineFlag.textContent = getFlagEmoji(wine.Nazione);
                 
-                // Combina Nazione e AOC (se esiste) per le info
                 let infoText = wine.Nazione;
                 if (wine.AOC && wine.AOC.trim() !== '') {
                     infoText += ` - ${wine.AOC}`;
@@ -369,15 +401,12 @@
                 modal.style.display = 'flex';
             }
 
-            // --- NUOVA AGGIUNTA: Funzione per chiudere il Modal ---
             function closeModal() {
                 modal.style.display = 'none';
             }
 
-            // --- NUOVA AGGIUNTA: Event listener per chiudere il Modal ---
             modalClose.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                // Chiudi solo se si clicca sullo sfondo (overlay)
                 if (e.target === modal) {
                     closeModal();
                 }
@@ -424,19 +453,14 @@
                                 item.classList.add('unavailable');
                             }
 
-                            // --- MODIFICA: Logica per il clic sul popup ---
-                            // Controlla se esiste una descrizione non vuota
                             if (wine.Descrizione && wine.Descrizione.toString().trim() !== '') {
-                                // Rende l'item cliccabile
                                 item.style.cursor = 'pointer';
-                                // Aggiunge l'attributo per lo stile hover CSS
                                 item.setAttribute('data-has-description', 'true'); 
                                 
                                 item.addEventListener('click', () => {
                                     openModal(wine);
                                 });
                             }
-                            // --- FINE MODIFICA ---
 
                             const details = document.createElement('div');
                             details.className = 'wine-details';
@@ -450,18 +474,15 @@
                             info.className = 'wine-info';
                             
                             const parts = [];
-                            // Aggiunge l'anno se esiste
                             if (wine.Anno) {
                                 parts.push(wine.Anno);
                             }
-                            // Aggiunge l'AOC se esiste
                             if (wine.AOC) {
                                 parts.push(wine.AOC);
                             }
                             
                             let infoContent = parts.join(' - ');
                             
-                            // Aggiunge i vitigni tra parentesi se esistono
                             if (wine.Vitigni) {
                                 if (infoContent.length > 0) {
                                     infoContent += ' ';
@@ -494,7 +515,7 @@
             }
 
             function fetchWines() {
-                showLoading(); // Mostra l'indicatore di caricamento
+                showLoading();
                 fetch(appsScriptUrl)
                     .then(response => {
                         if (!response.ok) {
@@ -510,7 +531,7 @@
                         wineList.innerHTML = '<p style="text-align: center; color: var(--unavailable-color);">Errore nel caricamento della carta dei vini. Riprova più tardi.</p>';
                     })
                     .finally(() => {
-                        hideLoading(); // Nasconde l'indicatore di caricamento
+                        hideLoading();
                     });
             }
             
