@@ -148,11 +148,11 @@
             display: flex;
             gap: 15px;
             margin-bottom: 15px;
-            flex-wrap: wrap; /* Rende il layout reattivo */
+            flex-wrap: wrap;
         }
 
         .inline-fields .form-field {
-            flex: 1 1 30%; /* I campi si espandono in modo flessibile, con una base del 30% */
+            flex: 1 1 30%;
             margin-bottom: 0;
         }
 
@@ -168,6 +168,34 @@
             font-size: 1.1em; margin-top: 10px;
         }
         #save-changes-btn:hover { background-color: #4a0b0b; }
+
+        /* MODIFICA: Textarea descrizione più grande su mobile */
+        #description-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+            min-height: 250px;
+            resize: vertical;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Media query per smartphone */
+        @media (max-width: 768px) {
+            #description-textarea {
+                min-height: 300px;
+                font-size: 16px; /* Previene lo zoom automatico su iOS */
+            }
+            
+            .modal-content {
+                margin: 5% auto;
+                padding: 20px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+        }
 
     </style>
 </head>
@@ -312,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isAdvancedMode = !isAdvancedMode;
         advancedEditBtn.textContent = isAdvancedMode ? 'Torna a Disponibilità' : 'Modifica Dati Vino';
         advancedEditBtn.classList.toggle('active', isAdvancedMode);
-        renderWines(allWines); // Rirenderizza la lista con la nuova modalità
+        renderWines(allWines);
     }
     
     function showMessage(msg, type) {
@@ -331,7 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return acc;
         }, {});
 
-        // Ordina le categorie
         const sortedCategories = Object.keys(groupedWines).sort();
 
         for (const category of sortedCategories) {
@@ -354,14 +381,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.appendChild(nameSpan);
 
                 if (isAdvancedMode) {
-                    // Modalità Avanzata: mostra giacenza e apre il modal
                     const stockSpan = document.createElement('span');
                     stockSpan.className = 'stock-indicator';
                     stockSpan.textContent = `Giacenza: ${wine.Giacenza || 0}`;
                     listItem.appendChild(stockSpan);
                     listItem.addEventListener('click', () => openEditModal(wine));
                 } else {
-                    // Modalità Normale: mostra bullet disponibilità
                     const bulletSpan = document.createElement('span');
                     bulletSpan.className = 'availability-bullet';
                     bulletSpan.classList.toggle('available', wine.Disponibile === true);
@@ -381,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchWines() {
         loadingMessage.style.display = 'block';
         wineListContainer.style.display = 'none';
-        fetch(`${appsScriptUrl}?context=admin`) // Aggiunto parametro per admin
+        fetch(`${appsScriptUrl}?context=admin`)
             .then(response => response.json())
             .then(wines => {
                 allWines = wines;
@@ -403,12 +428,10 @@ document.addEventListener('DOMContentLoaded', () => {
         updateAvailability(wine.Nome, newAvailability).then(success => {
             if (success) {
                 showMessage('Disponibilità aggiornata!', 'success');
-                // Aggiorna lo stato nel nostro array locale
                 const wineToUpdate = allWines.find(w => w.Nome === wine.Nome);
                 if (wineToUpdate) wineToUpdate.Disponibile = newAvailability;
             } else {
                 showMessage('Errore durante l\'aggiornamento.', 'error');
-                // Ripristina lo stato visivo
                 bulletSpan.classList.toggle('available', !newAvailability);
                 bulletSpan.classList.toggle('unavailable', newAvailability);
             }
@@ -478,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (success) {
                 showMessage('Dati del vino aggiornati!', 'success');
                 editModal.style.display = 'none';
-                fetchWines(); // Ricarica i dati per visualizzare le modifiche
+                fetchWines();
             } else {
                 showMessage('Errore durante l\'aggiornamento dei dati.', 'error');
             }
@@ -497,9 +520,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return fetch(appsScriptUrl, {
             method: 'POST', body: JSON.stringify(payload),
             headers: { 'Content-Type': 'application/json' },
-            mode: 'no-cors' // 'no-cors' è necessario ma impedisce di leggere la risposta diretta
+            mode: 'no-cors'
         })
-        .then(() => true) // Assumiamo successo dato che no-cors non dà una risposta leggibile
+        .then(() => true)
         .catch(error => {
             console.error('Errore:', error);
             return false;
