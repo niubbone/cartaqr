@@ -241,19 +241,35 @@
 
         #modal-wine-name {
             font-family: var(--font-serif);
-            color: var(--primary-color);
+            color: var(--primary-color); /* Colore aggiunto */
             font-size: 1.8em;
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 10px; /* Margine ridotto */
+        }
+        
+        .modal-origin {
+            font-family: var(--font-serif);
+            font-size: 1.2em;
+            color: var(--secondary-color); /* Usa il colore secondario */
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
         }
 
+        #modal-wine-flag {
+            font-size: 1.8em; /* Rende l'emoji della bandiera più grande */
+            margin-right: 12px;
+            line-height: 1; /* Allinea l'emoji */
+        }
+        
         #modal-wine-description {
             font-size: 1.1em;
             line-height: 1.6;
             color: var(--text-color);
-            /* Permette al testo di andare a capo correttamente */
-            white-space: pre-wrap; 
+            white-space: pre-wrap; /* Permette al testo di andare a capo */
         }
+        /* */
 
     </style>
 </head>
@@ -279,6 +295,10 @@
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h3 id="modal-wine-name">Nome del Vino</h3>
+            <div id="modal-wine-origin" class="modal-origin">
+                <span id="modal-wine-flag"></span>
+                <span id="modal-wine-info"></span>
+            </div>
             <p id="modal-wine-description">Descrizione del vino...</p>
         </div>
     </div>
@@ -294,6 +314,8 @@
             const modal = document.getElementById('wine-modal');
             const modalClose = document.querySelector('.modal-close');
             const modalWineName = document.getElementById('modal-wine-name');
+            const modalWineFlag = document.getElementById('modal-wine-flag'); // Nuovo
+            const modalWineInfo = document.getElementById('modal-wine-info'); // Nuovo
             const modalWineDescription = document.getElementById('modal-wine-description');
 
             function showLoading() {
@@ -306,15 +328,48 @@
                 wineList.style.display = 'block';
             }
 
-            // --- NUOVA AGGIUNTA: Funzioni per gestire il Modal ---
+            // --- NUOVA AGGIUNTA: Funzione helper per le bandiere ---
+            function getFlagEmoji(countryName) {
+                // Mappa dei nomi paese (dal tuo foglio) alle emoji
+                // Aggiungi/modifica questa mappa in base ai tuoi dati
+                const countryMap = {
+                    'Francia': '🇫🇷',
+                    'Italia': '🇮🇹',
+                    'Argentina': '🇦🇷',
+                    'Austria': '🇦🇹',
+                    'Spagna': '🇪🇸',
+                    'Germania': '🇩🇪',
+                    'USA': '🇺🇸',
+                    'Stati Uniti': '🇺🇸',
+                    'Australia': '🇦🇺',
+                    'Cile': '🇨🇱',
+                    'Sud Africa': '🇿🇦',
+                    // Aggiungi altre nazioni se necessario
+                };
+                
+                // Restituisce l'emoji corrispondente o un globo generico
+                return countryMap[countryName] || '🌍';
+            }
+
+            // --- NUOVA AGGIUNTA: Funzione per aprire il Modal (aggiornata) ---
             function openModal(wine) {
                 modalWineName.textContent = wine.Nome;
-                // Usiamo textContent per sicurezza e il CSS 'white-space: pre-wrap' 
-                // gestirà gli "a capo" presenti nel testo dello Sheet.
                 modalWineDescription.textContent = wine.Descrizione;
+
+                // Popola i nuovi campi (bandiera e info)
+                modalWineFlag.textContent = getFlagEmoji(wine.Nazione);
+                
+                // Combina Nazione e AOC (se esiste) per le info
+                let infoText = wine.Nazione;
+                if (wine.AOC && wine.AOC.trim() !== '') {
+                    infoText += ` - ${wine.AOC}`;
+                }
+                modalWineInfo.textContent = infoText;
+
                 modal.style.display = 'flex';
             }
 
+            // --- NUOVA AGGIUNTA: Funzione per chiudere il Modal ---
             function closeModal() {
                 modal.style.display = 'none';
             }
@@ -327,7 +382,6 @@
                     closeModal();
                 }
             });
-
 
             function groupAndRenderWines(wines) {
                 wineList.innerHTML = '';
@@ -370,7 +424,7 @@
                                 item.classList.add('unavailable');
                             }
 
-                            // --- NUOVA AGGIUNTA: Logica per il clic sul popup ---
+                            // --- MODIFICA: Logica per il clic sul popup ---
                             // Controlla se esiste una descrizione non vuota
                             if (wine.Descrizione && wine.Descrizione.toString().trim() !== '') {
                                 // Rende l'item cliccabile
@@ -382,8 +436,7 @@
                                     openModal(wine);
                                 });
                             }
-                            // --- FINE AGGIUNTA ---
-
+                            // --- FINE MODIFICA ---
 
                             const details = document.createElement('div');
                             details.className = 'wine-details';
@@ -397,15 +450,18 @@
                             info.className = 'wine-info';
                             
                             const parts = [];
+                            // Aggiunge l'anno se esiste
                             if (wine.Anno) {
                                 parts.push(wine.Anno);
                             }
+                            // Aggiunge l'AOC se esiste
                             if (wine.AOC) {
                                 parts.push(wine.AOC);
                             }
                             
                             let infoContent = parts.join(' - ');
                             
+                            // Aggiunge i vitigni tra parentesi se esistono
                             if (wine.Vitigni) {
                                 if (infoContent.length > 0) {
                                     infoContent += ' ';
