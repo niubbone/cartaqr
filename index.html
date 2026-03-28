@@ -66,6 +66,160 @@
             transform: translateX(-50%);
         }
 
+        /* ===== FILTER BAR ===== */
+        .filter-bar {
+            margin: 0 0 20px;
+            background: var(--bg-color);
+            border-radius: 8px;
+            border: 1px solid #e8e4df;
+            overflow: hidden;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        .filter-header:hover {
+            background: rgba(0,0,0,0.03);
+        }
+
+        .filter-header-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-serif);
+            font-size: 15px;
+            color: var(--primary-color);
+        }
+
+        .bottle-icon {
+            display: inline-block;
+            transition: transform 0.35s ease;
+            line-height: 1;
+        }
+
+        .bottle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .bottle-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--primary-color);
+        }
+
+        .active-count {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 10px;
+            padding: 2px 8px;
+        }
+
+        .filter-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 16px;
+        }
+
+        .filter-body.open {
+            max-height: 500px;
+            padding: 0 16px 16px;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .filter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-color);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .filter-toggle input[type="checkbox"] {
+            accent-color: var(--primary-color);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 400;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 55px;
+            flex-shrink: 0;
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .chip {
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.15s;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .chip.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .chip:hover:not(.active) {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .results-count {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 16px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+
+        /* ===== WINE LIST ===== */
         .wine-section {
             margin-bottom: 30px;
         }
@@ -278,6 +432,43 @@
         <header class="header">
             <h1>CARTA DEI VINI</h1>
         </header>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar" id="filter-bar" style="display:none;">
+            <div class="filter-header" id="filter-header">
+                <span class="filter-header-label">
+                    <span class="bottle-icon" id="bottle-icon">
+                        <svg viewBox="0 0 24 80" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.5 0 h5 c0.8 0 1.5 0.7 1.5 1.5 v16 c0 0 0 1 0.5 2 c2 4 4.5 7 4.5 12 v42 c0 3.5 -2.5 6.5 -6 6.5 h-6 c-3.5 0 -6 -3 -6 -6.5 v-42 c0 -5 2.5 -8 4.5 -12 c0.5 -1 0.5 -2 0.5 -2 v-16 c0 -0.8 0.7 -1.5 1.5 -1.5z"/>
+                        </svg>
+                    </span>
+                    Filtra la carta
+                    <span class="active-count" id="active-count" style="display:none"></span>
+                </span>
+            </div>
+            <div class="filter-body" id="filter-body">
+                <div class="filter-row">
+                    <label class="filter-toggle">
+                        <input type="checkbox" id="filter-available" checked>
+                        Solo disponibili
+                    </label>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-label">Tipo</span>
+                    <div class="filter-chips" id="chips-type"></div>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-label">Paese</span>
+                    <div class="filter-chips" id="chips-country"></div>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-label">Prezzo</span>
+                    <div class="filter-chips" id="chips-price"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-count" id="results-count" style="display:none;"></div>
         
         <main id="wine-list"></main>
 
@@ -316,6 +507,116 @@
             const modalWineInfo = document.getElementById('modal-wine-info');
             const modalWineDescription = document.getElementById('modal-wine-description');
 
+            // === FILTER STATE ===
+            let allWines = [];
+            let filtersOpen = false;
+            const activeTypes = new Set();
+            const activeCountries = new Set();
+            const activePrices = new Set();
+            const priceBands = [
+                { label: '25-45€', min: 25, max: 45 },
+                { label: '45-65€', min: 45, max: 65 },
+                { label: 'Oltre 65€', min: 65, max: 99999 }
+            ];
+
+            // === FILTER UI ===
+            const filterBar = document.getElementById('filter-bar');
+            const filterHeader = document.getElementById('filter-header');
+            const filterBody = document.getElementById('filter-body');
+            const bottleIcon = document.getElementById('bottle-icon');
+            const activeCountEl = document.getElementById('active-count');
+            const resultsCountEl = document.getElementById('results-count');
+            const filterAvailable = document.getElementById('filter-available');
+
+            filterHeader.addEventListener('click', () => {
+                filtersOpen = !filtersOpen;
+                filterBody.classList.toggle('open', filtersOpen);
+                bottleIcon.classList.toggle('open', filtersOpen);
+            });
+
+            filterAvailable.addEventListener('change', applyFilters);
+
+            function buildChips(containerId, items, activeSet) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                items.forEach(item => {
+                    const label = typeof item === 'string' ? item : item.label;
+                    const chip = document.createElement('span');
+                    chip.className = 'chip';
+                    chip.textContent = label;
+                    chip.addEventListener('click', () => {
+                        if (activeSet.has(label)) {
+                            activeSet.delete(label);
+                        } else {
+                            activeSet.add(label);
+                        }
+                        chip.classList.toggle('active');
+                        applyFilters();
+                    });
+                    container.appendChild(chip);
+                });
+            }
+
+            function updateActiveCount() {
+                const count = activeTypes.size + activeCountries.size + activePrices.size;
+                if (count > 0) {
+                    activeCountEl.textContent = count + ' filtri attivi';
+                    activeCountEl.style.display = 'inline';
+                } else {
+                    activeCountEl.style.display = 'none';
+                }
+            }
+
+            function applyFilters() {
+                updateActiveCount();
+                const onlyAvailable = filterAvailable.checked;
+
+                const filtered = allWines.filter(wine => {
+                    if (onlyAvailable && !wine.Disponibile) return false;
+                    if (activeTypes.size && !activeTypes.has(wine.Categoria)) return false;
+                    if (activeCountries.size && !activeCountries.has(wine.Nazione)) return false;
+                    if (activePrices.size) {
+                        const match = priceBands.some(b =>
+                            activePrices.has(b.label) &&
+                            wine.Prezzo >= b.min &&
+                            wine.Prezzo < (b.max === 99999 ? 99999 : b.max + 0.01)
+                        );
+                        if (!match) return false;
+                    }
+                    return true;
+                });
+
+                resultsCountEl.textContent = filtered.length + ' vini' +
+                    (filtered.length !== allWines.length ? ' su ' + allWines.length : '');
+
+                if (filtered.length === 0) {
+                    wineList.innerHTML = '<div class="no-results">Nessun vino corrisponde ai filtri selezionati</div>';
+                } else {
+                    groupAndRenderWines(filtered);
+                }
+            }
+
+            function initFilters(wines) {
+                const categories = [];
+                const categorySeen = new Set();
+                wines.forEach(w => {
+                    if (!categorySeen.has(w.Categoria)) {
+                        categorySeen.add(w.Categoria);
+                        categories.push(w.Categoria);
+                    }
+                });
+
+                const countries = [...new Set(wines.map(w => w.Nazione))].sort();
+
+                buildChips('chips-type', categories, activeTypes);
+                buildChips('chips-country', countries, activeCountries);
+                buildChips('chips-price', priceBands, activePrices);
+
+                filterBar.style.display = '';
+                resultsCountEl.style.display = '';
+            }
+
+            // === ORIGINAL FUNCTIONS ===
             function showLoading() {
                 loadingText.style.display = 'block';
                 wineList.style.display = 'none';
@@ -515,7 +816,9 @@
                         return response.json();
                     })
                     .then(wines => {
-                        groupAndRenderWines(wines);
+                        allWines = wines;
+                        initFilters(wines);
+                        applyFilters();
                     })
                     .catch(error => {
                         console.error('Errore nel caricamento dei vini:', error);
