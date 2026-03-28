@@ -165,11 +165,11 @@
         }
 
         .filter-label {
-            font-size: 12px;
-            font-weight: 400;
-            color: #888;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             min-width: 55px;
             flex-shrink: 0;
         }
@@ -204,11 +204,70 @@
             color: var(--primary-color);
         }
 
-        .results-count {
-            text-align: center;
+        /* Country: chips on desktop, dropdown on mobile */
+        .country-chips-desktop {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .country-dropdown-mobile {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .country-select {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: var(--text-color);
+            appearance: auto;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .country-select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .country-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .country-tag {
             font-size: 12px;
-            color: #999;
-            margin-bottom: 16px;
+            padding: 4px 10px;
+            border-radius: 14px;
+            background: var(--primary-color);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .country-tag-x {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        @media (max-width: 600px) {
+            .country-chips-desktop {
+                display: none;
+            }
+            .country-dropdown-mobile {
+                display: flex;
+            }
         }
 
         .no-results {
@@ -459,7 +518,13 @@
                 </div>
                 <div class="filter-row">
                     <span class="filter-label">Paese</span>
-                    <div class="filter-chips" id="chips-country"></div>
+                    <div class="country-chips-desktop" id="chips-country-desktop"></div>
+                    <div class="country-dropdown-mobile" id="country-mobile">
+                        <select class="country-select" id="country-select">
+                            <option value="">Seleziona paese...</option>
+                        </select>
+                        <div class="country-tags" id="country-tags"></div>
+                    </div>
                 </div>
                 <div class="filter-row">
                     <span class="filter-label">Prezzo</span>
@@ -467,8 +532,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="results-count" id="results-count" style="display:none;"></div>
         
         <main id="wine-list"></main>
 
@@ -519,14 +582,15 @@
                 { label: 'Oltre 65€', min: 65, max: 99999 }
             ];
 
-            // === FILTER UI ===
+            // === FILTER UI ELEMENTS ===
             const filterBar = document.getElementById('filter-bar');
             const filterHeader = document.getElementById('filter-header');
             const filterBody = document.getElementById('filter-body');
             const bottleIcon = document.getElementById('bottle-icon');
             const activeCountEl = document.getElementById('active-count');
-            const resultsCountEl = document.getElementById('results-count');
             const filterAvailable = document.getElementById('filter-available');
+            const countrySelect = document.getElementById('country-select');
+            const countryTagsEl = document.getElementById('country-tags');
 
             filterHeader.addEventListener('click', () => {
                 filtersOpen = !filtersOpen;
@@ -536,6 +600,48 @@
 
             filterAvailable.addEventListener('change', applyFilters);
 
+            // === COUNTRY DROPDOWN (MOBILE) ===
+            countrySelect.addEventListener('change', () => {
+                const val = countrySelect.value;
+                if (!val || activeCountries.has(val)) {
+                    countrySelect.value = '';
+                    return;
+                }
+                activeCountries.add(val);
+                countrySelect.value = '';
+                syncCountryChips();
+                renderCountryTags();
+                applyFilters();
+            });
+
+            function renderCountryTags() {
+                countryTagsEl.innerHTML = '';
+                activeCountries.forEach(country => {
+                    const tag = document.createElement('span');
+                    tag.className = 'country-tag';
+                    tag.textContent = country + ' ';
+                    const x = document.createElement('span');
+                    x.className = 'country-tag-x';
+                    x.textContent = '\u00D7';
+                    x.addEventListener('click', () => {
+                        activeCountries.delete(country);
+                        syncCountryChips();
+                        renderCountryTags();
+                        applyFilters();
+                    });
+                    tag.appendChild(x);
+                    countryTagsEl.appendChild(tag);
+                });
+            }
+
+            function syncCountryChips() {
+                const desktopChips = document.querySelectorAll('#chips-country-desktop .chip');
+                desktopChips.forEach(chip => {
+                    chip.classList.toggle('active', activeCountries.has(chip.textContent));
+                });
+            }
+
+            // === CHIP BUILDERS ===
             function buildChips(containerId, items, activeSet) {
                 const container = document.getElementById(containerId);
                 container.innerHTML = '';
@@ -557,6 +663,38 @@
                 });
             }
 
+            function buildCountryChipsDesktop(countries) {
+                const container = document.getElementById('chips-country-desktop');
+                container.innerHTML = '';
+                countries.forEach(country => {
+                    const chip = document.createElement('span');
+                    chip.className = 'chip';
+                    chip.textContent = country;
+                    chip.addEventListener('click', () => {
+                        if (activeCountries.has(country)) {
+                            activeCountries.delete(country);
+                        } else {
+                            activeCountries.add(country);
+                        }
+                        chip.classList.toggle('active');
+                        renderCountryTags();
+                        applyFilters();
+                    });
+                    container.appendChild(chip);
+                });
+            }
+
+            function buildCountryDropdown(countries) {
+                countrySelect.innerHTML = '<option value="">Seleziona paese...</option>';
+                countries.forEach(country => {
+                    const opt = document.createElement('option');
+                    opt.value = country;
+                    opt.textContent = country;
+                    countrySelect.appendChild(opt);
+                });
+            }
+
+            // === ACTIVE COUNT BADGE ===
             function updateActiveCount() {
                 const count = activeTypes.size + activeCountries.size + activePrices.size;
                 if (count > 0) {
@@ -567,6 +705,7 @@
                 }
             }
 
+            // === APPLY FILTERS ===
             function applyFilters() {
                 updateActiveCount();
                 const onlyAvailable = filterAvailable.checked;
@@ -586,9 +725,6 @@
                     return true;
                 });
 
-                resultsCountEl.textContent = filtered.length + ' vini' +
-                    (filtered.length !== allWines.length ? ' su ' + allWines.length : '');
-
                 if (filtered.length === 0) {
                     wineList.innerHTML = '<div class="no-results">Nessun vino corrisponde ai filtri selezionati</div>';
                 } else {
@@ -596,6 +732,7 @@
                 }
             }
 
+            // === INIT FILTERS FROM DATA ===
             function initFilters(wines) {
                 const categories = [];
                 const categorySeen = new Set();
@@ -609,11 +746,11 @@
                 const countries = [...new Set(wines.map(w => w.Nazione))].sort();
 
                 buildChips('chips-type', categories, activeTypes);
-                buildChips('chips-country', countries, activeCountries);
+                buildCountryChipsDesktop(countries);
+                buildCountryDropdown(countries);
                 buildChips('chips-price', priceBands, activePrices);
 
                 filterBar.style.display = '';
-                resultsCountEl.style.display = '';
             }
 
             // === ORIGINAL FUNCTIONS ===
