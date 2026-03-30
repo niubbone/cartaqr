@@ -945,7 +945,7 @@
 
             function fetchWines() {
                 showLoading();
-                fetch(appsScriptUrl)
+                fetch(appsScriptUrl + '?t=' + Date.now())
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Errore di rete. Status: ' + response.status);
