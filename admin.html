@@ -315,7 +315,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const descriptionTextarea = document.getElementById('description-textarea');
     const saveDescriptionBtn = document.getElementById('save-description-btn');
 
-    const adminPassword = 'Autocarro38';
+    // La password non sta più qui (il sorgente è pubblico su GitHub): la verifica il server,
+    // che la richiede anche per ogni modifica. Resta in memoria solo finché la pagina è aperta.
+    let sessionPassword = '';
 
     // --- GESTIONE LOGIN ---
     loginButton.addEventListener('click', handleLogin);
@@ -323,13 +325,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') handleLogin();
     });
 
-    function handleLogin() {
-        if (passwordInput.value === adminPassword) {
-            loginContainer.style.display = 'none';
-            mainContent.style.display = 'block';
-            fetchWines();
-        } else {
-            errorMessage.textContent = 'Password errata. Riprova.';
+    async function handleLogin() {
+        const pwd = passwordInput.value;
+        errorMessage.textContent = 'Verifica in corso...';
+        loginButton.disabled = true;
+        try {
+            const esito = await postAppsScript({ action: 'verificaPassword', password: pwd });
+            if (esito.status === 'success') {
+                sessionPassword = pwd;
+                errorMessage.textContent = '';
+                loginContainer.style.display = 'none';
+                mainContent.style.display = 'block';
+                fetchWines();
+            } else {
+                errorMessage.textContent = 'Password errata. Riprova.';
+            }
+        } catch (error) {
+            console.error('Errore verifica password:', error);
+            errorMessage.textContent = 'Impossibile contattare il server. Riprova.';
+        } finally {
+            loginButton.disabled = false;
         }
     }
 
@@ -511,39 +526,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNZIONI DI COMUNICAZIONE CON LO SCRIPT ---
 
-    function updateAvailability(nome, disponibilita) {
-        const payload = { 
-            action: 'updateAvailability',
-            nome, 
-            disponibilita 
-        };
+    // text/plain: richiesta semplice, senza preflight, e la risposta si può leggere (come fa
+    // VDC carta-vini.html). Prima era 'no-cors' e ogni salvataggio risultava riuscito comunque.
+    function postAppsScript(payload) {
         return fetch(appsScriptUrl, {
             method: 'POST', body: JSON.stringify(payload),
-            headers: { 'Content-Type': 'application/json' },
-            mode: 'no-cors'
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+        }).then(r => r.json());
+    }
+
+    function esitoModifica(payload) {
+        return postAppsScript({ ...payload, password: sessionPassword })
+        .then(res => {
+            if (res.status === 'success') return true;
+            console.error('Modifica rifiutata:', res.message);
+            return false;
         })
-        .then(() => true)
         .catch(error => {
             console.error('Errore:', error);
             return false;
         });
     }
 
+    function updateAvailability(nome, disponibilita) {
+        return esitoModifica({ action: 'updateAvailability', nome, disponibilita });
+    }
+
     function updateWineDetails(wineData) {
-        const payload = {
-            action: 'updateDetails',
-            data: wineData
-        };
-        return fetch(appsScriptUrl, {
-            method: 'POST', body: JSON.stringify(payload),
-            headers: { 'Content-Type': 'application/json' },
-            mode: 'no-cors'
-        })
-        .then(() => true)
-        .catch(error => {
-            console.error('Errore:', error);
-            return false;
-        });
+        return esitoModifica({ action: 'updateDetails', data: wineData });
     }
 });
 </script>
