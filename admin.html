@@ -77,6 +77,12 @@
         }
         #advanced-edit-btn:hover { background-color: #225081; }
         #advanced-edit-btn.active { background-color: #c0392b; }
+        #terminati-btn {
+            padding: 10px 15px; border: none; background-color: #1e7145;
+            color: white; border-radius: 4px; cursor: pointer; font-family: 'Roboto', sans-serif;
+        }
+        #terminati-btn:hover { background-color: #155a35; }
+        #terminati-btn:disabled { opacity: .6; cursor: wait; }
 
         .wine-category-title {
             font-family: 'Playfair Display', serif; font-size: 1.5em; color: var(--secondary-color);
@@ -215,6 +221,7 @@
         <div id="controls-container">
             <input type="text" id="search-input" placeholder="Cerca vino per nome, AOC o vitigni...">
             <button id="advanced-edit-btn">Modifica Vini</button>
+            <button id="terminati-btn" title="Elenco Excel dei vini terminati, con fornitore, costo e bestseller da Gestione Vini">📥 Vini terminati (Excel)</button>
         </div>
 
         <div id="loading-message" class="loading" style="display:none;">Caricamento vini...</div>
@@ -350,6 +357,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- GESTIONE VINI ---
     advancedEditBtn.addEventListener('click', toggleAdvancedMode);
+
+    // --- VINI TERMINATI IN EXCEL (25/10/2026) ---
+    // Terminati = pallino rosso qui (Disponibile non spuntato). Nome, tipo e nazione vengono
+    // dalla carta; fornitore, costo bottiglia, prezzo al calice e bestseller da WINE_COST
+    // (Gestione Vini), agganciati per codice e, in mancanza, per nome in carta.
+    const WINE_COST_URL = 'https://script.google.com/macros/s/AKfycbz_fpZSr1plB6vliWBzSh3rxjaaLz5ilFH_OHIIM2kjqHOaMDWk-za_yaR5gWxtb-1f/exec';
+    const terminatiBtn = document.getElementById('terminati-btn');
+    terminatiBtn.addEventListener('click', scaricaTerminati);
+
+    async function leggiWineCost() {
+        let ultimo = '';
+        for (let i = 0; i < 3; i++) {             // Apps Script a volte risponde una pagina HTML
+            const r = await fetch(WINE_COST_URL, {
+                method: 'POST', redirect: 'follow',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: 'getVini' })
+            });
+            ultimo = await r.text();
+            try {
+                const d = JSON.parse(ultimo);
+                if (!d.ok) throw new Error(d.error || 'risposta senza dati');
+                return d.vini;
+            } catch (e) {
+                if (i === 2) throw new Error('Gestione Vini non risponde: ' + (e.message || ultimo.slice(0, 80)));
+            }
+        }
+    }
+
+    async function scaricaTerminati() {
+        if (!window.XLSX) { showMessage('Libreria Excel non caricata: controlla la connessione e ricarica.', 'error'); return; }
+        const terminati = allWines.filter(w => w.Disponibile !== true);
+        if (!terminati.length) { showMessage('Nessun vino terminato.', 'success'); return; }
+        terminatiBtn.disabled = true;
+        terminatiBtn.textContent = '⏳ Preparo l\'elenco...';
+        try {
+            const costi = await leggiWineCost();
+            const norm = s => String(s || '').trim().toLowerCase();
+            const perCodice = {}, perNome = {};
+            costi.forEach(v => {
+                if (v.codice) perCodice[String(v.codice).trim()] = v;
+                if (v.nomeCarta) perNome[norm(v.nomeCarta)] = v;
+            });
+            const num = x => (typeof x === 'number' ? x : (parseFloat(String(x || '').replace(',', '.')) || null));
+            const righe = terminati.map(w => {
+                const c = perCodice[String(w.CODICE || '').trim()] || perNome[norm(w.Nome)] || {};
+                return [
+                    w.Nome || '',
+                    c.fornitore || '',
+                    w.Categoria || c.catCarta || '',
+                    c.bestseller ? 'Sì' : 'No',
+                    w.Nazione || c.nazione || '',
+                    num(c.costoBottiglia),
+                    num(c.calice) ?? num(w.Calice),
+                    w.Visibile === true ? 'Sì' : 'No',
+                ];
+            }).sort((a, b) => String(a[2]).localeCompare(b[2]) || String(a[0]).localeCompare(b[0]));
+
+            const testa = ['Vino (nome in carta)', 'Fornitore', 'Tipo vino', 'Bestseller', 'Nazione',
+                           'Costo bottiglia € (senza IVA)', 'Prezzo calice €', 'Visibile in carta'];
+            const ws = XLSX.utils.aoa_to_sheet([testa, ...righe]);
+            for (let r = 1; r <= righe.length; r++) {
+                [5, 6].forEach(col => {
+                    const cella = ws[XLSX.utils.encode_cell({ r, c: col })];
+                    if (cella && cella.t === 'n') cella.z = '#,##0.00';
+                });
+            }
+            ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: righe.length, c: testa.length - 1 } }) };
+            ws['!cols'] = [{ wch: 42 }, { wch: 24 }, { wch: 14 }, { wch: 11 }, { wch: 14 }, { wch: 14 }, { wch: 12 }, { wch: 12 }];
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Vini terminati');
+            const oggi = new Date().toISOString().slice(0, 10);
+            XLSX.writeFile(wb, `Vini terminati ${oggi}.xlsx`);
+            const senza = righe.filter(r => !r[1] && r[5] == null).length;
+            showMessage(`Scaricato l'elenco: ${righe.length} vini terminati` +
+                (senza ? ` (${senza} non trovati in Gestione Vini: senza fornitore e costo)` : '') + '.', 'success');
+        } catch (e) {
+            console.error('Vini terminati:', e);
+            showMessage('Elenco non creato: ' + e.message, 'error');
+        } finally {
+            terminatiBtn.disabled = false;
+            terminatiBtn.textContent = '📥 Vini terminati (Excel)';
+        }
+    }
 
     function toggleAdvancedMode() {
         isAdvancedMode = !isAdvancedMode;
@@ -558,5 +648,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
 </html>
