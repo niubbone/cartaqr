@@ -349,6 +349,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- GESTIONE VINI ---
+    // Modifica dei dati del vino DISATTIVATA (29/10/2026): nome, prezzo, AOC, vitigni,
+    // descrizione e annata arrivano da WINE_COST con «Sincronizza → CartaQR», che li
+    // riscrive; modificarli qui voleva dire perderli alla sincronizzazione successiva.
+    // Qui resta solo la disponibilità. Il codice resta: per riattivarla, true qui e
+    // MODIFICA_DETTAGLI_ATTIVA = true nel backend (Codice.js).
+    const MODIFICA_DETTAGLI_ATTIVA = false;
+    if (!MODIFICA_DETTAGLI_ATTIVA) advancedEditBtn.style.display = 'none';
     advancedEditBtn.addEventListener('click', toggleAdvancedMode);
 
     function toggleAdvancedMode() {
